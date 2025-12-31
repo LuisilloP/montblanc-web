@@ -1,0 +1,247 @@
+{
+  "meta": {
+    "title": "MONT BLANC – Odontología y Estética Facial",
+    "description": "Clínica boutique en Ovalle que combina odontología avanzada y estética facial con un equipo de especialistas y atención cálida.",
+    "url": "https://montblanc.cl",
+    "image": "/og-montblanc.jpg"
+  },
+  "brand": {
+    "name": "MONT BLANC",
+    "tagline": "Odontología y Estética Facial"
+  },
+  "contact": {
+    "phone": "+56 9 8765 4321",
+    "email": "contacto@montblanc.cl",
+    "whatsapp": "https://wa.me/56987654321?text=Hola%20Mont%20Blanc%2C%20quisiera%20agendar%20una%20consulta.",
+    "address": "Plaza de Armas, Ovalle, Región de Coquimbo",
+    "hours": "Lunes a sábado · 9:00 a 19:00",
+    "emergency": "+56 9 2222 1111",
+    "mapLink": "https://maps.google.com?q=Ovalle+Plaza+de+Armas"
+  },
+  "header": {
+    "nav": [
+      { "label": "Servicios", "href": "#servicios" },
+      { "label": "Doctores", "href": "#sobre" },
+      { "label": "Antes y después", "href": "#antes-despues" },
+      { "label": "Reseñas", "href": "#resenas" },
+      { "label": "FAQ", "href": "#faq" },
+      { "label": "Convenios", "href": "#convenios" }
+    ],
+    "ctaLabel": "Agendar por WhatsApp"
+  },
+  "hero": {
+    "eyebrow": "Clínica dental premium en Ovalle",
+    "title": "Odontología y estética facial de precisión",
+    "subtitle": "Tratamientos personalizados con tecnología avanzada y un equipo de especialistas que cuidan cada detalle.",
+    "bullets": [
+      "Clínica boutique en Ovalle",
+      "Equipo de 2 especialistas",
+      "Atención de urgencias en el día"
+    ],
+    "primaryCta": {
+      "label": "Agendar por WhatsApp",
+      "href": "https://wa.me/56987654321?text=Hola%20Mont%20Blanc%2C%20quiero%20agendar%20mi%20consulta."
+    },
+    "secondaryCta": { "label": "Ver servicios", "href": "#servicios" },
+    "trustBar": [
+      { "title": "Horario", "detail": "Lunes a sábado · 9:00 - 19:00" },
+      { "title": "Ubicación", "detail": "Plaza de Armas, Ovalle" },
+      { "title": "Convenios", "detail": "Isapres, seguros y particulares" }
+    ],
+    "video": {
+      "src": "/video.MP4",
+      "poster": "https://dummyimage.com/1600x900/f8f0e8/b08050&text=Mont+Blanc+Cl%C3%ADnica+Dental"
+    },
+    "stats": [
+      { "value": "10,000+", "label": "Pacientes atendidos" },
+      { "value": "2", "label": "Doctores en clínica" },
+      { "value": "100+", "label": "Reseñas 5★" },
+      { "value": "15+", "label": "Años de experiencia" }
+    ]
+  },
+  "about": {
+    "title": "Mont Blanc es precisión clínica y calidez humana",
+    "description": "Diseñamos sonrisas y tratamientos faciales con criterio estético, tecnología 3D y protocolos seguros. Cada visita es personalizada y enfocada en tu comodidad.",
+    "highlights": [
+      "Evaluaciones digitales y planificación 3D",
+      "Sedación consciente y control del confort",
+      "Laboratorio asociado para rehabilitaciones precisas"
+    ],
+    "doctors": [
+      {
+        "name": "Dra. Valentina Mena",
+        "role": "Rehabilitación oral y estética",
+        "credentials": [
+          "Magíster en Rehabilitación Oral, U. de Chile",
+          "Certificada en carillas ultrafinas y diseño de sonrisa",
+          "Miembro Sociedad Chilena de Prótesis"
+        ],
+        "photo": ""
+      },
+      {
+        "name": "Dr. Ignacio Rivas",
+        "role": "Cirugía oral e implantes",
+        "credentials": [
+          "Diplomado en Implantología, U. Mayor",
+          "Experto en extracción de terceros molares y regeneración",
+          "Atención de urgencias dentales en el día"
+        ],
+        "photo": ""
+      }
+    ]
+  },
+  "services": {
+    "title": "Servicios integrales",
+    "subtitle": "Protocolos precisos y materiales premium para resultados duraderos.",
+    "items": [
+      {
+        "name": "Estética dental",
+        "description": "Blanqueamiento, armonización de sonrisa y pequeños retoques en una sola sesión.",
+        "icon": "sparkle",
+        "cta": "Agenda evaluación estética"
+      },
+      {
+        "name": "Rehabilitación / Prótesis",
+        "description": "Coronas, incrustaciones y prótesis implantosoportadas con ajuste digital.",
+        "icon": "shield",
+        "cta": "Conoce tu plan"
+      },
+      {
+        "name": "Extracción muelas del juicio",
+        "description": "Cirugía segura con manejo del dolor y recuperación guiada.",
+        "icon": "extraction",
+        "cta": "Reserva tu cirugía"
+      },
+      {
+        "name": "Carillas",
+        "description": "Carillas ultrafinas personalizadas para proporciones faciales perfectas.",
+        "icon": "layers",
+        "cta": "Diseña tu sonrisa"
+      },
+      {
+        "name": "Periodontal y limpieza",
+        "description": "Profilaxis avanzada, mantenimiento periodontal y educación preventiva.",
+        "icon": "clean",
+        "cta": "Programa tu higiene"
+      },
+      {
+        "name": "Urgencias dentales",
+        "description": "Atención inmediata para dolor, fracturas y traumatismos.",
+        "icon": "alert",
+        "cta": "Llamar ahora"
+      }
+    ]
+  },
+  "gallery": {
+    "title": "Antes y después",
+    "note": "Casos reales tratados con planificación fotográfica y seguimiento. Imágenes de referencia listas para reemplazar.",
+    "items": [
+      {
+        "title": "Carillas cerámicas",
+        "image": "https://dummyimage.com/700x520/e6d6c6/202020&text=Carillas+Antes+y+Despu%C3%A9s",
+        "alt": "Resultado de carillas cerámicas"
+      },
+      {
+        "title": "Rehabilitación completa",
+        "image": "https://dummyimage.com/700x520/f8e8e0/202020&text=Rehabilitaci%C3%B3n+Digital",
+        "alt": "Rehabilitación oral completa"
+      },
+      {
+        "title": "Blanqueamiento clínico",
+        "image": "https://dummyimage.com/700x520/e6d6c6/202020&text=Blanqueamiento+Cl%C3%ADnico",
+        "alt": "Resultado de blanqueamiento dental"
+      },
+      {
+        "title": "Implantes guiados",
+        "image": "https://dummyimage.com/700x520/f8f0e8/202020&text=Implantes+Guiados",
+        "alt": "Implantes dentales guiados digitalmente"
+      }
+    ]
+  },
+  "reviews": {
+    "title": "Pacientes que confían",
+    "items": [
+      {
+        "name": "Camila S.",
+        "rating": 5,
+        "text": "Me explicaron cada paso y salí sin dolor. El resultado estético es increíble.",
+        "tag": "Carillas ultrafinas"
+      },
+      {
+        "name": "Diego R.",
+        "rating": 5,
+        "text": "Extrajeron mis muelas del juicio en una sola sesión, atentos a mi comodidad.",
+        "tag": "Cirugía oral"
+      },
+      {
+        "name": "Mónica P.",
+        "rating": 5,
+        "text": "Las coronas quedaron perfectas al primer ajuste, se nota el trabajo digital.",
+        "tag": "Rehabilitación"
+      },
+      {
+        "name": "Javier T.",
+        "rating": 5,
+        "text": "Atendieron mi urgencia en menos de una hora y me dieron seguimiento.",
+        "tag": "Urgencia dental"
+      }
+    ]
+  },
+  "ctaBanner": {
+    "title": "Agenda tu evaluación",
+    "text": "Coordinemos tu diagnóstico inicial por WhatsApp. Respuesta en minutos dentro del horario.",
+    "ctaLabel": "Escribir por WhatsApp",
+    "ctaHref": "https://wa.me/56987654321?text=Hola%20Mont%20Blanc%2C%20quiero%20mi%20evaluaci%C3%B3n."
+  },
+  "faq": {
+    "title": "Preguntas frecuentes",
+    "items": [
+      {
+        "question": "¿Ofrecen evaluación digital de sonrisa?",
+        "answer": "Sí, usamos fotografía clínica y diseño digital para planificar carillas y rehabilitaciones antes de intervenir."
+      },
+      {
+        "question": "¿Cómo funciona la atención de urgencias?",
+        "answer": "Escríbenos o llámanos al número de urgencias. Reservamos bloques diarios para dolor, traumatismos o fracturas."
+      },
+      {
+        "question": "¿Trabajan con convenios o seguros?",
+        "answer": "Sí, gestionamos reembolsos con isapres y seguros. Consulta por tu plan para revisar cobertura."
+      },
+      {
+        "question": "¿Qué técnicas usan para blanqueamiento?",
+        "answer": "Realizamos blanqueamiento clínico con barrera gingival y refuerzo domiciliario personalizado."
+      },
+      {
+        "question": "¿Realizan sedación consciente?",
+        "answer": "Contamos con sedación consciente y protocolos de control de ansiedad para procedimientos quirúrgicos."
+      },
+      {
+        "question": "¿Cuánto dura una rehabilitación completa?",
+        "answer": "Dependiendo del caso, entre 4 y 10 semanas considerando planificación, provisionales y ajustes finales."
+      }
+    ]
+  },
+  "partners": {
+    "title": "Convenios y aliados",
+    "text": "Trabajamos con aseguradoras y proveedores certificados. Reemplaza los logos por los de tus convenios.",
+    "items": [
+      { "name": "Convenio 1", "logo": "https://dummyimage.com/180x90/b4ab9f/ffffff&text=Logo" },
+      { "name": "Convenio 2", "logo": "https://dummyimage.com/180x90/e6d6c6/202020&text=Logo" },
+      { "name": "Seguro Dental", "logo": "https://dummyimage.com/180x90/f8e8e0/202020&text=Logo" },
+      { "name": "Proveedor Clínico", "logo": "https://dummyimage.com/180x90/b08050/ffffff&text=Logo" }
+    ]
+  },
+  "footer": {
+    "legal": "© 2025 Mont Blanc. Todos los derechos reservados.",
+    "links": [
+      { "label": "Política de privacidad", "href": "#" },
+      { "label": "Términos y condiciones", "href": "#" },
+      { "label": "Consentimiento informado", "href": "#" }
+    ],
+    "social": [
+      { "label": "Instagram", "href": "https://instagram.com", "ariaLabel": "Visitar Instagram de Mont Blanc" },
+      { "label": "Facebook", "href": "https://facebook.com", "ariaLabel": "Visitar Facebook de Mont Blanc" }
+    ]
+  }
+}

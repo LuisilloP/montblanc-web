@@ -1,0 +1,275 @@
+---
+type TrustItem = { title: string; detail: string };
+type Stat = { value: string; label: string };
+
+type Props = {
+  data: {
+    eyebrow?: string;
+    title: string;
+    subtitle: string;
+    primaryCta: { label: string; href: string };
+    secondaryCta: { label: string; href: string };
+    trustBar: TrustItem[];
+    stats?: Stat[];
+    video?: { src: string; poster?: string };
+  };
+};
+
+const { data } = Astro.props as Props;
+const stats = data.stats ?? [];
+const videoSrc = data.video?.src;
+const posterSrc =
+  data.video?.poster ??
+  "https://dummyimage.com/1600x900/f8f0e8/b08050&text=Mont+Blanc";
+
+const heroCopy = {
+  eyebrow: "CLÍNICA PREMIUM EN OVALLE",
+  titleLine1: "Odontología y estética facial",
+  titleLine2: "con precisión",
+  subtitle: "Tratamientos personalizados, enfoque estético y atención cercana.",
+  primary: "Agendar por WhatsApp",
+  secondary: "Ver servicios",
+  note: "Respuesta en minutos en horario hábil.",
+};
+---
+
+<section id="inicio" class="">
+  <div class="absolute inset-0">
+    <div
+      class="absolute inset-0 bg-cover bg-center"
+      style={`background-image: url(${posterSrc});`}
+      aria-hidden="true"
+    >
+    </div>
+    {
+      videoSrc && (
+        <video
+          class="hero-video pointer-events-none absolute inset-0 h-full w-full object-cover opacity-95"
+          src={videoSrc}
+          poster={posterSrc}
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          aria-hidden="true"
+        />
+      )
+    }
+    <div
+      class="absolute inset-0 bg-gradient-to-tr from-[rgba(12,8,4,0.82)] via-[rgba(12,8,4,0.5)] to-[rgba(240,226,214,0.18)]"
+    >
+    </div>
+    <div
+      class="pointer-events-none absolute inset-x-0 bottom-0 h-[52%] bg-gradient-to-t from-[rgba(10,6,4,0.82)] via-[rgba(10,6,4,0.55)] to-transparent"
+    >
+    </div>
+    <div class="pointer-events-none absolute inset-0">
+      <div
+        class="hero-text-overlay absolute left-0 bottom-0 h-[78%] w-full max-w-[900px] sm:h-[70%] sm:w-[84%] md:w-[78%] lg:h-[64%] lg:w-[68%]"
+      >
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="relative z-10 flex min-h-[82vh] sm:min-h-[86vh] lg:min-h-[92vh] flex-col justify-end"
+  >
+    <div
+      class="px-5 pb-28 pt-16 sm:px-8 sm:pb-32 sm:pt-16 lg:px-16 lg:pb-36 lg:pt-20"
+    >
+      <div class="max-w-[640px] space-y-3 sm:space-y-4 lg:space-y-5">
+        <p
+          class="hero-eyebrow text-[10px] uppercase tracking-[0.32em] sm:text-[11px]"
+        >
+          {heroCopy.eyebrow}
+        </p>
+        <h1
+          class="hero-title hero-title-shadow font-[var(--font-heading)] text-[34px] leading-[1.05] sm:text-[42px] lg:text-[54px]"
+        >
+          {heroCopy.titleLine1}
+          <br />
+          <span class="text-[#d4b894]">{heroCopy.titleLine2}</span>
+        </h1>
+        <p
+          class="hero-sub-shadow max-w-xl text-base leading-relaxed text-[rgba(248,240,232,0.88)] sm:text-lg"
+        >
+          {heroCopy.subtitle}
+        </p>
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+          <a
+            class="btn-primary w-full sm:w-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--goldLight)] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgba(12,8,4,0.7)]"
+            href={data.primaryCta.href}
+            aria-label="Agendar por WhatsApp"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {heroCopy.primary}
+          </a>
+          <a
+            class="btn-secondary w-full sm:w-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--goldLight)] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgba(12,8,4,0.7)]"
+            href={data.secondaryCta.href}
+            aria-label="Ver servicios"
+          >
+            {heroCopy.secondary}
+          </a>
+        </div>
+        <p
+          class="text-xs uppercase tracking-[0.12em] text-[rgba(248,240,232,0.72)] sm:text-[13px]"
+        >
+          {heroCopy.note}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {
+    stats.length > 0 && (
+      <div class="pointer-events-none absolute inset-x-0 bottom-0 z-20">
+        <div class="pointer-events-auto w-full bg-[rgba(12,8,4,0.48)] backdrop-blur-sm">
+          <div class="mx-auto max-w-6xl px-5 py-4 sm:px-8 sm:py-5">
+            <div class="grid grid-cols-2 gap-y-4 text-center text-[rgba(248,240,232,0.95)] sm:grid-cols-4 sm:gap-y-0 sm:divide-x sm:divide-[rgba(248,240,232,0.14)]">
+              {stats.map((stat) => (
+                <div class="flex flex-col items-center gap-1">
+                  <span
+                    class="stat-number font-[var(--font-heading)] text-3xl leading-tight sm:text-4xl lg:text-[44px]"
+                    data-target={stat.value}
+                  >
+                    {stat.value}
+                  </span>
+                  <span class="text-xs font-medium tracking-wide text-[rgba(248,240,232,0.76)] sm:text-sm">
+                    {stat.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  <style>
+    @media (prefers-reduced-motion: reduce) {
+      .hero-video {
+        display: none !important;
+      }
+    }
+
+    @keyframes countFadeIn {
+      from {
+        opacity: 0.4;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .stat-number {
+      animation: countFadeIn 0.6s ease forwards;
+    }
+
+    .hero-video {
+      object-position: 50% 30%;
+    }
+
+    @media (min-width: 640px) {
+      .hero-video {
+        object-position: center;
+      }
+    }
+
+    .hero-text-overlay {
+      background-image:
+        linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.7) 0%,
+          rgba(0, 0, 0, 0.25) 45%,
+          rgba(0, 0, 0, 0) 75%
+        ),
+        radial-gradient(
+          circle at 20% 78%,
+          rgba(0, 0, 0, 0.55) 0%,
+          rgba(0, 0, 0, 0) 55%
+        );
+    }
+
+    .hero-title-shadow {
+      text-shadow: 0 6px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .hero-sub-shadow {
+      text-shadow: 0 4px 18px rgba(0, 0, 0, 0.28);
+    }
+
+    .hero-title {
+      color: #ffffff !important;
+      letter-spacing: 0;
+    }
+
+    .hero-eyebrow {
+      color: #f3e7d4 !important;
+    }
+  </style>
+
+  <script>
+    const parseTarget = (raw) => {
+      const value = String(raw ?? "0");
+      const target = Number(value.replace(/[^\d]/g, "")) || 0;
+      const suffix = value.replace(/[\d\s]/g, "");
+      return { target, suffix };
+    };
+
+    const animateCounts = () => {
+      const stats = document.querySelectorAll(".stat-number");
+
+      const run = (el) => {
+        const { target, suffix } = parseTarget(el.getAttribute("data-target"));
+        const startValue =
+          target > 10 ? Math.max(1, Math.floor(target * 0.05)) : 0;
+        const duration = 2000;
+        const startedAt = performance.now();
+
+        const step = (now) => {
+          const progress = Math.min((now - startedAt) / duration, 1);
+          const current = Math.floor(
+            startValue + (target - startValue) * progress
+          );
+          el.textContent = current.toLocaleString("en-US") + suffix;
+          if (progress < 1) requestAnimationFrame(step);
+        };
+
+        requestAnimationFrame(step);
+      };
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              observer.unobserve(entry.target);
+              run(entry.target);
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+
+      stats.forEach((el) => {
+        const { suffix } = parseTarget(el.getAttribute("data-target"));
+        el.textContent = "0" + suffix;
+        observer.observe(el);
+      });
+    };
+
+    if (
+      document.readyState === "complete" ||
+      document.readyState === "interactive"
+    ) {
+      animateCounts();
+    } else {
+      document.addEventListener("DOMContentLoaded", animateCounts);
+    }
+  </script>
+</section>

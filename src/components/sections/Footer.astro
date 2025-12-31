@@ -1,0 +1,97 @@
+---
+type NavItem = { label: string; href: string };
+type Social = { label: string; href: string; ariaLabel?: string };
+type FooterLink = { label: string; href: string };
+
+type Props = {
+  brand: { name: string; tagline?: string };
+  contact: {
+    phone: string;
+    email: string;
+    whatsapp: string;
+    address: string;
+    hours: string;
+    emergency?: string;
+    mapLink?: string;
+  };
+  nav: NavItem[];
+  footer: { legal: string; links: FooterLink[]; social: Social[] };
+};
+
+const { brand, contact, nav = [], footer } = Astro.props as Props;
+---
+
+<footer id="contacto" class="mt-8 bg-[rgba(32,32,32,0.92)] text-white">
+  <div class="container-wide grid gap-12 py-14 lg:grid-cols-[1.1fr_0.9fr] lg:py-20">
+    <div class="space-y-5">
+      <p class="text-xs uppercase tracking-[0.36em] text-[var(--champagne)]">MONT BLANC</p>
+      <h3 class="text-4xl font-normal">{brand.tagline}</h3>
+      <p class="text-base leading-relaxed text-white/70">
+        Clínica boutique con enfoque integral en odontología y estética facial. Coordinamos diagnósticos, urgencias y
+        planes completos.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a
+          href={contact.whatsapp}
+          class="btn-primary bg-white text-[var(--charcoal)] shadow-none"
+          aria-label="Agendar por WhatsApp"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Agendar por WhatsApp
+        </a>
+        {contact.mapLink && (
+          <a
+            href={contact.mapLink}
+            class="btn-secondary border-white/30 bg-transparent text-white hover:border-white hover:text-white"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Abrir ubicación en mapa"
+          >
+            Ver ubicación
+          </a>
+        )}
+      </div>
+    </div>
+
+    <div class="grid gap-8 sm:grid-cols-2">
+      <div class="space-y-3">
+        <p class="text-sm font-semibold text-white/90">Contacto</p>
+        <div class="space-y-2 text-sm leading-relaxed text-white/70">
+          <p>{contact.address}</p>
+          <p>{contact.hours}</p>
+          <p>Teléfono: <a class="underline-offset-4 hover:underline" href={`tel:${contact.phone}`}>{contact.phone}</a></p>
+          {contact.emergency && (
+            <p>Urgencias: <a class="underline-offset-4 hover:underline" href={`tel:${contact.emergency}`}>{contact.emergency}</a></p>
+          )}
+          <p>Correo: <a class="underline-offset-4 hover:underline" href={`mailto:${contact.email}`}>{contact.email}</a></p>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <p class="text-sm font-semibold text-white/90">Enlaces</p>
+        <div class="grid grid-cols-2 gap-2 text-sm text-white/70">
+          {nav.map((item) => (
+            <a class="hover:text-white" href={item.href}>{item.label}</a>
+          ))}
+          {footer.links.map((item) => (
+            <a class="hover:text-white" href={item.href}>{item.label}</a>
+          ))}
+        </div>
+        <div class="gold-divider" />
+        <div class="flex flex-wrap gap-3 text-sm text-white/70">
+          {footer.social.map((item) => (
+            <a class="flex items-center gap-2 rounded-full border border-white/20 px-3 py-2 hover:border-white hover:text-white" href={item.href} aria-label={item.ariaLabel ?? item.label} target="_blank" rel="noreferrer">
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="gold-divider opacity-50" />
+  <div class="container-wide flex flex-col gap-2 py-5 text-xs text-white/60 sm:flex-row sm:items-center sm:justify-between">
+    <p>{footer.legal}</p>
+    <p>Diseño listo para contenido real · Optimizado para rendimiento</p>
+  </div>
+</footer>
