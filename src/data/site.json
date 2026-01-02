@@ -97,37 +97,37 @@
       {
         "name": "Estética dental",
         "description": "Blanqueamiento, armonización de sonrisa y pequeños retoques en una sola sesión.",
-        "icon": "sparkle",
+        "icon": "lucide:sparkles",
         "cta": "Agenda evaluación estética"
       },
       {
         "name": "Rehabilitación / Prótesis",
         "description": "Coronas, incrustaciones y prótesis implantosoportadas con ajuste digital.",
-        "icon": "shield",
+        "icon": "lucide:shield-check",
         "cta": "Conoce tu plan"
       },
       {
         "name": "Extracción muelas del juicio",
         "description": "Cirugía segura con manejo del dolor y recuperación guiada.",
-        "icon": "extraction",
+        "icon": "lucide:syringe",
         "cta": "Reserva tu cirugía"
       },
       {
         "name": "Carillas",
         "description": "Carillas ultrafinas personalizadas para proporciones faciales perfectas.",
-        "icon": "layers",
+        "icon": "lucide:layers",
         "cta": "Diseña tu sonrisa"
       },
       {
         "name": "Periodontal y limpieza",
         "description": "Profilaxis avanzada, mantenimiento periodontal y educación preventiva.",
-        "icon": "clean",
+        "icon": "lucide:brush",
         "cta": "Programa tu higiene"
       },
       {
         "name": "Urgencias dentales",
         "description": "Atención inmediata para dolor, fracturas y traumatismos.",
-        "icon": "alert",
+        "icon": "lucide:triangle-alert",
         "cta": "Llamar ahora"
       }
     ]

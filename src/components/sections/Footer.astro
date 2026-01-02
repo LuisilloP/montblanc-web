@@ -25,7 +25,7 @@ const { brand, contact, nav = [], footer } = Astro.props as Props;
   <div class="container-wide grid gap-12 py-14 lg:grid-cols-[1.1fr_0.9fr] lg:py-20">
     <div class="space-y-5">
       <p class="text-xs uppercase tracking-[0.36em] text-[var(--champagne)]">MONT BLANC</p>
-      <h3 class="text-4xl font-normal">{brand.tagline}</h3>
+      <h3 class="text-4xl font-normal text-[var(--champagne)] drop-shadow-[0_4px_14px_rgba(0,0,0,0.35)]">{brand.tagline}</h3>
       <p class="text-base leading-relaxed text-white/70">
         Clínica boutique con enfoque integral en odontología y estética facial. Coordinamos diagnósticos, urgencias y
         planes completos.

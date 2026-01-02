@@ -1,4 +1,6 @@
 ---
+import { Icon } from 'astro-icon/components';
+
 type Doctor = {
   name: string;
   role: string;
@@ -28,9 +30,7 @@ const { data } = Astro.props as Props;
         {data.highlights.map((item) => (
           <li class="flex items-start gap-3 rounded-2xl bg-white/70 px-5 py-4 text-sm font-medium text-[var(--charcoal)] shadow-sm ring-1 ring-[rgba(176,128,80,0.15)]">
             <span class="mt-1 inline-flex h-7 w-7 items-center justify-center rounded-full bg-[var(--gold)]/15 text-[var(--goldLight)]">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M10 2l2.09 4.26L17 7.27l-3.5 3.41.83 4.85L10 13.77l-4.33 2.76.83-4.85L3 7.27l4.91-.99L10 2z" />
-              </svg>
+              <Icon name="lucide:sparkles" class="h-3.5 w-3.5" strokeWidth="0" fill="currentColor" />
             </span>
             <span>{item}</span>
           </li>

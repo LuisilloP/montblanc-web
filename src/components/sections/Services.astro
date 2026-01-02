@@ -1,26 +1,10 @@
 ---
+import { Icon } from 'astro-icon/components';
+
 type Service = { name: string; description: string; icon: string; cta: string };
 type Props = { data: { title: string; subtitle: string; items: Service[] } };
 
 const { data } = Astro.props as Props;
-
-const renderIcon = (icon: string) => {
-  switch (icon) {
-    case "sparkle":
-      return '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z" /><path stroke-linecap="round" stroke-linejoin="round" d="M5 18l.7-2m1.3-1l.7-2m2.3 5.5L11 18m5 1l1.2-2.6m-3.2-.9L15 13" /></svg>';
-    case "shield":
-      return '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4l7 3v4c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V7l7-3z" /><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" /></svg>';
-    case "extraction":
-      return '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 4h6a3 3 0 013 3.2c-.2 2.1-.9 5.3-2 9.6-.4 1.7-2.7 2-3.4.4l-.6-1.5-.6 1.5c-.7 1.6-3 1.3-3.4-.4-1.1-4.3-1.8-7.5-2-9.6A3 3 0 019 4z" /><path stroke-linecap="round" stroke-linejoin="round" d="M9 4c0 1.5 1.2 2.7 2.7 2.7h.6C13.8 6.7 15 5.5 15 4" /></svg>';
-    case "layers":
-      return '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4l8 4-8 4-8-4 8-4z" /><path stroke-linecap="round" stroke-linejoin="round" d="M4 12l8 4 8-4" /><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l8 4 8-4" /></svg>';
-    case "clean":
-      return '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12c0-2.2 1-4 3-4h6c2 0 3 1.8 3 4 0 3-1.5 6-3.5 6H9.5C7.5 18 6 15 6 12z" /><path stroke-linecap="round" stroke-linejoin="round" d="M9 8V6a3 3 0 013-3 3 3 0 013 3v2" /><path stroke-linecap="round" stroke-linejoin="round" d="M8 13.5h8" /></svg>';
-    case "alert":
-    default:
-      return '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01" /><path stroke-linecap="round" stroke-linejoin="round" d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3l-8.47-14.14a2 2 0 00-3.42 0z" /></svg>';
-  }
-};
 ---
 
 <section id="servicios" class="container-wide space-y-10 py-16 lg:space-y-14 lg:py-24">
@@ -37,8 +21,9 @@ const renderIcon = (icon: string) => {
           <div
             class="flex h-11 w-11 items-center justify-center rounded-xl bg-[rgba(176,128,80,0.12)] text-[var(--goldLight)] ring-1 ring-[rgba(176,128,80,0.2)]"
             aria-hidden="true"
-            set:html={renderIcon(service.icon)}
-          ></div>
+          >
+            <Icon name={service.icon} class="h-6 w-6" strokeWidth="1.6" />
+          </div>
           <span class="text-[10px] uppercase tracking-[0.18em] text-[var(--charcoal)]/60">Premium</span>
         </div>
         <div class="space-y-2">
@@ -48,9 +33,7 @@ const renderIcon = (icon: string) => {
         <div class="mt-auto pt-2">
           <button class="btn-secondary w-full justify-between text-[var(--goldLight)]" aria-label={service.cta}>
             <span>{service.cta}</span>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
+            <Icon name="lucide:arrow-right" class="h-4 w-4" strokeWidth="1.5" />
           </button>
         </div>
       </article>
