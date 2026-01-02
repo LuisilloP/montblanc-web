@@ -96,38 +96,56 @@
     "items": [
       {
         "name": "Estética dental",
-        "description": "Blanqueamiento, armonización de sonrisa y pequeños retoques en una sola sesión.",
+        "description": "Sonrisa luminosa con blanqueamiento clínico y armonización en una sola visita.",
         "icon": "lucide:sparkles",
-        "cta": "Agenda evaluación estética"
+        "image": "/estetica-dental.jpg",
+        "tag": "Más demandado",
+        "bullet": "Incluye mockup digital y plan en 1 sesión.",
+        "cta": "Agenda tu diseño de sonrisa"
       },
       {
         "name": "Rehabilitación / Prótesis",
-        "description": "Coronas, incrustaciones y prótesis implantosoportadas con ajuste digital.",
+        "description": "Coronas y prótesis digitales con ajuste preciso y materiales premium.",
         "icon": "lucide:shield-check",
-        "cta": "Conoce tu plan"
+        "image": "/protesis-dental.jpg",
+        "tag": "Digital",
+        "bullet": "Escaneo 3D y provisionales estéticos.",
+        "cta": "Solicita tu plan digital"
       },
       {
         "name": "Extracción muelas del juicio",
-        "description": "Cirugía segura con manejo del dolor y recuperación guiada.",
+        "description": "Cirugía guiada, control del dolor y recuperación acompañada.",
         "icon": "lucide:syringe",
-        "cta": "Reserva tu cirugía"
+        "image": "/extracion-muelas.jpg",
+        "tag": "Cirugía",
+        "bullet": "Sedación opcional y seguimiento post cirugía.",
+        "cta": "Reserva tu cirugía segura"
       },
       {
         "name": "Carillas",
-        "description": "Carillas ultrafinas personalizadas para proporciones faciales perfectas.",
+        "description": "Carillas ultrafinas a medida con proporciones y color natural.",
         "icon": "lucide:layers",
+        "image": "https://dummyimage.com/600x360/f8f0e8/202020&text=Carillas+Premium",
+        "tag": "Destacado",
+        "bullet": "Prueba estética previa y ajuste de color.",
         "cta": "Diseña tu sonrisa"
       },
       {
         "name": "Periodontal y limpieza",
-        "description": "Profilaxis avanzada, mantenimiento periodontal y educación preventiva.",
+        "description": "Limpieza profunda, mantenimiento periodontal y coaching de higiene.",
         "icon": "lucide:brush",
-        "cta": "Programa tu higiene"
+        "image": "https://dummyimage.com/600x360/e6d6c6/202020&text=Higiene+Periodontal",
+        "tag": "Mantenimiento",
+        "bullet": "Profilaxis avanzada + plan de cuidado en casa.",
+        "cta": "Agenda tu higiene avanzada"
       },
       {
         "name": "Urgencias dentales",
-        "description": "Atención inmediata para dolor, fracturas y traumatismos.",
+        "description": "Atención inmediata, control del dolor y seguimiento post urgencia.",
         "icon": "lucide:triangle-alert",
+        "image": "https://dummyimage.com/600x360/f8e8e0/202020&text=Urgencias+Dentales",
+        "tag": "Prioridad",
+        "bullet": "Diagnóstico rápido y estabilización en la misma visita.",
         "cta": "Llamar ahora"
       }
     ]
@@ -138,12 +156,12 @@
     "items": [
       {
         "title": "Carillas cerámicas",
-        "image": "https://dummyimage.com/700x520/e6d6c6/202020&text=Carillas+Antes+y+Despu%C3%A9s",
+        "image": "/caso1.jpg",
         "alt": "Resultado de carillas cerámicas"
       },
       {
         "title": "Rehabilitación completa",
-        "image": "https://dummyimage.com/700x520/f8e8e0/202020&text=Rehabilitaci%C3%B3n+Digital",
+        "image": "/caso2.jpg",
         "alt": "Rehabilitación oral completa"
       },
       {
@@ -191,7 +209,8 @@
     "title": "Agenda tu evaluación",
     "text": "Coordinemos tu diagnóstico inicial por WhatsApp. Respuesta en minutos dentro del horario.",
     "ctaLabel": "Escribir por WhatsApp",
-    "ctaHref": "https://wa.me/56987654321?text=Hola%20Mont%20Blanc%2C%20quiero%20mi%20evaluaci%C3%B3n."
+    "ctaHref": "https://wa.me/56987654321?text=Hola%20Mont%20Blanc%2C%20quiero%20mi%20evaluaci%C3%B3n.",
+    "hours": "Lunes a sábado · 9:00 a 19:00"
   },
   "faq": {
     "title": "Preguntas frecuentes",
