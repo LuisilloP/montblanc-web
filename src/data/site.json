@@ -107,7 +107,7 @@
         "name": "Rehabilitación / Prótesis",
         "description": "Coronas y prótesis digitales con ajuste preciso y materiales premium.",
         "icon": "lucide:shield-check",
-        "image": "/protesis-dental.jpg",
+        "image": "/rehabilitacion-protesis.jpg",
         "tag": "Digital",
         "bullet": "Escaneo 3D y provisionales estéticos.",
         "cta": "Solicita tu plan digital"
@@ -116,7 +116,7 @@
         "name": "Extracción muelas del juicio",
         "description": "Cirugía guiada, control del dolor y recuperación acompañada.",
         "icon": "lucide:syringe",
-        "image": "/extracion-muelas.jpg",
+        "image": "/extraccion-muelas-juicio.jpg",
         "tag": "Cirugía",
         "bullet": "Sedación opcional y seguimiento post cirugía.",
         "cta": "Reserva tu cirugía segura"
@@ -125,7 +125,7 @@
         "name": "Carillas",
         "description": "Carillas ultrafinas a medida con proporciones y color natural.",
         "icon": "lucide:layers",
-        "image": "https://dummyimage.com/600x360/f8f0e8/202020&text=Carillas+Premium",
+        "image": "carillas.jpg",
         "tag": "Destacado",
         "bullet": "Prueba estética previa y ajuste de color.",
         "cta": "Diseña tu sonrisa"
@@ -134,7 +134,7 @@
         "name": "Periodontal y limpieza",
         "description": "Limpieza profunda, mantenimiento periodontal y coaching de higiene.",
         "icon": "lucide:brush",
-        "image": "https://dummyimage.com/600x360/e6d6c6/202020&text=Higiene+Periodontal",
+        "image": "peridontal-limpieza.jpg",
         "tag": "Mantenimiento",
         "bullet": "Profilaxis avanzada + plan de cuidado en casa.",
         "cta": "Agenda tu higiene avanzada"
@@ -143,7 +143,7 @@
         "name": "Urgencias dentales",
         "description": "Atención inmediata, control del dolor y seguimiento post urgencia.",
         "icon": "lucide:triangle-alert",
-        "image": "https://dummyimage.com/600x360/f8e8e0/202020&text=Urgencias+Dentales",
+        "image": "urgencias-dentales.jpg",
         "tag": "Prioridad",
         "bullet": "Diagnóstico rápido y estabilización en la misma visita.",
         "cta": "Llamar ahora"
