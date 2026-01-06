@@ -36,9 +36,18 @@ const tagToneClasses: Record<string, string> = {
     "bg-[rgba(16,158,110,0.9)] text-white ring-[rgba(16,158,110,0.95)] shadow-[0_12px_28px_rgba(16,158,110,0.22)]",
   rose:
     "bg-[rgba(225,29,72,0.9)] text-white ring-[rgba(225,29,72,0.95)] shadow-[0_12px_28px_rgba(225,29,72,0.26)]",
+  // Nuevos colores añadidos
+  cyan: 
+    "bg-[rgba(6,182,212,0.9)] text-white ring-[rgba(6,182,212,0.95)] shadow-[0_12px_28px_rgba(6,182,212,0.22)]",
+  orange: 
+    "bg-[rgba(249,115,22,0.9)] text-white ring-[rgba(249,115,22,0.95)] shadow-[0_12px_28px_rgba(249,115,22,0.24)]",
+  sky: 
+    "bg-[rgba(14,165,233,0.9)] text-white ring-[rgba(14,165,233,0.95)] shadow-[0_12px_28px_rgba(14,165,233,0.22)]",
+  emerald: 
+    "bg-[rgba(16,185,129,0.9)] text-white ring-[rgba(16,185,129,0.95)] shadow-[0_12px_28px_rgba(16,185,129,0.22)]",
+  //
   neutral: "bg-white text-[var(--charcoal)] ring-[rgba(32,32,32,0.16)] shadow-[0_12px_28px_rgba(32,32,32,0.12)]",
 };
-
 const tagToneClass = (tone?: string) => tagToneClasses[tone ?? "neutral"] ?? tagToneClasses.neutral;
 const getCtaHref = (item: Service) => item.ctaHref ?? data.ctaHref ?? "#";
 ---
