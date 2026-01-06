@@ -171,8 +171,8 @@ const getInitial = (name: string) => (name?.trim()?.charAt(0) || "?").toUpperCas
   }
 
   .reviews-shell {
-    --edge-pad: 72px;
-    --fade: 56px;
+    --edge-pad: clamp(18px, 6vw, 72px);
+    --fade: clamp(14px, 6vw, 56px);
   }
 
   .reviews-track {
@@ -239,6 +239,57 @@ const getInitial = (name: string) => (name?.trim()?.charAt(0) || "?").toUpperCas
     padding-left: max(16px, calc(var(--edge-pad) - 48px));
     padding-right: max(16px, calc(var(--edge-pad) - 48px));
     z-index: 20;
+  }
+
+  @media (min-width: 1024px) {
+    .reviews-shell {
+      --edge-pad: clamp(72px, 8vw, 140px);
+      --fade: clamp(70px, 10vw, 180px);
+    }
+
+    .reviews-shell::before,
+    .reviews-shell::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: clamp(70px, 14vw, 220px);
+      pointer-events: none;
+      z-index: 15;
+    }
+
+    .reviews-shell::before {
+      left: 0;
+      background: linear-gradient(90deg, rgba(248, 240, 232, 0.9), rgba(248, 240, 232, 0.35), transparent);
+    }
+
+    .reviews-shell::after {
+      right: 0;
+      background: linear-gradient(270deg, rgba(248, 240, 232, 0.9), rgba(248, 240, 232, 0.35), transparent);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .reviews-shell {
+      --card-width: min(92vw, 460px);
+      --edge-pad: calc((100vw - var(--card-width)) / 2);
+      --fade: 0px;
+    }
+
+    .reviews-track {
+      gap: 18px;
+      padding-left: var(--edge-pad);
+      padding-right: var(--edge-pad);
+      scroll-padding-left: var(--edge-pad);
+      scroll-padding-right: var(--edge-pad);
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+
+    .reviews-track [data-card] {
+      flex-basis: var(--card-width);
+      scroll-snap-align: center;
+    }
   }
 </style>
 
@@ -351,9 +402,11 @@ const getInitial = (name: string) => (name?.trim()?.charAt(0) || "?").toUpperCas
     let isDragging = false;
     let dragged = false;
     let startX = 0;
+    let startY = 0;
     let startScroll = 0;
     let previousUserSelect = "";
     const DRAG_THRESHOLD = 4;
+    const VERTICAL_ESCAPE = 12;
 
     const setUserSelect = (value) => {
       document.body.style.userSelect = value;
@@ -399,6 +452,7 @@ const getInitial = (name: string) => (name?.trim()?.charAt(0) || "?").toUpperCas
       isDragging = true;
       dragged = false;
       startX = event.clientX ?? 0;
+      startY = event.clientY ?? 0;
       startScroll = carousel.scrollLeft;
       previousUserSelect = document.body.style.userSelect || "";
       setUserSelect("none");
@@ -410,11 +464,23 @@ const getInitial = (name: string) => (name?.trim()?.charAt(0) || "?").toUpperCas
 
     const onPointerMove = (event) => {
       if (!isDragging) return;
-      event.preventDefault();
       const clientX = event.clientX ?? 0;
-      const delta = clientX - startX;
-      if (Math.abs(delta) > DRAG_THRESHOLD) dragged = true;
-      carousel.scrollLeft = startScroll - delta;
+      const clientY = event.clientY ?? 0;
+      const deltaX = clientX - startX;
+      const deltaY = clientY - startY;
+
+      if (!dragged) {
+        const verticalDominant = Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > VERTICAL_ESCAPE;
+        if (verticalDominant) {
+          stopDrag();
+          return;
+        }
+        if (Math.abs(deltaX) <= DRAG_THRESHOLD) return;
+      }
+
+      dragged = true;
+      event.preventDefault();
+      carousel.scrollLeft = startScroll - deltaX;
     };
 
     const onPointerUp = (event) => stopDrag(event);
