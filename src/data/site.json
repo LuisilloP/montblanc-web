@@ -1,20 +1,20 @@
 {
   "meta": {
-    "title": "MONT BLANC | Odontolog?a y Est?tica Facial",
-    "description": "Cl?nica boutique en Ovalle que combina odontolog?a avanzada y est?tica facial con un equipo de especialistas y atenci?n c?lida.",
+    "title": "MONT BLANC | Odontología y Estética Facial",
+    "description": "Clínica boutique en Ovalle que combina odontología avanzada y estética facial con un equipo de especialistas y atención cálida.",
     "url": "https://montblanc.cl",
     "image": "/og-montblanc.jpg"
   },
   "brand": {
     "name": "MONT BLANC",
-    "tagline": "Odontolog?a y Est?tica Facial"
+    "tagline": "Odontología y Estética Facial"
   },
   "contact": {
     "phone": "+56967454506",
     "email": "contacto@montblanc.cl",
     "whatsapp": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quisiera%20agendar%20una%20consulta.",
-    "address": "Av. Manuel Pe?afiel Olivares 1480, oficina 316B, 1840000 Ovalle, Coquimbo",
-    "hours": "Lunes a s?bado: 9:30?13:30 y 15:00?19:30. Domingo: cerrado.",
+    "address": "Av. Manuel Peñafiel Olivares 1480, oficina 316B, 1840000 Ovalle, Coquimbo",
+    "hours": "Lunes a sábado: 9:30-13:30 y 15:00-19:30. Domingo: cerrado.",
     "emergency": "+56 9 2222 1111",
     "mapLink": "https://maps.app.goo.gl/xtKKcUnBm5QzvTuq8"
   },
@@ -29,11 +29,11 @@
         "href": "#sobre"
       },
       {
-        "label": "Antes y despu?s",
+        "label": "Antes y después",
         "href": "#antes-despues"
       },
       {
-        "label": "Rese?as",
+        "label": "Reseñas",
         "href": "#resenas"
       },
       {
@@ -48,13 +48,13 @@
     "ctaLabel": "Agendar por WhatsApp"
   },
   "hero": {
-    "eyebrow": "Cl?nica dental premium en Ovalle",
-    "title": "Odontolog?a y est?tica facial de precisi?n",
-    "subtitle": "Tratamientos personalizados con tecnolog?a avanzada y un equipo de especialistas que cuidan cada detalle.",
+    "eyebrow": "Clínica dental premium en Ovalle",
+    "title": "Odontología y estética facial de precisión",
+    "subtitle": "Tratamientos personalizados con tecnología avanzada y un equipo de especialistas que cuidan cada detalle.",
     "bullets": [
-      "Cl?nica boutique en Ovalle",
+      "Clínica boutique en Ovalle",
       "Equipo de 2 especialistas",
-      "Atenci?n de urgencias en el d?a"
+      "Atención de urgencias en el día"
     ],
     "primaryCta": {
       "label": "Agendar por WhatsApp",
@@ -67,11 +67,11 @@
     "trustBar": [
       {
         "title": "Horario",
-        "detail": "Lunes a s?bado 9:30?13:30 / 15:00?19:30 ? Domingo cerrado"
+        "detail": "Lunes a sábado 9:30-13:30 / 15:00-19:30 · Domingo cerrado"
       },
       {
-        "title": "Ubicaci?n",
-        "detail": "Av. Manuel Pe?afiel Olivares 1480, oficina 316B, Ovalle"
+        "title": "Ubicación",
+        "detail": "Av. Manuel Peñafiel Olivares 1480, oficina 316B, Ovalle"
       },
       {
         "title": "Convenios",
@@ -89,44 +89,44 @@
       },
       {
         "value": "2",
-        "label": "Doctores en cl?nica"
+        "label": "Doctores en clínica"
       },
       {
         "value": "100+",
-        "label": "Rese?as 5?"
+        "label": "Reseñas 5★"
       },
       {
         "value": "15+",
-        "label": "A?os de experiencia"
+        "label": "Años de experiencia"
       }
     ]
   },
   "about": {
-    "title": "Mont Blanc es precisi?n cl?nica y calidez humana",
-    "description": "Dise?amos sonrisas y tratamientos faciales con criterio est?tico, tecnolog?a 3D y protocolos seguros. Cada visita es personalizada y enfocada en tu comodidad.",
+    "title": "Mont Blanc es precisión clínica y calidez humana",
+    "description": "Diseñamos sonrisas y tratamientos faciales con criterio estético, tecnología 3D y protocolos seguros. Cada visita es personalizada y enfocada en tu comodidad.",
     "highlights": [
-      "Evaluaciones digitales y planificaci?n 3D",
-      "Sedaci?n consciente y control del confort",
+      "Evaluaciones digitales y planificación 3D",
+      "Sedación consciente y control del confort",
       "Laboratorio asociado para rehabilitaciones precisas"
     ],
     "doctors": [
       {
         "name": "Dra. Valentina Mena",
-        "role": "Rehabilitaci?n oral y est?tica",
+        "role": "Rehabilitación oral y estética",
         "credentials": [
-          "Mag?ster en Rehabilitaci?n Oral, U. de Chile",
-          "Certificada en carillas ultrafinas y dise?o de sonrisa",
-          "Miembro Sociedad Chilena de Pr?tesis"
+          "Magíster en Rehabilitación Oral, U. de Chile",
+          "Certificada en carillas ultrafinas y diseño de sonrisa",
+          "Miembro Sociedad Chilena de Prótesis"
         ],
         "photo": ""
       },
       {
         "name": "Dr. Ignacio Rivas",
-        "role": "Cirug?a oral e implantes",
+        "role": "Cirugía oral e implantes",
         "credentials": [
-          "Diplomado en Implantolog?a, U. Mayor",
-          "Experto en extracci?n de terceros molares y regeneraci?n",
-          "Atenci?n de urgencias dentales en el d?a"
+          "Diplomado en Implantología, U. Mayor",
+          "Experto en extracción de terceros molares y regeneración",
+          "Atención de urgencias dentales en el día"
         ],
         "photo": ""
       }
@@ -206,21 +206,21 @@
     ]
   },
   "gallery": {
-    "title": "Antes y despu?s",
-    "note": "Casos reales tratados con planificaci?n fotogr?fica y seguimiento. Im?genes de referencia listas para reemplazar.",
+    "title": "Antes y después",
+    "note": "Casos reales tratados con planificación fotográfica y seguimiento. Imágenes de referencia listas para reemplazar.",
     "items": [
       {
-        "title": "Carillas cer?micas",
+        "title": "Carillas cerámicas",
         "image": "/cases/caso1.jpg",
-        "alt": "Resultado de carillas cer?micas"
+        "alt": "Resultado de carillas cerámicas"
       },
       {
-        "title": "Rehabilitaci?n completa",
+        "title": "Rehabilitación completa",
         "image": "/cases/caso1.jpg",
-        "alt": "Rehabilitaci?n oral completa"
+        "alt": "Rehabilitación oral completa"
       },
       {
-        "title": "Blanqueamiento cl?nico",
+        "title": "Blanqueamiento clínico",
         "image": "/cases/caso1.jpg",
         "alt": "Resultado de blanqueamiento dental"
       },
@@ -232,25 +232,25 @@
     ]
   },
   "reviews": {
-    "title": "Pacientes que conf?an",
+    "title": "Pacientes que confían",
     "items": [
       {
         "name": "Camila S.",
         "rating": 5,
-        "text": "Me explicaron cada paso y sal? sin dolor. El resultado est?tico es incre?ble.",
+        "text": "Me explicaron cada paso y salí sin dolor. El resultado estético es increíble.",
         "tag": "Carillas ultrafinas"
       },
       {
         "name": "Diego R.",
         "rating": 5,
-        "text": "Extrajeron mis muelas del juicio en una sola sesi?n, atentos a mi comodidad.",
-        "tag": "Cirug?a oral"
+        "text": "Extrajeron mis muelas del juicio en una sola sesión, atentos a mi comodidad.",
+        "tag": "Cirugía oral"
       },
       {
-        "name": "M?nica P.",
+        "name": "Mónica P.",
         "rating": 5,
         "text": "Las coronas quedaron perfectas al primer ajuste, se nota el trabajo digital.",
-        "tag": "Rehabilitaci?n"
+        "tag": "Rehabilitación"
       },
       {
         "name": "Javier T.",
@@ -261,8 +261,8 @@
     ]
   },
   "ctaBanner": {
-    "title": "Agenda tu evaluaci?n",
-    "text": "Coordinemos tu diagn?stico inicial por WhatsApp. Respuesta en minutos dentro del horario.",
+    "title": "Agenda tu evaluación",
+    "text": "Coordinemos tu diagnóstico inicial por WhatsApp. Respuesta en minutos dentro del horario.",
     "ctaLabel": "Escribir por WhatsApp",
     "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20mi%20evaluaci%C3%B3n."
   },
@@ -270,28 +270,28 @@
     "title": "Preguntas frecuentes",
     "items": [
       {
-        "question": "?Ofrecen evaluaci?n digital de sonrisa?",
-        "answer": "S?, usamos fotograf?a cl?nica y dise?o digital para planificar carillas y rehabilitaciones antes de intervenir."
+        "question": "¿Ofrecen evaluación digital de sonrisa?",
+        "answer": "Sí, usamos fotografía clínica y diseño digital para planificar carillas y rehabilitaciones antes de intervenir."
       },
       {
-        "question": "?C?mo funciona la atenci?n de urgencias?",
-        "answer": "Escr?benos o ll?manos al n?mero de urgencias. Reservamos bloques diarios para dolor, traumatismos o fracturas."
+        "question": "¿Cómo funciona la atención de urgencias?",
+        "answer": "Escríbenos o llámanos al número de urgencias. Reservamos bloques diarios para dolor, traumatismos o fracturas."
       },
       {
-        "question": "?Trabajan con convenios o seguros?",
-        "answer": "S?, gestionamos reembolsos con isapres y seguros. Consulta por tu plan para revisar cobertura."
+        "question": "¿Trabajan con convenios o seguros?",
+        "answer": "Sí, gestionamos reembolsos con isapres y seguros. Consulta por tu plan para revisar cobertura."
       },
       {
-        "question": "?Qu? t?cnicas usan para blanqueamiento?",
-        "answer": "Realizamos blanqueamiento cl?nico con barrera gingival y refuerzo domiciliario personalizado."
+        "question": "¿Qué técnicas usan para blanqueamiento?",
+        "answer": "Realizamos blanqueamiento clínico con barrera gingival y refuerzo domiciliario personalizado."
       },
       {
-        "question": "?Realizan sedaci?n consciente?",
-        "answer": "Contamos con sedaci?n consciente y protocolos de control de ansiedad para procedimientos quir?rgicos."
+        "question": "¿Realizan sedación consciente?",
+        "answer": "Contamos con sedación consciente y protocolos de control de ansiedad para procedimientos quirúrgicos."
       },
       {
-        "question": "?Cu?nto dura una rehabilitaci?n completa?",
-        "answer": "Dependiendo del caso, entre 4 y 10 semanas considerando planificaci?n, provisionales y ajustes finales."
+        "question": "¿Cuánto dura una rehabilitación completa?",
+        "answer": "Dependiendo del caso, entre 4 y 10 semanas considerando planificación, provisionales y ajustes finales."
       }
     ]
   },
@@ -312,20 +312,20 @@
         "logo": "https://dummyimage.com/180x90/f8e8e0/202020&text=Logo"
       },
       {
-        "name": "Proveedor Cl?nico",
+        "name": "Proveedor Clínico",
         "logo": "https://dummyimage.com/180x90/b08050/ffffff&text=Logo"
       }
     ]
   },
   "footer": {
-    "legal": "? 2025 Mont Blanc. Todos los derechos reservados.",
+    "legal": "© 2025 Mont Blanc. Todos los derechos reservados.",
     "links": [
       {
-        "label": "Pol?tica de privacidad",
+        "label": "Política de privacidad",
         "href": "#"
       },
       {
-        "label": "T?rminos y condiciones",
+        "label": "Términos y condiciones",
         "href": "#"
       },
       {
