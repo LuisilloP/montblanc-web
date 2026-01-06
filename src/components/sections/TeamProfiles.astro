@@ -1,4 +1,4 @@
----
+﻿---
 const doctors = [
   {
     name: "Dra. Javiera Jara",
@@ -7,9 +7,9 @@ const doctors = [
     experienceYears: "10+",
     tags: ["Implantes", "Rehabilitación", "Estética"],
     bullets: [
-      "Diplomado en Rehabilitación Oral",
-      "Formación en implantología y cirugía guiada",
-      "Certificación en planificación digital 3D"
+      "Diplomado en Rehabilitación Oral.",
+      "Formación en implantología y cirugía guiada.",
+      "Certificación en planificación digital 3D."
     ],
     photo: "/doctores/doctora.webp"
   },
@@ -20,9 +20,9 @@ const doctors = [
     experienceYears: "8+",
     tags: ["Prótesis", "Carillas", "Diseño de sonrisa"],
     bullets: [
-      "Diplomado en Prótesis y Estética",
-      "Certificación en carillas y restauraciones adhesivas",
-      "Capacitación en fotografía clínica y diseño de sonrisa"
+      "Diplomado en Prótesis y Estética.",
+      "Certificación en carillas y restauraciones adhesivas.",
+      "Capacitación en fotografía clínica y diseño de sonrisa."
     ],
     photo: "/doctores/doctor.webp"
   }
@@ -85,7 +85,7 @@ const doctors = [
                 <ul class="space-y-2 text-sm text-[var(--charcoal)]/85">
                   {doctor.bullets.map((item) => (
                     <li class="flex gap-2">
-                      <span aria-hidden="true" class="mt-1 h-1.5 w-1.5 rounded-full bg-[var(--goldLight)]" />
+                      <span aria-hidden="true" class="mt-1 h-2 w-2 shrink-0 rounded-full bg-[var(--goldLight)]" />
                       <span>{item}</span>
                     </li>
                   ))}
