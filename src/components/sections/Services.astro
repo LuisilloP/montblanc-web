@@ -4,108 +4,114 @@ import { Icon } from 'astro-icon/components';
 type Service = {
   name: string;
   description: string;
-  icon: string;
+  detail?: string;
+  tag?: string;
+  tagTone?: "amber" | "blue" | "indigo" | "green" | "rose" | "neutral";
   cta: string;
   ctaHref?: string;
-  bullet?: string;
-  image?: string;
-  tag?: string;
+  image: string;
+  alt?: string;
 };
-type Props = { data: { title: string; subtitle: string; items: Service[] } };
+
+type Props = {
+  data: {
+    title: string;
+    subtitle: string;
+    ctaHref?: string;
+    items: Service[];
+  };
+};
 
 const { data } = Astro.props as Props;
+
+const tagToneClasses: Record<string, string> = {
+  amber: "bg-[rgba(176,128,80,0.14)] text-[var(--goldLight)] ring-[rgba(176,128,80,0.35)]",
+  blue: "bg-[rgba(66,135,245,0.12)] text-[#2c5fb8] ring-[rgba(66,135,245,0.2)]",
+  indigo: "bg-[rgba(99,102,241,0.12)] text-[#4338ca] ring-[rgba(99,102,241,0.26)]",
+  green: "bg-[rgba(16,158,110,0.12)] text-[#0f9e6e] ring-[rgba(16,158,110,0.22)]",
+  rose: "bg-[rgba(225,29,72,0.12)] text-[#b91c1c] ring-[rgba(225,29,72,0.24)]",
+  neutral: "bg-white/80 text-[var(--charcoal)] ring-[rgba(32,32,32,0.12)]",
+};
+
+const tagToneClass = (tone?: string) => tagToneClasses[tone ?? "neutral"] ?? tagToneClasses.neutral;
+const getCtaHref = (item: Service) => item.ctaHref ?? data.ctaHref ?? "#";
 ---
-<section id="servicios" class="container-wide space-y-10 py-16 lg:space-y-14 lg:py-24">
-  <div class="max-w-4xl space-y-4">
-    <p class="pill w-fit text-[11px] tracking-[0.2em]">Servicios</p>
-    <h2 class="text-4xl leading-tight sm:text-5xl">{data.title}</h2>
-    <p class="text-lg leading-relaxed text-[var(--charcoal)]/75 sm:text-xl">{data.subtitle}</p>
-  </div>
 
-  <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-    {data.items.map((service) => {
-      const isPriority =
-        service.name?.toLowerCase().includes("urgencia") || service.tag?.toLowerCase() === "prioridad";
+<section id="servicios" class="relative overflow-hidden py-16 lg:py-24">
+  <div
+    class="absolute inset-0 bg-[radial-gradient(circle_at_16%_12%,rgba(176,128,80,0.08),transparent_28%),radial-gradient(circle_at_82%_22%,rgba(168,120,63,0.08),transparent_26%),linear-gradient(180deg,rgba(248,232,224,0.65),rgba(248,232,224,0.42))]"
+    aria-hidden="true"
+  ></div>
 
-      const ctaBaseClasses =
-        "group/cta inline-flex min-h-[46px] w-full items-center justify-between gap-3 rounded-full px-3.5 sm:px-4 py-2.5 text-sm font-semibold tracking-[0.01em] transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--goldLight)] focus-visible:ring-offset-2 focus-visible:ring-offset-white active:scale-[0.99] active:brightness-[0.98]";
-      const ctaOutlineClasses =
-        "border-[1.5px] lg:border-2 border-[rgba(176,128,80,0.7)] bg-[rgba(176,128,80,0.08)] text-[var(--goldDeep)] shadow-[0_12px_30px_rgba(176,128,80,0.14)] hover:bg-[rgba(176,128,80,0.14)] hover:border-[rgba(176,128,80,0.95)] hover:shadow-[0_14px_34px_rgba(176,128,80,0.18)]";
-      const ctaPrimaryClasses =
-        "border-[1.5px] lg:border-2 border-[rgba(176,128,80,0.9)] bg-[var(--gold)] text-white shadow-[0_14px_36px_rgba(176,128,80,0.25)] hover:bg-[var(--goldLight)] hover:shadow-[0_16px_40px_rgba(176,128,80,0.3)]";
-      const iconCircleBase =
-        "flex h-8 w-8 items-center justify-center rounded-full transition duration-200 group-hover/cta:translate-x-[3px]";
-      const iconCircleOutline =
-        `${iconCircleBase} border border-[rgba(176,128,80,0.25)] bg-[rgba(176,128,80,0.12)] text-[var(--goldDeep)] group-hover/cta:bg-[rgba(176,128,80,0.18)] group-hover/cta:border-[rgba(176,128,80,0.4)]`;
-      const iconCirclePrimary =
-        `${iconCircleBase} border border-white/25 bg-white/15 text-white group-hover/cta:bg-white/25`;
+  <div class="container-wide relative space-y-10 lg:space-y-14">
+    <div class="max-w-4xl space-y-4">
+      <p class="pill w-fit text-[11px] tracking-[0.2em]">Servicios</p>
+      <h2 class="text-4xl leading-tight sm:text-5xl">{data.title}</h2>
+      <p class="text-lg leading-relaxed text-[var(--charcoal)]/75 sm:text-xl">{data.subtitle}</p>
+    </div>
 
-      return (
-        <a
-          class="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[rgba(176,128,80,0.16)] bg-white/95 shadow-[0_16px_50px_rgba(32,32,32,0.08)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_60px_rgba(32,32,32,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--goldLight)] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
-          href={service.ctaHref ?? "#"}
-          aria-label={`${service.name} - ${service.cta}`}
+    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      {data.items.map((service) => (
+        <article
+          class="group overflow-hidden rounded-[26px] bg-white/92 shadow-[0_20px_60px_rgba(32,32,32,0.1)] ring-1 ring-[rgba(176,128,80,0.18)] transition duration-200 hover:-translate-y-1 hover:shadow-[0_26px_70px_rgba(32,32,32,0.14)]"
         >
-          <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[rgba(176,128,80,0.55)] via-[rgba(248,232,224,0.9)] to-[rgba(176,128,80,0.55)] opacity-80" aria-hidden="true" />
-
-          {service.image ? (
-            <div class="relative h-44 w-full overflow-hidden bg-[rgba(32,32,32,0.04)]" style="aspect-ratio: 16 / 9;">
-              <img
-                src={service.image}
-                alt={service.name}
-                loading="lazy"
-                decoding="async"
-                class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
-                style="aspect-ratio: 16 / 9;"
-              />
-              <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/20 opacity-60 transition group-hover:opacity-70" />
-            </div>
-          ) : (
-            <div class="h-40 w-full bg-[rgba(32,32,32,0.03)]" style="aspect-ratio: 16 / 9;" />
-          )}
-
-          <div class="absolute left-5 top-5 flex items-center gap-2 rounded-full bg-white/95 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--charcoal)] shadow-sm ring-1 ring-[rgba(176,128,80,0.25)]">
-            <Icon name={service.icon} class="h-4 w-4 text-[var(--goldLight)]" stroke-width="1.6" />
-            <span>{service.tag ?? "Destacado"}</span>
-          </div>
-
-          <div class="flex flex-1 flex-col gap-4 p-6 lg:p-7">
-            <div class="space-y-2">
-              <h3
-                class="text-2xl leading-tight text-[var(--charcoal)]"
-                style="-webkit-line-clamp: 2; -webkit-box-orient: vertical; display: -webkit-box; overflow: hidden;"
-              >
-                {service.name}
-              </h3>
-              <p
-                class="text-base leading-relaxed text-[rgba(32,32,32,0.82)]"
-                style="-webkit-line-clamp: 3; -webkit-box-orient: vertical; display: -webkit-box; overflow: hidden;"
-              >
-                {service.description}
-              </p>
-            </div>
-            <div class="mt-auto space-y-3 pt-2">
-              <div class="flex items-center gap-2 text-xs text-[var(--charcoal)]/70">
-                <span class="h-1.5 w-1.5 rounded-full bg-[var(--goldLight)]" />
-                <span>{service.bullet ?? data.bullet ?? "Evaluacion y plan a medida incluidos."}</span>
-              </div>
+          <div class="relative overflow-hidden">
+            <img
+              src={service.image}
+              alt={service.alt ?? service.name}
+              loading="lazy"
+              decoding="async"
+              class="h-full w-full object-cover transition duration-300 group-hover:scale-[1.02]"
+              style="aspect-ratio: 4 / 3;"
+            />
+            {service.tag && (
               <span
-                class={`${ctaBaseClasses} ${isPriority ? ctaPrimaryClasses : ctaOutlineClasses}`}
-                aria-label={service.cta}
+                class={`absolute left-4 top-4 inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] ring-1 ${tagToneClass(service.tagTone)}`}
               >
-                <span class="flex-1 text-left leading-tight">{service.cta}</span>
-                <span class={isPriority ? iconCirclePrimary : iconCircleOutline} aria-hidden="true">
-                  <Icon
-                    name="lucide:arrow-right"
-                    class="h-4 w-4 transition-transform duration-200 group-hover/cta:translate-x-[2px]"
-                    stroke-width="1.6"
-                  />
+                <span
+                  class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/70 text-[var(--goldLight)] ring-1 ring-white/70"
+                  aria-hidden="true"
+                >
+                  <Icon name="lucide:sparkles" class="h-3.5 w-3.5" stroke-width="1.6" />
                 </span>
+                {service.tag}
               </span>
+            )}
+          </div>
+
+          <div class="flex flex-col gap-4 px-5 pb-6 pt-5 sm:px-6 sm:pb-7 sm:pt-6">
+            <div class="space-y-2">
+              <h3 class="text-2xl leading-tight text-[var(--charcoal)]">{service.name}</h3>
+              <p class="text-base leading-relaxed text-[var(--charcoal)]/75">{service.description}</p>
+            </div>
+
+            {service.detail && (
+              <p class="flex items-center gap-2 text-sm text-[var(--charcoal)]/70">
+                <span class="mt-[2px] h-1.5 w-1.5 rounded-full bg-[var(--goldLight)]" />
+                <span>{service.detail}</span>
+              </p>
+            )}
+
+            <div class="mt-auto pt-1">
+              <a
+                class="group/cta inline-flex w-full items-center justify-between rounded-full border border-[rgba(176,128,80,0.32)] bg-[rgba(248,232,224,0.7)] px-5 py-3 text-[var(--goldDeep)] font-semibold transition hover:-translate-y-[1px] hover:shadow-[0_12px_34px_rgba(176,128,80,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--goldLight)] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgba(248,232,224,0.7)]"
+                href={getCtaHref(service)}
+                aria-label={service.cta}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span>{service.cta}</span>
+                <span
+                  class="flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(176,128,80,0.25)] bg-white/95 text-[var(--goldDeep)] transition group-hover/cta:translate-x-[2px] group-hover/cta:-translate-y-[1px]"
+                  aria-hidden="true"
+                >
+                  <Icon name="lucide:arrow-right" class="h-4 w-4" stroke-width="1.6" />
+                </span>
+              </a>
             </div>
           </div>
-        </a>
-      );
-    })}
+        </article>
+      ))}
+    </div>
   </div>
 </section>

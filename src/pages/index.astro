@@ -2,14 +2,14 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/sections/Header.astro";
 import Hero from "../components/sections/Hero.astro";
-import TeamProfiles from "../components/TeamProfiles.astro";
+import TeamProfiles from "../components/sections/TeamProfiles.astro";
 import Services from "../components/sections/Services.astro";
 import Gallery from "../components/sections/Gallery.astro";
 import CtaBanner from "../components/sections/CtaBanner.astro";
 import Faq from "../components/sections/Faq.astro";
 import Partners from "../components/sections/Partners.astro";
 import Footer from "../components/sections/Footer.astro";
-import GoogleReviewsAureliaClone from "../components/GoogleReviewsAureliaClone.astro";
+import GoogleReviews from "../components/sections/GoogleReviews.astro";
 import site from "../data/site.json";
 import montblancReviews from "../data/montblanc.reviews.json";
 ---
@@ -26,7 +26,7 @@ import montblancReviews from "../data/montblanc.reviews.json";
     <TeamProfiles />
     <Services data={site.services} />
     <Gallery data={site.gallery} />
-    <GoogleReviewsAureliaClone data={montblancReviews} />
+    <GoogleReviews data={montblancReviews} />
     <CtaBanner data={site.ctaBanner} />
     <Faq data={site.faq} />
     <Partners data={site.partners} />

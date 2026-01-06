@@ -20,13 +20,10 @@ const { data } = Astro.props as Props;
   </div>
 
   <div class="grid gap-6 md:grid-cols-2">
-    {data.items.map((item, index) => (
-      <button
-        type="button"
-        data-gallery-trigger
-        data-index={index}
-        class="group relative overflow-hidden rounded-3xl border border-[rgba(176,128,80,0.18)] bg-white/60 shadow-md transition hover:-translate-y-1 hover:shadow-xl focus:outline-none"
-        aria-label={`Ver detalle de ${item.title}`}
+    {data.items.map((item) => (
+      <article
+        class="group relative overflow-hidden rounded-3xl border border-[rgba(176,128,80,0.18)] bg-white/60 shadow-md transition hover:-translate-y-1 hover:shadow-xl"
+        aria-label={`Caso ${item.title}`}
       >
         <img
           src={item.image}
@@ -34,94 +31,25 @@ const { data } = Astro.props as Props;
           loading="lazy"
           decoding="async"
           class="h-full w-full object-cover"
-          style="aspect-ratio: 4 / 3;"
+          style="aspect-ratio: 3 / 4;"
         />
         <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[rgba(32,32,32,0.55)] opacity-80 transition group-hover:opacity-90" />
+        <div class="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--charcoal)] shadow-sm ring-1 ring-[rgba(176,128,80,0.25)]">
+          <span class="flex h-6 w-6 items-center justify-center rounded-full bg-[rgba(176,128,80,0.12)] text-[var(--goldLight)] ring-1 ring-[rgba(176,128,80,0.25)]">
+            <Icon name="lucide:split-square-horizontal" class="h-3.5 w-3.5" strokeWidth="1.6" />
+          </span>
+          Antes / Después
+        </div>
         <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white">
           <div>
             <p class="text-sm uppercase tracking-[0.18em] text-[rgba(255,255,255,0.85)]">Caso</p>
             <p class="text-lg font-semibold">{item.title}</p>
           </div>
           <span class="flex h-10 w-10 items-center justify-center rounded-full bg-white/15 ring-1 ring-white/30">
-            <Icon name="lucide:arrow-right" class="h-4 w-4" strokeWidth="1.6" />
+            <Icon name="lucide:zoom-in" class="h-4 w-4" strokeWidth="1.6" />
           </span>
         </div>
-      </button>
+      </article>
     ))}
   </div>
-
-  <div
-    data-gallery-modal
-    data-items={JSON.stringify(data.items)}
-    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 px-4 py-10 backdrop-blur-sm"
-    role="dialog"
-    aria-modal="true"
-    aria-label="Galería antes y después"
-  >
-    <div class="relative w-full max-w-4xl rounded-3xl bg-[var(--ivory)] p-3 shadow-[0_25px_80px_rgba(0,0,0,0.35)]">
-      <button
-        type="button"
-        data-gallery-close
-        class="absolute right-4 top-4 rounded-full bg-white/90 p-2 text-[var(--charcoal)] shadow-sm ring-1 ring-[rgba(176,128,80,0.2)]"
-        aria-label="Cerrar galería"
-      >
-        <Icon name="lucide:x" class="h-4 w-4" strokeWidth="1.8" />
-      </button>
-      <img
-        data-gallery-image
-        src={data.items[0]?.image}
-        alt={data.items[0]?.alt}
-        class="h-full w-full rounded-2xl object-cover"
-        loading="lazy"
-        decoding="async"
-        style="aspect-ratio: 16 / 10;"
-      />
-      <div class="mt-3 flex items-center justify-between px-2 pb-1">
-        <div>
-          <p class="text-xs uppercase tracking-[0.14em] text-[var(--goldLight)]">Caso</p>
-          <p class="text-base font-semibold text-[var(--charcoal)]" data-gallery-title>{data.items[0]?.title}</p>
-        </div>
-        <p class="text-sm text-[var(--charcoal)]/65">Imágenes referenciales listas para reemplazar</p>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    const modal = document.querySelector("[data-gallery-modal]");
-    const modalImage = modal?.querySelector("[data-gallery-image]");
-    const modalTitle = modal?.querySelector("[data-gallery-title]");
-    const closeButton = modal?.querySelector("[data-gallery-close]");
-    const triggers = Array.from(document.querySelectorAll("[data-gallery-trigger]"));
-    const galleryItems = modal?.dataset.items ? JSON.parse(modal.dataset.items) : [];
-
-    const closeModal = () => {
-      modal?.classList.add("hidden");
-      document.body.style.overflow = "";
-    };
-
-    const openModal = (index) => {
-      const selected = galleryItems[index];
-      if (!selected || !modalImage || !modalTitle) return;
-      modalImage.src = selected.image;
-      modalImage.alt = selected.alt;
-      modalTitle.textContent = selected.title;
-      modal?.classList.remove("hidden");
-      document.body.style.overflow = "hidden";
-    };
-
-    modal?.addEventListener("click", (event) => {
-      if (event.target === modal) closeModal();
-    });
-
-    closeButton?.addEventListener("click", closeModal);
-    window.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") closeModal();
-    });
-    triggers.forEach((trigger) => {
-      trigger.addEventListener("click", () => {
-        const index = Number(trigger.getAttribute("data-index"));
-        openModal(index);
-      });
-    });
-  </script>
 </section>
