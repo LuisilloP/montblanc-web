@@ -2,15 +2,16 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/sections/Header.astro";
 import Hero from "../components/sections/Hero.astro";
-import About from "../components/sections/About.astro";
+import TeamProfiles from "../components/TeamProfiles.astro";
 import Services from "../components/sections/Services.astro";
 import Gallery from "../components/sections/Gallery.astro";
-import Reviews from "../components/sections/Reviews.astro";
 import CtaBanner from "../components/sections/CtaBanner.astro";
 import Faq from "../components/sections/Faq.astro";
 import Partners from "../components/sections/Partners.astro";
 import Footer from "../components/sections/Footer.astro";
+import GoogleReviewsAureliaClone from "../components/GoogleReviewsAureliaClone.astro";
 import site from "../data/site.json";
+import montblancReviews from "../data/montblanc.reviews.json";
 ---
 
 <BaseLayout
@@ -20,12 +21,12 @@ import site from "../data/site.json";
   url={site.meta.url}
 >
   <Header brand={site.brand} nav={site.header.nav} whatsapp={site.contact.whatsapp} ctaLabel={site.header.ctaLabel} />
-  <main id="contenido" class="space-y-24 pb-20 pt-16 lg:space-y-28 lg:pb-24 lg:pt-20">
+  <main id="contenido" class="pt-16 pb-0 lg:pt-20">
     <Hero data={site.hero} />
-    <About data={site.about} />
+    <TeamProfiles />
     <Services data={site.services} />
     <Gallery data={site.gallery} />
-    <Reviews data={site.reviews} />
+    <GoogleReviewsAureliaClone data={montblancReviews} />
     <CtaBanner data={site.ctaBanner} />
     <Faq data={site.faq} />
     <Partners data={site.partners} />

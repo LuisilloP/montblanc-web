@@ -10,13 +10,13 @@
     "tagline": "Odontología y Estética Facial"
   },
   "contact": {
-    "phone": "+56 9 8765 4321",
+    "phone": "+56967454506",
     "email": "contacto@montblanc.cl",
-    "whatsapp": "https://wa.me/56987654321?text=Hola%20Mont%20Blanc%2C%20quisiera%20agendar%20una%20consulta.",
-    "address": "Plaza de Armas, Ovalle, Región de Coquimbo",
-    "hours": "Lunes a sábado · 9:00 a 19:00",
+    "whatsapp": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quisiera%20agendar%20una%20consulta.",
+    "address": "Av. Manuel Peñafiel Olivares 1480, oficina 316B, 1840000 Ovalle, Coquimbo",
+    "hours": "Lunes a sábado: 9:30–13:30 y 15:00–19:30. Domingo: cerrado.",
     "emergency": "+56 9 2222 1111",
-    "mapLink": "https://maps.google.com?q=Ovalle+Plaza+de+Armas"
+    "mapLink": "https://maps.app.goo.gl/xtKKcUnBm5QzvTuq8"
   },
   "header": {
     "nav": [
@@ -40,12 +40,12 @@
     ],
     "primaryCta": {
       "label": "Agendar por WhatsApp",
-      "href": "https://wa.me/56987654321?text=Hola%20Mont%20Blanc%2C%20quiero%20agendar%20mi%20consulta."
+      "href": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20agendar%20mi%20consulta."
     },
     "secondaryCta": { "label": "Ver servicios", "href": "#servicios" },
     "trustBar": [
-      { "title": "Horario", "detail": "Lunes a sábado · 9:00 - 19:00" },
-      { "title": "Ubicación", "detail": "Plaza de Armas, Ovalle" },
+      { "title": "Horario", "detail": "Lunes a sábado 9:30–13:30 / 15:00–19:30 · Domingo cerrado" },
+      { "title": "Ubicación", "detail": "Av. Manuel Peñafiel Olivares 1480, oficina 316B, 1840000 Ovalle, Coquimbo" },
       { "title": "Convenios", "detail": "Isapres, seguros y particulares" }
     ],
     "video": {
@@ -191,7 +191,7 @@
     "title": "Agenda tu evaluación",
     "text": "Coordinemos tu diagnóstico inicial por WhatsApp. Respuesta en minutos dentro del horario.",
     "ctaLabel": "Escribir por WhatsApp",
-    "ctaHref": "https://wa.me/56987654321?text=Hola%20Mont%20Blanc%2C%20quiero%20mi%20evaluaci%C3%B3n."
+    "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20mi%20evaluaci%C3%B3n."
   },
   "faq": {
     "title": "Preguntas frecuentes",
@@ -240,7 +240,7 @@
       { "label": "Consentimiento informado", "href": "#" }
     ],
     "social": [
-      { "label": "Instagram", "href": "https://instagram.com", "ariaLabel": "Visitar Instagram de Mont Blanc" },
+      { "label": "Instagram", "href": "https://www.instagram.com/clinicadental.montblanc/", "ariaLabel": "Visitar Instagram de Mont Blanc" },
       { "label": "Facebook", "href": "https://facebook.com", "ariaLabel": "Visitar Facebook de Mont Blanc" }
     ]
   }
