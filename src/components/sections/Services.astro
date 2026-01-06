@@ -7,6 +7,7 @@ type Service = {
   detail?: string;
   tag?: string;
   tagTone?: "amber" | "blue" | "indigo" | "green" | "rose" | "neutral";
+  tagIcon?: string;
   cta: string;
   ctaHref?: string;
   image: string;
@@ -25,12 +26,17 @@ type Props = {
 const { data } = Astro.props as Props;
 
 const tagToneClasses: Record<string, string> = {
-  amber: "bg-[rgba(176,128,80,0.14)] text-[var(--goldLight)] ring-[rgba(176,128,80,0.35)]",
-  blue: "bg-[rgba(66,135,245,0.12)] text-[#2c5fb8] ring-[rgba(66,135,245,0.2)]",
-  indigo: "bg-[rgba(99,102,241,0.12)] text-[#4338ca] ring-[rgba(99,102,241,0.26)]",
-  green: "bg-[rgba(16,158,110,0.12)] text-[#0f9e6e] ring-[rgba(16,158,110,0.22)]",
-  rose: "bg-[rgba(225,29,72,0.12)] text-[#b91c1c] ring-[rgba(225,29,72,0.24)]",
-  neutral: "bg-white/80 text-[var(--charcoal)] ring-[rgba(32,32,32,0.12)]",
+  amber:
+    "bg-[rgba(176,128,80,0.9)] text-white ring-[rgba(176,128,80,0.95)] shadow-[0_12px_28px_rgba(176,128,80,0.28)]",
+  blue:
+    "bg-[rgba(66,135,245,0.9)] text-white ring-[rgba(66,135,245,0.95)] shadow-[0_12px_28px_rgba(66,135,245,0.22)]",
+  indigo:
+    "bg-[rgba(99,102,241,0.9)] text-white ring-[rgba(99,102,241,0.95)] shadow-[0_12px_28px_rgba(99,102,241,0.24)]",
+  green:
+    "bg-[rgba(16,158,110,0.9)] text-white ring-[rgba(16,158,110,0.95)] shadow-[0_12px_28px_rgba(16,158,110,0.22)]",
+  rose:
+    "bg-[rgba(225,29,72,0.9)] text-white ring-[rgba(225,29,72,0.95)] shadow-[0_12px_28px_rgba(225,29,72,0.26)]",
+  neutral: "bg-white text-[var(--charcoal)] ring-[rgba(32,32,32,0.16)] shadow-[0_12px_28px_rgba(32,32,32,0.12)]",
 };
 
 const tagToneClass = (tone?: string) => tagToneClasses[tone ?? "neutral"] ?? tagToneClasses.neutral;
@@ -66,17 +72,17 @@ const getCtaHref = (item: Service) => item.ctaHref ?? data.ctaHref ?? "#";
             />
             {service.tag && (
               <span
-                class={`absolute left-4 top-4 inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] ring-1 ${tagToneClass(service.tagTone)}`}
+                class={`absolute left-4 top-4 inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] ring-1 backdrop-blur ${tagToneClass(service.tagTone)}`}
               >
-                <span
-                  class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/70 text-[var(--goldLight)] ring-1 ring-white/70"
-                  aria-hidden="true"
-                >
-                  <Icon name="lucide:sparkles" class="h-3.5 w-3.5" stroke-width="1.6" />
-                </span>
-                {service.tag}
+              <span
+                class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/70 text-[var(--goldLight)] ring-1 ring-white/70"
+                aria-hidden="true"
+              >
+                <Icon name={service.tagIcon ?? "lucide:sparkles"} class="h-3.5 w-3.5" stroke-width="1.6" />
               </span>
-            )}
+              {service.tag}
+            </span>
+          )}
           </div>
 
           <div class="flex flex-col gap-4 px-5 pb-6 pt-5 sm:px-6 sm:pb-7 sm:pt-6">
