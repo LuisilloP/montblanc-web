@@ -20,12 +20,30 @@
   },
   "header": {
     "nav": [
-      { "label": "Servicios", "href": "#servicios" },
-      { "label": "Doctores", "href": "#sobre" },
-      { "label": "Antes y después", "href": "#antes-despues" },
-      { "label": "Reseñas", "href": "#resenas" },
-      { "label": "FAQ", "href": "#faq" },
-      { "label": "Convenios", "href": "#convenios" }
+      {
+        "label": "Servicios",
+        "href": "#servicios"
+      },
+      {
+        "label": "Doctores",
+        "href": "#sobre"
+      },
+      {
+        "label": "Antes y después",
+        "href": "#antes-despues"
+      },
+      {
+        "label": "Reseñas",
+        "href": "#resenas"
+      },
+      {
+        "label": "FAQ",
+        "href": "#faq"
+      },
+      {
+        "label": "Convenios",
+        "href": "#convenios"
+      }
     ],
     "ctaLabel": "Agendar por WhatsApp"
   },
@@ -42,21 +60,45 @@
       "label": "Agendar por WhatsApp",
       "href": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20agendar%20mi%20consulta."
     },
-    "secondaryCta": { "label": "Ver servicios", "href": "#servicios" },
+    "secondaryCta": {
+      "label": "Ver servicios",
+      "href": "#servicios"
+    },
     "trustBar": [
-      { "title": "Horario", "detail": "Lunes a sábado 9:30–13:30 / 15:00–19:30 · Domingo cerrado" },
-      { "title": "Ubicación", "detail": "Av. Manuel Peñafiel Olivares 1480, oficina 316B, 1840000 Ovalle, Coquimbo" },
-      { "title": "Convenios", "detail": "Isapres, seguros y particulares" }
+      {
+        "title": "Horario",
+        "detail": "Lunes a sábado 9:30–13:30 / 15:00–19:30 · Domingo cerrado"
+      },
+      {
+        "title": "Ubicación",
+        "detail": "Av. Manuel Peñafiel Olivares 1480, oficina 316B, 1840000 Ovalle, Coquimbo"
+      },
+      {
+        "title": "Convenios",
+        "detail": "Isapres, seguros y particulares"
+      }
     ],
     "video": {
       "src": "/video.MP4",
       "poster": "https://dummyimage.com/1600x900/f8f0e8/b08050&text=Mont+Blanc+Cl%C3%ADnica+Dental"
     },
     "stats": [
-      { "value": "10,000+", "label": "Pacientes atendidos" },
-      { "value": "2", "label": "Doctores en clínica" },
-      { "value": "100+", "label": "Reseñas 5★" },
-      { "value": "15+", "label": "Años de experiencia" }
+      {
+        "value": "10,000+",
+        "label": "Pacientes atendidos"
+      },
+      {
+        "value": "2",
+        "label": "Doctores en clínica"
+      },
+      {
+        "value": "100+",
+        "label": "Reseñas 5★"
+      },
+      {
+        "value": "15+",
+        "label": "Años de experiencia"
+      }
     ]
   },
   "about": {
@@ -91,44 +133,75 @@
     ]
   },
   "services": {
-    "title": "Servicios integrales",
-    "subtitle": "Protocolos precisos y materiales premium para resultados duraderos.",
+    "title": "Tratamientos principales",
+    "subtitle": "Protocolos completos para est?tica, rehabilitaci?n, cirug?a y urgencias.",
+    "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20agendar%20mi%20consulta.",
     "items": [
       {
-        "name": "Estética dental",
-        "description": "Blanqueamiento, armonización de sonrisa y pequeños retoques en una sola sesión.",
-        "icon": "sparkle",
-        "cta": "Agenda evaluación estética"
+        "name": "Est?tica dental",
+        "description": "Sonrisa luminosa con blanqueamiento cl?nico y armonizaci?n en una sola visita.",
+        "detail": "Incluye mockup digital y plan en 1 sesi?n.",
+        "tag": "M?s demandado",
+        "tagTone": "amber",
+        "cta": "Agenda tu dise?o de sonrisa",
+        "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20dise%C3%B1ar%20mi%20sonrisa.",
+            "image": "/services/estetica-dental.webp",
+        "alt": "Paciente recibiendo blanqueamiento dental"
       },
       {
-        "name": "Rehabilitación / Prótesis",
-        "description": "Coronas, incrustaciones y prótesis implantosoportadas con ajuste digital.",
-        "icon": "shield",
-        "cta": "Conoce tu plan"
+        "name": "Rehabilitaci?n / Pr?tesis",
+        "description": "Coronas y pr?tesis digitales con ajuste preciso y materiales premium.",
+        "detail": "Escaneo 3D y provisionales est?ticos.",
+        "tag": "Digital",
+        "tagTone": "blue",
+        "cta": "Solicita tu plan digital",
+        "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20mi%20plan%20digital.",
+            "image": "/services/rehabilitacion-protesis.webp",
+        "alt": "Radiograf?a dental en pantalla"
       },
       {
-        "name": "Extracción muelas del juicio",
-        "description": "Cirugía segura con manejo del dolor y recuperación guiada.",
-        "icon": "extraction",
-        "cta": "Reserva tu cirugía"
+        "name": "Extracci?n muelas del juicio",
+        "description": "Cirug?a guiada, control del dolor y recuperaci?n acompa?ada.",
+        "detail": "Sedaci?n opcional y seguimiento post cirug?a.",
+        "tag": "Cirug?a",
+        "tagTone": "indigo",
+        "cta": "Reserva tu cirug?a segura",
+        "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20coordinar%20mi%20cirug%C3%ADa.",
+            "image": "/services/extraccion-muelas-juicio.webp",
+        "alt": "Equipo realizando cirug?a dental"
       },
       {
         "name": "Carillas",
-        "description": "Carillas ultrafinas personalizadas para proporciones faciales perfectas.",
-        "icon": "layers",
-        "cta": "Diseña tu sonrisa"
+        "description": "Carillas ultrafinas a medida con proporciones y color natural.",
+        "detail": "Prueba est?tica previa y ajuste de color.",
+        "tag": "Destacado",
+        "tagTone": "amber",
+        "cta": "Dise?a tu sonrisa",
+        "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20carillas%20ultrafinas.",
+            "image": "/services/carillas.webp",
+        "alt": "Colocaci?n de carilla dental"
       },
       {
         "name": "Periodontal y limpieza",
-        "description": "Profilaxis avanzada, mantenimiento periodontal y educación preventiva.",
-        "icon": "clean",
-        "cta": "Programa tu higiene"
+        "description": "Limpieza profunda, mantenimiento periodontal y coaching de higiene.",
+        "detail": "Profilaxis avanzada + plan de cuidado en casa.",
+        "tag": "Mantenimiento",
+        "tagTone": "green",
+        "cta": "Agenda tu higiene avanzada",
+        "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20agendar%20mi%20higiene%20periodontal.",
+            "image": "/services/peridontal-limpieza.webp",
+        "alt": "Higiene dental profesional"
       },
       {
         "name": "Urgencias dentales",
-        "description": "Atención inmediata para dolor, fracturas y traumatismos.",
-        "icon": "alert",
-        "cta": "Llamar ahora"
+        "description": "Atenci?n inmediata, control del dolor y seguimiento post urgencia.",
+        "detail": "Diagn?stico r?pido y estabilizaci?n en la misma visita.",
+        "tag": "Prioridad",
+        "tagTone": "rose",
+        "cta": "Llamar ahora",
+        "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20tengo%20una%20urgencia%20dental.",
+            "image": "/services/urgencias-dentales.webp",
+        "alt": "Paciente recibiendo atenci?n de urgencia"
       }
     ]
   },
@@ -226,22 +299,51 @@
     "title": "Convenios y aliados",
     "text": "Trabajamos con aseguradoras y proveedores certificados. Reemplaza los logos por los de tus convenios.",
     "items": [
-      { "name": "Convenio 1", "logo": "https://dummyimage.com/180x90/b4ab9f/ffffff&text=Logo" },
-      { "name": "Convenio 2", "logo": "https://dummyimage.com/180x90/e6d6c6/202020&text=Logo" },
-      { "name": "Seguro Dental", "logo": "https://dummyimage.com/180x90/f8e8e0/202020&text=Logo" },
-      { "name": "Proveedor Clínico", "logo": "https://dummyimage.com/180x90/b08050/ffffff&text=Logo" }
+      {
+        "name": "Convenio 1",
+        "logo": "https://dummyimage.com/180x90/b4ab9f/ffffff&text=Logo"
+      },
+      {
+        "name": "Convenio 2",
+        "logo": "https://dummyimage.com/180x90/e6d6c6/202020&text=Logo"
+      },
+      {
+        "name": "Seguro Dental",
+        "logo": "https://dummyimage.com/180x90/f8e8e0/202020&text=Logo"
+      },
+      {
+        "name": "Proveedor Clínico",
+        "logo": "https://dummyimage.com/180x90/b08050/ffffff&text=Logo"
+      }
     ]
   },
   "footer": {
     "legal": "© 2025 Mont Blanc. Todos los derechos reservados.",
     "links": [
-      { "label": "Política de privacidad", "href": "#" },
-      { "label": "Términos y condiciones", "href": "#" },
-      { "label": "Consentimiento informado", "href": "#" }
+      {
+        "label": "Política de privacidad",
+        "href": "#"
+      },
+      {
+        "label": "Términos y condiciones",
+        "href": "#"
+      },
+      {
+        "label": "Consentimiento informado",
+        "href": "#"
+      }
     ],
     "social": [
-      { "label": "Instagram", "href": "https://www.instagram.com/clinicadental.montblanc/", "ariaLabel": "Visitar Instagram de Mont Blanc" },
-      { "label": "Facebook", "href": "https://facebook.com", "ariaLabel": "Visitar Facebook de Mont Blanc" }
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/clinicadental.montblanc/",
+        "ariaLabel": "Visitar Instagram de Mont Blanc"
+      },
+      {
+        "label": "Facebook",
+        "href": "https://facebook.com",
+        "ariaLabel": "Visitar Facebook de Mont Blanc"
+      }
     ]
   }
 }
