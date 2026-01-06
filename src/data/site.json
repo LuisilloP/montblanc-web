@@ -138,70 +138,58 @@
     "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20agendar%20mi%20consulta.",
     "items": [
       {
-        "name": "Est?tica dental",
-        "description": "Sonrisa luminosa con blanqueamiento cl?nico y armonizaci?n en una sola visita.",
-        "detail": "Incluye mockup digital y plan en 1 sesi?n.",
-        "tag": "M?s demandado",
-        "tagTone": "amber",
-        "cta": "Agenda tu dise?o de sonrisa",
-        "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20dise%C3%B1ar%20mi%20sonrisa.",
-            "image": "/services/estetica-dental.webp",
-        "alt": "Paciente recibiendo blanqueamiento dental"
+        "name": "Estética dental",
+        "description": "Sonrisa luminosa con blanqueamiento clínico y armonización en una sola visita.",
+        "icon": "lucide:sparkles",
+        "image": "/estetica-dental.jpg",
+        "tag": "Más demandado",
+        "bullet": "Incluye mockup digital y plan en 1 sesión.",
+        "cta": "Agenda tu diseño de sonrisa"
       },
       {
-        "name": "Rehabilitaci?n / Pr?tesis",
-        "description": "Coronas y pr?tesis digitales con ajuste preciso y materiales premium.",
-        "detail": "Escaneo 3D y provisionales est?ticos.",
+        "name": "Rehabilitación / Prótesis",
+        "description": "Coronas y prótesis digitales con ajuste preciso y materiales premium.",
+        "icon": "lucide:shield-check",
+        "image": "/rehabilitacion-protesis.jpg",
         "tag": "Digital",
-        "tagTone": "blue",
-        "cta": "Solicita tu plan digital",
-        "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20mi%20plan%20digital.",
-            "image": "/services/rehabilitacion-protesis.webp",
-        "alt": "Radiograf?a dental en pantalla"
+        "bullet": "Escaneo 3D y provisionales estéticos.",
+        "cta": "Solicita tu plan digital"
       },
       {
-        "name": "Extracci?n muelas del juicio",
-        "description": "Cirug?a guiada, control del dolor y recuperaci?n acompa?ada.",
-        "detail": "Sedaci?n opcional y seguimiento post cirug?a.",
-        "tag": "Cirug?a",
-        "tagTone": "indigo",
-        "cta": "Reserva tu cirug?a segura",
-        "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20coordinar%20mi%20cirug%C3%ADa.",
-            "image": "/services/extraccion-muelas-juicio.webp",
-        "alt": "Equipo realizando cirug?a dental"
+        "name": "Extracción muelas del juicio",
+        "description": "Cirugía guiada, control del dolor y recuperación acompañada.",
+        "icon": "lucide:syringe",
+        "image": "/extraccion-muelas-juicio.jpg",
+        "tag": "Cirugía",
+        "bullet": "Sedación opcional y seguimiento post cirugía.",
+        "cta": "Reserva tu cirugía segura"
       },
       {
         "name": "Carillas",
         "description": "Carillas ultrafinas a medida con proporciones y color natural.",
-        "detail": "Prueba est?tica previa y ajuste de color.",
+        "icon": "lucide:layers",
+        "image": "carillas.jpg",
         "tag": "Destacado",
-        "tagTone": "amber",
-        "cta": "Dise?a tu sonrisa",
-        "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20carillas%20ultrafinas.",
-            "image": "/services/carillas.webp",
-        "alt": "Colocaci?n de carilla dental"
+        "bullet": "Prueba estética previa y ajuste de color.",
+        "cta": "Diseña tu sonrisa"
       },
       {
         "name": "Periodontal y limpieza",
         "description": "Limpieza profunda, mantenimiento periodontal y coaching de higiene.",
-        "detail": "Profilaxis avanzada + plan de cuidado en casa.",
+        "icon": "lucide:brush",
+        "image": "peridontal-limpieza.jpg",
         "tag": "Mantenimiento",
-        "tagTone": "green",
-        "cta": "Agenda tu higiene avanzada",
-        "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20agendar%20mi%20higiene%20periodontal.",
-            "image": "/services/peridontal-limpieza.webp",
-        "alt": "Higiene dental profesional"
+        "bullet": "Profilaxis avanzada + plan de cuidado en casa.",
+        "cta": "Agenda tu higiene avanzada"
       },
       {
         "name": "Urgencias dentales",
-        "description": "Atenci?n inmediata, control del dolor y seguimiento post urgencia.",
-        "detail": "Diagn?stico r?pido y estabilizaci?n en la misma visita.",
+        "description": "Atención inmediata, control del dolor y seguimiento post urgencia.",
+        "icon": "lucide:triangle-alert",
+        "image": "urgencias-dentales.jpg",
         "tag": "Prioridad",
-        "tagTone": "rose",
-        "cta": "Llamar ahora",
-        "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20tengo%20una%20urgencia%20dental.",
-            "image": "/services/urgencias-dentales.webp",
-        "alt": "Paciente recibiendo atenci?n de urgencia"
+        "bullet": "Diagnóstico rápido y estabilización en la misma visita.",
+        "cta": "Llamar ahora"
       }
     ]
   },
@@ -211,12 +199,12 @@
     "items": [
       {
         "title": "Carillas cerámicas",
-        "image": "https://dummyimage.com/700x520/e6d6c6/202020&text=Carillas+Antes+y+Despu%C3%A9s",
+        "image": "/caso1.jpg",
         "alt": "Resultado de carillas cerámicas"
       },
       {
         "title": "Rehabilitación completa",
-        "image": "https://dummyimage.com/700x520/f8e8e0/202020&text=Rehabilitaci%C3%B3n+Digital",
+        "image": "/caso2.jpg",
         "alt": "Rehabilitación oral completa"
       },
       {

@@ -1,4 +1,6 @@
 ---
+import { Icon } from 'astro-icon/components';
+
 type Review = { name: string; rating: number; text: string; tag?: string };
 type Props = { data: { title: string; items: Review[] } };
 
@@ -13,9 +15,7 @@ const { data } = Astro.props as Props;
       <p class="text-lg text-[var(--charcoal)]/70">Opiniones reales. Sustituye por reseñas verificadas.</p>
     </div>
     <div class="flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-sm text-[var(--charcoal)]/70 ring-1 ring-[rgba(176,128,80,0.2)]">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[var(--goldLight)]" viewBox="0 0 20 20" fill="currentColor">
-        <path d="M10 2l2.09 4.26L17 7.27l-3.5 3.41.83 4.85L10 13.77l-4.33 2.76.83-4.85L3 7.27l4.91-.99L10 2z" />
-      </svg>
+      <Icon name="lucide:star" class="h-4 w-4 text-[var(--goldLight)]" strokeWidth="0" fill="currentColor" />
       5.0 / 5 · Pacientes felices
     </div>
   </div>
@@ -30,15 +30,13 @@ const { data } = Astro.props as Props;
           </div>
           <div class="flex items-center gap-1 text-[var(--goldLight)]">
             {Array.from({ length: 5 }).map((_, index) => (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
+              <Icon
+                name="lucide:star"
                 class={`h-4 w-4 ${index < review.rating ? "opacity-100" : "opacity-30"}`}
-                viewBox="0 0 20 20"
+                strokeWidth="0"
                 fill="currentColor"
                 aria-hidden="true"
-              >
-                <path d="M10 2l2.09 4.26L17 7.27l-3.5 3.41.83 4.85L10 13.77l-4.33 2.76.83-4.85L3 7.27l4.91-.99L10 2z" />
-              </svg>
+              />
             ))}
           </div>
         </div>
