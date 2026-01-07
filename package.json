@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "start": "node scripts/start-preview.js",
     "preview": "astro preview",
     "astro": "astro"
   },
