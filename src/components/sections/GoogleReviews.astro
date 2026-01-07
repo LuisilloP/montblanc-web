@@ -56,7 +56,7 @@ const getInitial = (name: string) => (name?.trim()?.charAt(0) || "?").toUpperCas
     <div class="relative reviews-shell">
       <div
         id={instanceId}
-        class="hide-scrollbar reviews-track relative z-10 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-5 pt-3 cursor-grab"
+        class="hide-scrollbar reviews-track relative z-10 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-5 pt-3 cursor-grab"
         role="region"
         aria-label={`Reseñas de ${data.placeName}`}
         style="touch-action: pan-x pan-y;"
@@ -182,6 +182,10 @@ const getInitial = (name: string) => (name?.trim()?.charAt(0) || "?").toUpperCas
     padding-right: var(--edge-pad);
     scroll-padding-left: var(--edge-pad);
     scroll-padding-right: var(--edge-pad);
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scroll-snap-stop: always;
+    overscroll-behavior-x: contain;
     -webkit-mask-image: linear-gradient(
       90deg,
       transparent 0px,
@@ -279,23 +283,8 @@ const getInitial = (name: string) => (name?.trim()?.charAt(0) || "?").toUpperCas
     const carousel = document.getElementById(instanceId);
     if (!carousel) return;
 
-    const cards = Array.from(carousel.querySelectorAll("[data-card]"));
-    const totalCards = cards.length;
-    if (!totalCards) return;
-
-    const baseCount = Number(carousel.dataset.baseCount || totalCards);
-    const hasLoop = carousel.dataset.hasLoop === "true" && baseCount > 1;
-    const startIndex = Number(carousel.dataset.startIndex || 0);
-
     const prevButton = document.getElementById(`${instanceId}-prev`);
     const nextButton = document.getElementById(`${instanceId}-next`);
-
-    const LOOP_THRESHOLD = 0.35;
-
-    const getBaseOffset = () => {
-      const style = window.getComputedStyle(carousel);
-      return parseFloat(style.paddingLeft || "0") || 0;
-    };
 
     const getStep = () => {
       const firstCard = carousel.querySelector("[data-card]");
@@ -306,29 +295,9 @@ const getInitial = (name: string) => (name?.trim()?.charAt(0) || "?").toUpperCas
       return rect.width + gap;
     };
 
-    let currentIndex = startIndex;
-
-    const scrollToIndex = (index, behavior = "smooth") => {
-      const step = getStep() || carousel.clientWidth * 0.9;
-      const boundedIndex = Math.max(0, Math.min(index, totalCards - 1));
-      const baseOffset = getBaseOffset();
-      const target = baseOffset + boundedIndex * step;
-      currentIndex = boundedIndex;
-      carousel.scrollTo({ left: target, behavior });
-    };
-
-    const setInitialPosition = () => {
-      const step = getStep() || carousel.clientWidth * 0.9;
-      const baseOffset = getBaseOffset();
-      const target = baseOffset + startIndex * step;
-      carousel.scrollTo({ left: target, behavior: "auto" });
-      currentIndex = startIndex;
-    };
-
-    requestAnimationFrame(setInitialPosition);
-
     const scrollByStep = (direction = 1) => {
-      scrollToIndex(currentIndex + direction);
+      const step = getStep() || carousel.clientWidth * 0.9;
+      carousel.scrollBy({ left: direction * step, behavior: "smooth" });
     };
 
     prevButton?.addEventListener("click", () => scrollByStep(-1));
@@ -343,146 +312,6 @@ const getInitial = (name: string) => (name?.trim()?.charAt(0) || "?").toUpperCas
         scrollByStep(-1);
       }
     });
-
-    carousel.addEventListener(
-      "wheel",
-      (event) => {
-        if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) {
-          carousel.scrollBy({ left: event.deltaY, behavior: "smooth" });
-          event.preventDefault();
-        }
-      },
-      { passive: false }
-    );
-
-    let syncTimer;
-    carousel.addEventListener("scroll", () => {
-      window.clearTimeout(syncTimer);
-      syncTimer = window.setTimeout(() => {
-        const step = getStep() || carousel.clientWidth * 0.9;
-        const baseOffset = getBaseOffset();
-        const rawIndex = (carousel.scrollLeft - baseOffset) / step;
-        const nearStartClone = rawIndex < LOOP_THRESHOLD;
-        const nearEndClone = rawIndex > totalCards - 1 - LOOP_THRESHOLD;
-        if (hasLoop) {
-          if (nearStartClone) {
-            scrollToIndex(totalCards - 2, "auto");
-            currentIndex = totalCards - 2;
-            return;
-          }
-          if (nearEndClone) {
-            scrollToIndex(1, "auto");
-            currentIndex = 1;
-            return;
-          }
-        }
-        currentIndex = Math.round(rawIndex);
-      }, 80);
-    });
-
-    let isDragging = false;
-    let dragged = false;
-    let startX = 0;
-    let startY = 0;
-    let startScroll = 0;
-    let previousUserSelect = "";
-    const DRAG_THRESHOLD = 4;
-    const VERTICAL_ESCAPE = 12;
-
-    const setUserSelect = (value) => {
-      document.body.style.userSelect = value;
-      document.body.style.webkitUserSelect = value;
-    };
-
-    const stopDrag = (event) => {
-      if (!isDragging) return;
-      isDragging = false;
-      carousel.classList.remove("is-dragging");
-      carousel.style.scrollSnapType = "";
-      carousel.style.scrollBehavior = "";
-      setUserSelect(previousUserSelect);
-      if (dragged && event) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-      const step = getStep() || carousel.clientWidth * 0.9;
-      const baseOffset = getBaseOffset();
-      const rawIndex = (carousel.scrollLeft - baseOffset) / step;
-      const nearStartClone = rawIndex < LOOP_THRESHOLD;
-      const nearEndClone = rawIndex > totalCards - 1 - LOOP_THRESHOLD;
-      if (hasLoop) {
-        if (nearStartClone) {
-          scrollToIndex(totalCards - 2, "auto");
-          dragged = false;
-          currentIndex = totalCards - 2;
-          return;
-        } else if (nearEndClone) {
-          scrollToIndex(1, "auto");
-          dragged = false;
-          currentIndex = 1;
-          return;
-        }
-      }
-      currentIndex = Math.round(rawIndex);
-      scrollToIndex(currentIndex);
-      dragged = false;
-    };
-
-    const onPointerDown = (event) => {
-      if (event.pointerType === "mouse" && event.button !== 0) return;
-      isDragging = true;
-      dragged = false;
-      startX = event.clientX ?? 0;
-      startY = event.clientY ?? 0;
-      startScroll = carousel.scrollLeft;
-      previousUserSelect = document.body.style.userSelect || "";
-      setUserSelect("none");
-      carousel.classList.add("is-dragging");
-      carousel.style.scrollSnapType = "none";
-      carousel.style.scrollBehavior = "auto";
-      carousel.setPointerCapture?.(event.pointerId);
-    };
-
-    const onPointerMove = (event) => {
-      if (!isDragging) return;
-      const clientX = event.clientX ?? 0;
-      const clientY = event.clientY ?? 0;
-      const deltaX = clientX - startX;
-      const deltaY = clientY - startY;
-
-      if (!dragged) {
-        const verticalDominant = Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > VERTICAL_ESCAPE;
-        if (verticalDominant) {
-          stopDrag();
-          return;
-        }
-        if (Math.abs(deltaX) <= DRAG_THRESHOLD) return;
-      }
-
-      dragged = true;
-      event.preventDefault();
-      carousel.scrollLeft = startScroll - deltaX;
-    };
-
-    const onPointerUp = (event) => stopDrag(event);
-
-    carousel.addEventListener("pointerdown", onPointerDown);
-    document.addEventListener("pointermove", onPointerMove, { passive: false });
-    document.addEventListener("pointerup", onPointerUp);
-    document.addEventListener("pointercancel", onPointerUp);
-    document.addEventListener("pointerleave", onPointerUp);
-
-    carousel.addEventListener(
-      "click",
-      (event) => {
-        if (dragged) {
-          event.preventDefault();
-          event.stopPropagation();
-          dragged = false;
-        }
-      },
-      true
-    );
   };
 
   if (document.readyState === "loading") {
