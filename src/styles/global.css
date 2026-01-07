@@ -27,12 +27,10 @@ body {
   min-height: 100vh;
   background-color: var(--ivory);
   background-image:
-    radial-gradient(circle at 18% 20%, rgba(176, 128, 80, 0.12), transparent 32%),
-    radial-gradient(circle at 82% 8%, rgba(168, 120, 63, 0.12), transparent 26%),
-    linear-gradient(130deg, rgba(230, 214, 198, 0.55), rgba(248, 232, 224, 0.3)),
-    var(--bg-noise);
-  background-attachment: fixed;
-  background-size: 1200px 1200px, 900px 900px, cover, 240px 240px;
+    radial-gradient(circle at 18% 20%, rgba(176, 128, 80, 0.08), transparent 34%),
+    radial-gradient(circle at 82% 8%, rgba(168, 120, 63, 0.08), transparent 28%),
+    linear-gradient(130deg, rgba(230, 214, 198, 0.4), rgba(248, 232, 224, 0.2));
+  background-size: 1200px 1200px, 900px 900px, cover;
   color: var(--charcoal);
   font-family: var(--font-body);
   line-height: 1.6;
@@ -61,6 +59,10 @@ a {
 
   .section-shell {
     @apply mx-auto w-full max-w-[90rem] px-4 sm:px-6 lg:px-10 xl:px-12;
+  }
+
+  .section-backdrop {
+    background: linear-gradient(180deg, rgba(248, 240, 232, 0.6), rgba(248, 240, 232, 0.32));
   }
 
   .btn-primary {
