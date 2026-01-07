@@ -2,6 +2,13 @@
 type TrustItem = { title: string; detail: string };
 type Stat = { value: string; label: string };
 
+type VideoConfig = {
+  webm?: string;
+  mp4?: string;
+  src?: string;
+  poster?: string;
+};
+
 type Props = {
   data: {
     eyebrow?: string;
@@ -11,14 +18,27 @@ type Props = {
     secondaryCta: { label: string; href: string };
     trustBar: TrustItem[];
     stats?: Stat[];
-    video?: { src: string; poster?: string };
+    video?: VideoConfig;
   };
 };
 
 const { data } = Astro.props as Props;
 const stats = data.stats ?? [];
-const videoSrc = data.video?.src;
-const posterSrc = "data:image/gif;base64,R0lGODlhAQABAAAAACw=";
+const posterSrc =
+  data.video?.poster ?? "data:image/gif;base64,R0lGODlhAQABAAAAACw=";
+const inferType = (src: string | undefined) => {
+  if (!src) return undefined;
+  const lower = src.toLowerCase();
+  if (lower.endsWith(".webm")) return "video/webm";
+  if (lower.endsWith(".mp4")) return "video/mp4";
+  return undefined;
+};
+const videoSources = [
+  data.video?.webm ? { src: data.video.webm, type: "video/webm" } : null,
+  data.video?.mp4 ? { src: data.video.mp4, type: "video/mp4" } : null,
+  data.video?.src ? { src: data.video.src, type: inferType(data.video.src) } : null
+].filter(Boolean) as { src: string; type?: string }[];
+const hasVideo = videoSources.length > 0;
 
 const heroCopy = {
   eyebrow: "CLÍNICA PREMIUM EN OVALLE",
@@ -39,10 +59,9 @@ const heroCopy = {
     >
     </div>
     {
-      videoSrc && (
+      hasVideo && (
         <video
           class="hero-video pointer-events-none absolute inset-0 h-full w-full object-cover opacity-95"
-          src={videoSrc}
           poster={posterSrc}
           autoplay
           muted
@@ -50,7 +69,11 @@ const heroCopy = {
           playsinline
           preload="metadata"
           aria-hidden="true"
-        />
+        >
+          {videoSources.map((source) => (
+            <source src={source.src} type={source.type} />
+          ))}
+        </video>
       )
     }
     <div

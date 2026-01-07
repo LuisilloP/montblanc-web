@@ -1,40 +1,118 @@
 ---
 import "../styles/global.css";
 
-type Props = {
+type SeoData = {
   title?: string;
   description?: string;
-  ogImage?: string;
-  url?: string;
+  canonical?: string;
+  siteName?: string;
+  locale?: string;
+  image?: string;
+  keywords?: string[];
+  twitter?: { card?: string; site?: string; creator?: string };
+  organization?: {
+    name?: string;
+    legalName?: string;
+    url?: string;
+    logo?: string;
+    phone?: string;
+    email?: string;
+    address?: {
+      streetAddress?: string;
+      addressLocality?: string;
+      addressRegion?: string;
+      postalCode?: string;
+      addressCountry?: string;
+    };
+  };
+  doctors?: { name: string; title?: string; specialty?: string }[];
+  services?: string[];
+  openHours?: string[];
+  areaServed?: string[];
+  social?: string[];
 };
 
-const {
-  title = "MONT BLANC – Odontología y Estética Facial",
-  description = "Clínica boutique en Ovalle que combina odontología avanzada y estética facial con un equipo de especialistas.",
-  ogImage = "/og-montblanc.jpg",
-  url = "https://montblanc.cl"
-} = Astro.props as Props;
+type Props = { seo?: SeoData };
+
+const { seo } = Astro.props as Props;
+
+const metaTitle = seo?.title ?? "Clínica Dental Mont Blanc | Odontología y Estética Facial";
+const description =
+  seo?.description ??
+  "Clínica dental boutique en Ovalle con urgencias, rehabilitación oral, implantes y armonización facial.";
+const canonical = seo?.canonical ?? "https://montblanc.cl/";
+const ogImage = seo?.image ?? "/og-montblanc.jpg";
+const siteName = seo?.siteName ?? "Clínica Dental Mont Blanc";
+const locale = seo?.locale ?? "es_CL";
+const keywords = seo?.keywords?.length ? seo.keywords.join(", ") : undefined;
+const twitterCard = seo?.twitter?.card ?? "summary_large_image";
+const authors =
+  seo?.doctors?.length && seo.doctors.map((doctor) => doctor.name).filter(Boolean).join(", ");
+const robots = "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Dentist",
+  name: seo?.organization?.name ?? siteName,
+  legalName: seo?.organization?.legalName,
+  url: canonical,
+  image: ogImage,
+  logo: seo?.organization?.logo ?? ogImage,
+  telephone: seo?.organization?.phone,
+  email: seo?.organization?.email,
+  description,
+  address: seo?.organization?.address,
+  areaServed: seo?.areaServed,
+  openingHours: seo?.openHours,
+  sameAs: seo?.social,
+  knowsAbout: seo?.services,
+  employee: seo?.doctors?.map((doctor) => ({
+    "@type": "Person",
+    name: doctor.name,
+    jobTitle: doctor.title ?? doctor.specialty,
+    description: doctor.specialty
+  }))
+};
 ---
 
 <html lang="es" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/mont_logo.png" />
+    <link rel="shortcut icon" type="image/png" href="/mont_logo.png" />
+    <link rel="apple-touch-icon" href="/mont_logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <title>{title}</title>
+    <title>{metaTitle}</title>
     <meta name="description" content={description} />
-    <meta property="og:title" content={title} />
+    {keywords && <meta name="keywords" content={keywords} />}
+    {authors && <meta name="author" content={authors} />}
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hrefLang="es-cl" href={canonical} />
+    <meta name="robots" content={robots} />
+    <meta name="theme-color" content="#F8F0E8" />
+
+    <meta property="og:title" content={metaTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={url} />
+    <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
-    <meta name="theme-color" content="#F8F0E8" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content={locale} />
+
+    <meta name="twitter:card" content={twitterCard} />
+    {seo?.twitter?.site && <meta name="twitter:site" content={seo.twitter.site} />}
+    {seo?.twitter?.creator && <meta name="twitter:creator" content={seo.twitter.creator} />}
+    <meta name="twitter:title" content={metaTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
   </head>
   <body class="bg-[var(--ivory)] text-[var(--charcoal)] antialiased">
     <script>

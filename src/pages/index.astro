@@ -12,14 +12,10 @@ import Footer from "../components/sections/Footer.astro";
 import GoogleReviews from "../components/sections/GoogleReviews.astro";
 import site from "../data/site.json";
 import montblancReviews from "../data/montblanc.reviews.json";
+import seo from "../data/seo.json";
 ---
 
-<BaseLayout
-  title={site.meta.title}
-  description={site.meta.description}
-  ogImage={site.meta.image}
-  url={site.meta.url}
->
+<BaseLayout seo={seo}>
   <Header brand={site.brand} nav={site.header.nav} whatsapp={site.contact.whatsapp} ctaLabel={site.header.ctaLabel} />
   <main id="contenido" class="pt-16 pb-0 lg:pt-20">
     <Hero data={site.hero} />

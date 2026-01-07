@@ -1,9 +1,9 @@
 {
   "meta": {
-    "title": "MONT BLANC | Odontología y Estética Facial",
-    "description": "Clínica boutique en Ovalle que combina odontología avanzada y estética facial con un equipo de especialistas y atención cálida.",
+    "title": "Cl?nica Dental Mont Blanc | Dra. Javiera Jara y Dr. Gustavo Padilla",
+    "description": "Dentistas en Ovalle para urgencias, limpiezas, rehabilitaci?n oral, pr?tesis, endodoncia, implantes y armonizaci?n facial. Atenci?n cercana y respuesta r?pida por WhatsApp.",
     "url": "https://montblanc.cl",
-    "image": "/og-montblanc.jpg"
+    "image": "/mont_logo.png"
   },
   "brand": {
     "name": "MONT BLANC",
@@ -79,8 +79,9 @@
       }
     ],
     "video": {
-      "src": "/video.MP4",
-      "poster": "https://dummyimage.com/1600x900/f8f0e8/b08050&text=Mont+Blanc+Cl%C3%ADnica+Dental"
+      "poster": "https://dummyimage.com/1600x900/f8f0e8/b08050&text=Mont+Blanc+Cl%C3%ADnica+Dental",
+      "webm": "/video.webm",
+      "mp4": "/video.mp4"
     },
     "stats": [
       {

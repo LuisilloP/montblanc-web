@@ -1,0 +1,83 @@
+{
+  "title": "Clínica Dental Mont Blanc | Dra. Javiera Jara y Dr. Gustavo Padilla",
+  "description": "Dentistas en Ovalle para urgencias, limpiezas, rehabilitación oral, prótesis, endodoncia, implantes y armonización facial. Atención cercana y respuesta rápida por WhatsApp.",
+  "canonical": "https://clinicamontblanc.cl/",
+  "siteName": "Clínica Dental Mont Blanc",
+  "locale": "es_CL",
+  "image": "/mont_logo.png",
+  "keywords": [
+    "Clínica Dental Mont Blanc",
+    "dentista Ovalle",
+    "urgencias dentales Ovalle",
+    "destartraje",
+    "limpieza dental",
+    "rehabilitación oral",
+    "prótesis dentales",
+    "endodoncia",
+    "implantes dentales",
+    "estética facial",
+    "armonización facial",
+    "ácido hialurónico",
+    "toxina botulínica",
+    "bótox facial",
+    "Dra. Javiera Jara",
+    "Dr. Gustavo Padilla"
+  ],
+  "twitter": {
+    "card": "summary_large_image"
+  },
+  "organization": {
+    "name": "Clínica Dental Mont Blanc",
+    "legalName": "Clínica Dental Mont Blanc",
+    "url": "https://clinicamontblanc.cl/",
+    "logo": "/mont_logo.png",
+    "phone": "+56967454506",
+    "email": "contacto@montblanc.cl",
+    "address": {
+      "streetAddress": "Av. Manuel Peñafiel Olivares 1480, Oficina 316B",
+      "addressLocality": "Ovalle",
+      "addressRegion": "Coquimbo",
+      "postalCode": "1840000",
+      "addressCountry": "CL"
+    }
+  },
+  "doctors": [
+    {
+      "name": "Dra. Javiera Jara",
+      "title": "Odontóloga",
+      "specialty": "Rehabilitación oral y estética"
+    },
+    {
+      "name": "Dr. Gustavo Padilla",
+      "title": "Odontólogo",
+      "specialty": "Implantes y cirugía oral"
+    }
+  ],
+  "services": [
+    "Dentistas",
+    "Odontología",
+    "Urgencias dentales",
+    "Destartrajes (limpiezas)",
+    "Restauraciones",
+    "Rehabilitación oral",
+    "Prótesis dentales",
+    "Endodoncias",
+    "Implantes dentales",
+    "Estética y armonización facial",
+    "Ácido hialurónico",
+    "Toxina botulínica (bótox)"
+  ],
+  "openHours": [
+    "Mo-Sa 09:30-13:30",
+    "Mo-Sa 15:00-19:30"
+  ],
+  "areaServed": [
+    "Ovalle",
+    "Región de Coquimbo",
+    "Chile"
+  ],
+  "social": [
+    "https://www.instagram.com/clinicadental.montblanc/",
+    "https://facebook.com"
+  ]
+}
