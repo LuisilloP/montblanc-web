@@ -11,7 +11,7 @@ const gallery = [
 ];
 ---
 
-<section id="galeria-clinica" class="relative overflow-hidden py-16 lg:py-24">
+<section id="galeria-clinica" class="relative overflow-hidden py-16 lg:py-24" data-reveal>
   <div class="pointer-events-none absolute inset-0 opacity-80">
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(255,255,255,0.6),transparent_32%),radial-gradient(circle_at_80%_12%,rgba(230,214,198,0.55),transparent_30%),var(--bg-noise)]" />
   </div>
@@ -45,9 +45,11 @@ const gallery = [
       {gallery.map((item, index) => (
         <button
           type="button"
-          class={`group relative overflow-hidden rounded-2xl border border-white/40 bg-white/80 shadow-[0_18px_45px_rgba(0,0,0,0.08)] backdrop-blur-[2px] transition duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(0,0,0,0.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--goldLight)] ${
+          class={`group relative overflow-hidden rounded-2xl border border-white/40 bg-white/80 shadow-[0_18px_45px_rgba(0,0,0,0.08)] backdrop-blur-[2px] transition duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(0,0,0,0.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--goldLight)] reveal-on-scroll ${
             index === 0 ? "lg:col-span-2 lg:row-span-2" : ""
           }`}
+          data-reveal
+          data-reveal-delay={`${index * 120}ms`}
           data-gallery-card
           data-index={index}
           aria-label={`Abrir imagen: ${item.title}`}

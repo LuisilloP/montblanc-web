@@ -7,7 +7,7 @@ type Props = { data: { title: string; items: Item[] } };
 const { data } = Astro.props as Props;
 ---
 
-<section id="faq" class="container-wide space-y-8 py-16 lg:space-y-12 lg:py-24">
+<section id="faq" class="container-wide space-y-8 py-16 lg:space-y-12 lg:py-24" data-reveal>
   <div class="space-y-3">
     <p class="pill w-fit text-[11px] tracking-[0.2em]">Preguntas frecuentes</p>
     <h2 class="text-4xl leading-tight sm:text-5xl">{data.title}</h2>
@@ -15,8 +15,12 @@ const { data } = Astro.props as Props;
   </div>
 
   <div class="space-y-4">
-    {data.items.map((item) => (
-      <details class="group rounded-2xl border border-[rgba(176,128,80,0.15)] bg-white/70 px-6 py-5 shadow-sm open:shadow-md">
+    {data.items.map((item, idx) => (
+      <details
+        class="group rounded-2xl border border-[rgba(176,128,80,0.15)] bg-white/70 px-6 py-5 shadow-sm open:shadow-md reveal-on-scroll"
+        data-reveal
+        data-reveal-delay={`${idx * 120}ms`}
+      >
         <summary class="flex cursor-pointer items-center justify-between gap-3 text-xl font-semibold text-[var(--charcoal)]">
           <span>{item.question}</span>
           <span class="flex h-8 w-8 items-center justify-center rounded-full shrink-0 bg-[rgba(176,128,80,0.12)] text-[var(--goldLight)]">

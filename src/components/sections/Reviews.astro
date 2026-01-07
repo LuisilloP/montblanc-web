@@ -7,7 +7,7 @@ type Props = { data: { title: string; items: Review[] } };
 const { data } = Astro.props as Props;
 ---
 
-<section id="resenas" class="container-wide space-y-8 py-16 lg:space-y-12 lg:py-24">
+<section id="resenas" class="container-wide space-y-8 py-16 lg:space-y-12 lg:py-24" data-reveal>
   <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
     <div class="space-y-2">
       <p class="pill w-fit text-[11px] tracking-[0.2em]">Reseñas</p>
@@ -21,8 +21,12 @@ const { data } = Astro.props as Props;
   </div>
 
   <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-    {data.items.map((review) => (
-      <article class="card flex h-full flex-col gap-4 p-7">
+    {data.items.map((review, idx) => (
+      <article
+        class="card flex h-full flex-col gap-4 p-7 reveal-on-scroll"
+        data-reveal
+        data-reveal-delay={`${idx * 140}ms`}
+      >
         <div class="flex items-center justify-between">
           <div>
             <p class="text-base font-semibold text-[var(--charcoal)]">{review.name}</p>

@@ -1,13 +1,11 @@
 ---
-import { Icon } from 'astro-icon/components';
-
 type Item = { title: string; image: string; alt: string };
 type Props = { data: { title: string; note: string; items: Item[] } };
 
 const { data } = Astro.props as Props;
 ---
 
-<section id="antes-despues" class="container-wide space-y-8 py-16 lg:space-y-12 lg:py-24">
+<section id="antes-despues" class="container-wide space-y-8 py-16 lg:space-y-12 lg:py-24" data-reveal>
   <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
     <div class="space-y-2">
       <p class="pill w-fit text-[11px] tracking-[0.2em]">Antes y después</p>
@@ -20,9 +18,11 @@ const { data } = Astro.props as Props;
   </div>
 
   <div class="grid gap-6 md:grid-cols-2">
-    {data.items.map((item) => (
+    {data.items.map((item, idx) => (
       <article
-        class="group relative overflow-hidden rounded-3xl border border-[rgba(176,128,80,0.18)] bg-white/60 shadow-md transition hover:-translate-y-1 hover:shadow-xl"
+        class="group relative overflow-hidden rounded-3xl border border-[rgba(176,128,80,0.18)] bg-white/60 shadow-md transition hover:-translate-y-1 hover:shadow-xl reveal-on-scroll"
+        data-reveal
+        data-reveal-delay={`${idx * 140}ms`}
         aria-label={`Caso ${item.title}`}
       >
         <img
@@ -34,20 +34,11 @@ const { data } = Astro.props as Props;
           style="aspect-ratio: 3 / 4;"
         />
         <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[rgba(32,32,32,0.55)] opacity-80 transition group-hover:opacity-90" />
-        <div class="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--charcoal)] shadow-sm ring-1 ring-[rgba(176,128,80,0.25)]">
-          <span class="flex h-6 w-6 items-center justify-center rounded-full bg-[rgba(176,128,80,0.12)] text-[var(--goldLight)] ring-1 ring-[rgba(176,128,80,0.25)]">
-            <Icon name="lucide:split-square-horizontal" class="h-3.5 w-3.5" strokeWidth="1.6" />
-          </span>
-          Antes / Después
-        </div>
-        <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white">
+        <div class="absolute bottom-4 left-4 right-4 flex items-start text-white">
           <div>
             <p class="text-sm uppercase tracking-[0.18em] text-[rgba(255,255,255,0.85)]">Caso</p>
             <p class="text-lg font-semibold">{item.title}</p>
           </div>
-          <span class="flex h-10 w-10 items-center justify-center rounded-full bg-white/15 ring-1 ring-white/30">
-            <Icon name="lucide:zoom-in" class="h-4 w-4" strokeWidth="1.6" />
-          </span>
         </div>
       </article>
     ))}

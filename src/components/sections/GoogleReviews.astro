@@ -28,7 +28,7 @@ const startIndex = hasLoop ? 1 : 0;
 const getInitial = (name: string) => (name?.trim()?.charAt(0) || "?").toUpperCase();
 ---
 
-<section id="resenas" class="relative overflow-hidden py-16 lg:py-24">
+<section id="resenas" class="relative overflow-hidden py-16 lg:py-24" data-reveal>
   <div class="pointer-events-none absolute inset-0 opacity-70">
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.55),transparent_32%),radial-gradient(circle_at_82%_12%,rgba(230,214,198,0.6),transparent_28%),var(--bg-noise)]" />
   </div>
@@ -64,9 +64,11 @@ const getInitial = (name: string) => (name?.trim()?.charAt(0) || "?").toUpperCas
         data-has-loop={hasLoop ? "true" : "false"}
         data-start-index={startIndex}
       >
-        {loopedReviews.map((review) => (
+        {loopedReviews.map((review, idx) => (
           <article
-            class="snap-start basis-[88%] shrink-0 cursor-pointer sm:basis-[68%] md:basis-[48%] lg:basis-[32%]"
+            class="snap-start basis-[88%] shrink-0 cursor-pointer sm:basis-[68%] md:basis-[48%] lg:basis-[32%] reveal-on-scroll"
+            data-reveal
+            data-reveal-delay={`${idx * 120}ms`}
             data-card
           >
             <div class="flex h-full min-h-[260px] flex-col rounded-[20px] border border-[rgba(32,32,32,0.06)] bg-white/95 p-6 shadow-[0_18px_46px_rgba(0,0,0,0.08)] backdrop-blur-[2px]">
@@ -245,27 +247,6 @@ const getInitial = (name: string) => (name?.trim()?.charAt(0) || "?").toUpperCas
     .reviews-shell {
       --edge-pad: clamp(72px, 8vw, 140px);
       --fade: clamp(70px, 10vw, 180px);
-    }
-
-    .reviews-shell::before,
-    .reviews-shell::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: clamp(70px, 14vw, 220px);
-      pointer-events: none;
-      z-index: 15;
-    }
-
-    .reviews-shell::before {
-      left: 0;
-      background: linear-gradient(90deg, rgba(248, 240, 232, 0.9), rgba(248, 240, 232, 0.35), transparent);
-    }
-
-    .reviews-shell::after {
-      right: 0;
-      background: linear-gradient(270deg, rgba(248, 240, 232, 0.9), rgba(248, 240, 232, 0.35), transparent);
     }
   }
 

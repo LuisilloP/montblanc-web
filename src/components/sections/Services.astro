@@ -52,7 +52,7 @@ const tagToneClass = (tone?: string) => tagToneClasses[tone ?? "neutral"] ?? tag
 const getCtaHref = (item: Service) => item.ctaHref ?? data.ctaHref ?? "#";
 ---
 
-<section id="servicios" class="relative overflow-hidden py-16 lg:py-24">
+<section id="servicios" class="relative overflow-hidden py-16 lg:py-24" data-reveal>
   <div
     class="absolute inset-0 bg-[radial-gradient(circle_at_16%_12%,rgba(176,128,80,0.08),transparent_28%),radial-gradient(circle_at_82%_22%,rgba(168,120,63,0.08),transparent_26%),linear-gradient(180deg,rgba(248,232,224,0.65),rgba(248,232,224,0.42))]"
     aria-hidden="true"
@@ -66,9 +66,11 @@ const getCtaHref = (item: Service) => item.ctaHref ?? data.ctaHref ?? "#";
     </div>
 
     <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-      {data.items.map((service) => (
+      {data.items.map((service, idx) => (
         <article
-          class="group overflow-hidden rounded-[26px] bg-white/92 shadow-[0_20px_60px_rgba(32,32,32,0.1)] ring-1 ring-[rgba(176,128,80,0.18)] transition duration-200 hover:-translate-y-1 hover:shadow-[0_26px_70px_rgba(32,32,32,0.14)]"
+          class="group overflow-hidden rounded-[26px] bg-white/92 shadow-[0_20px_60px_rgba(32,32,32,0.1)] ring-1 ring-[rgba(176,128,80,0.18)] transition duration-200 hover:-translate-y-1 hover:shadow-[0_26px_70px_rgba(32,32,32,0.14)] reveal-on-scroll"
+          data-reveal
+          data-reveal-delay={`${idx * 140}ms`}
         >
           <div class="relative overflow-hidden">
             <img
