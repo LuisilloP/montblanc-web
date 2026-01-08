@@ -20,9 +20,10 @@ type Props = {
 
 const { brand, contact, nav = [], footer } = Astro.props as Props;
 const mapEmbedSrc =
-  "https://www.google.com/maps?q=Clinica+Dental+Mont+Blanc&output=embed";
+  "https://www.google.com/maps?q=Clinica+Dental+Mont+Blanc+-+Dra.+Javiera+Jara+%26+Dr.+Gustavo+Padilla&ll=-30.5773804,-71.1887003&z=17&output=embed";
 const mapCtaLink =
-  contact.mapLink ?? "https://maps.app.goo.gl/xtKKcUnBm5QzvTuq8";
+  contact.mapLink ??
+  "https://www.google.com/maps/place/Clinica+Dental+Mont+Blanc+-+Dra.+Javiera+Jara+%26+Dr.+Gustavo+Padilla/@-30.5773804,-71.1887003,17z/data=!3m1!4b1!4m6!3m5!1s0x968fcbed3a95dfe7:0xd471a6bf71a666bd!8m2!3d-30.5773804!4d-71.1887003!16s%2Fg%2F11y0fpjk_c?entry=ttu";
 const socialLinks = [
   {
     label: "Instagram",
