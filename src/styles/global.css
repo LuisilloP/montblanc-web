@@ -11,8 +11,8 @@
   --charcoal: #202020;
   --stone: #B4AB9F;
   --bg-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
-  --font-heading: "DM Serif Display", "Times New Roman", serif;
-  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-heading: "Playfair Display", "Times New Roman", serif;
+  --font-body: "Playfair Display","Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --shadow-soft: 0 20px 55px rgba(32, 32, 32, 0.08);
   --shadow-glow: 0 10px 40px rgba(176, 128, 80, 0.15);
   --radius-lg: 24px;
