@@ -147,119 +147,131 @@ const gallery = [
   </div>
 </section>
 
-<script>
-  const modal = document.querySelector("[data-gallery-modal]");
-  const galleryItems = modal?.dataset.galleryItems ? JSON.parse(modal.dataset.galleryItems) : [];
-  const cards = Array.from(document.querySelectorAll("[data-gallery-card]"));
-  const modalImg = modal?.querySelector("[data-gallery-image]");
-  const modalTitle = modal?.querySelector("[data-gallery-title]");
-  const btnClose = modal?.querySelector("[data-gallery-close]");
-  const btnPrev = modal?.querySelector("[data-gallery-prev]");
-  const btnNext = modal?.querySelector("[data-gallery-next]");
-  let currentIndex = 0;
-  let lastFocused = null;
+<script lang="ts">
+  type GalleryItem = { src: string; alt: string; title: string };
 
-  const focusableSelectors = 'button, [href], [tabindex]:not([tabindex="-1"])';
+  const modal = document.querySelector<HTMLElement>("[data-gallery-modal]");
+  if (!modal) {
+    // No modal in the DOM, nothing to wire up.
+  } else {
+    const rawItems = modal.dataset.galleryItems;
+    const galleryItems = rawItems ? (JSON.parse(rawItems) as GalleryItem[]) : [];
+    const cards = Array.from(document.querySelectorAll<HTMLElement>("[data-gallery-card]"));
+    const modalImg = modal.querySelector<HTMLImageElement>("[data-gallery-image]");
+    const modalTitle = modal.querySelector<HTMLElement>("[data-gallery-title]");
+    const btnClose = modal.querySelector<HTMLButtonElement>("[data-gallery-close]");
+    const btnPrev = modal.querySelector<HTMLButtonElement>("[data-gallery-prev]");
+    const btnNext = modal.querySelector<HTMLButtonElement>("[data-gallery-next]");
+    const focusableSelectors = 'button, [href], [tabindex]:not([tabindex="-1"])';
 
-  const lockScroll = () => {
-    const scrollBarComp = window.innerWidth - document.documentElement.clientWidth;
-    document.body.dataset.scrollY = String(window.scrollY);
-    document.body.style.top = `-${window.scrollY}px`;
-    document.body.style.position = "fixed";
-    document.body.style.width = "100%";
-    document.body.style.paddingRight = scrollBarComp ? `${scrollBarComp}px` : "";
-  };
+    let currentIndex = 0;
+    let lastFocused: HTMLElement | null = null;
 
-  const unlockScroll = () => {
-    const y = Number(document.body.dataset.scrollY || "0");
-    document.body.style.position = "";
-    document.body.style.top = "";
-    document.body.style.paddingRight = "";
-    document.body.style.width = "";
-    window.scrollTo(0, y);
-    document.body.removeAttribute("data-scroll-y");
-  };
+    const lockScroll = () => {
+      const scrollBarComp = window.innerWidth - document.documentElement.clientWidth;
+      document.body.dataset.scrollY = String(window.scrollY);
+      document.body.style.top = `-${window.scrollY}px`;
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
+      document.body.style.paddingRight = scrollBarComp ? `${scrollBarComp}px` : "";
+    };
 
-  const setModalVisibility = (show) => {
-    if (!modal) return;
-    modal.classList.toggle("hidden", !show);
-    if (show) {
-      lockScroll();
-      (btnClose ?? modal).focus();
-      modal.setAttribute("aria-hidden", "false");
-    } else {
-      unlockScroll();
-      modal.setAttribute("aria-hidden", "true");
-      lastFocused?.focus?.();
-    }
-  };
+    const unlockScroll = () => {
+      const y = Number(document.body.dataset.scrollY || "0");
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.paddingRight = "";
+      document.body.style.width = "";
+      window.scrollTo(0, y);
+      document.body.removeAttribute("data-scroll-y");
+    };
 
-  const renderSlide = (idx) => {
-    if (!modalImg || !modalTitle) return;
-    const item = galleryItems[idx];
-    if (!item) return;
-    currentIndex = idx;
-    modalImg.src = item.src;
-    modalImg.alt = item.alt;
-    modalTitle.textContent = item.title;
-  };
-
-  const openModal = (idx) => {
-    lastFocused = document.activeElement;
-    renderSlide(idx);
-    setModalVisibility(true);
-  };
-
-  const closeModal = () => setModalVisibility(false);
-
-  const nextSlide = () => {
-    const next = (currentIndex + 1) % galleryItems.length;
-    renderSlide(next);
-  };
-  const prevSlide = () => {
-    const prev = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
-    renderSlide(prev);
-  };
-
-  const onKeydown = (event) => {
-    if (modal?.classList.contains("hidden")) return;
-    if (event.key === "Escape") {
-      event.preventDefault();
-      closeModal();
-    } else if (event.key === "ArrowRight") {
-      event.preventDefault();
-      nextSlide();
-    } else if (event.key === "ArrowLeft") {
-      event.preventDefault();
-      prevSlide();
-    } else if (event.key === "Tab") {
-      const focusables = modal.querySelectorAll(focusableSelectors);
-      if (!focusables.length) return;
-      const first = focusables[0];
-      const last = focusables[focusables.length - 1];
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
+    const setModalVisibility = (show: boolean) => {
+      modal.classList.toggle("hidden", !show);
+      if (show) {
+        lockScroll();
+        (btnClose ?? modal).focus();
+        modal.setAttribute("aria-hidden", "false");
+      } else {
+        unlockScroll();
+        modal.setAttribute("aria-hidden", "true");
+        lastFocused?.focus?.();
       }
-    }
-  };
+    };
 
-  cards.forEach((card) => {
-    card.addEventListener("click", () => {
-      const idx = Number(card.getAttribute("data-index")) || 0;
-      openModal(idx);
+    const renderSlide = (idx: number) => {
+      if (!modalImg || !modalTitle) return;
+      const item = galleryItems[idx];
+      if (!item) return;
+      currentIndex = idx;
+      modalImg.src = item.src;
+      modalImg.alt = item.alt;
+      modalTitle.textContent = item.title;
+    };
+
+    const openModal = (idx: number) => {
+      lastFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      renderSlide(idx);
+      setModalVisibility(true);
+    };
+
+    const closeModal = () => setModalVisibility(false);
+
+    const nextSlide = () => {
+      if (!galleryItems.length) return;
+      const next = (currentIndex + 1) % galleryItems.length;
+      renderSlide(next);
+    };
+
+    const prevSlide = () => {
+      if (!galleryItems.length) return;
+      const prev = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+      renderSlide(prev);
+    };
+
+    const onKeydown = (event: KeyboardEvent) => {
+      if (modal.classList.contains("hidden")) return;
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeModal();
+      } else if (event.key === "ArrowRight") {
+        event.preventDefault();
+        nextSlide();
+      } else if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        prevSlide();
+      } else if (event.key === "Tab") {
+        const focusables = Array.from(modal.querySelectorAll<HTMLElement>(focusableSelectors));
+        if (!focusables.length) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (!first || !last) return;
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    cards.forEach((card) => {
+      card.addEventListener("click", () => {
+        const idx = Number(card.getAttribute("data-index")) || 0;
+        openModal(idx);
+      });
     });
-  });
 
-  btnClose?.addEventListener("click", closeModal);
-  btnNext?.addEventListener("click", nextSlide);
-  btnPrev?.addEventListener("click", prevSlide);
+    btnClose?.addEventListener("click", closeModal);
+    btnNext?.addEventListener("click", nextSlide);
+    btnPrev?.addEventListener("click", prevSlide);
 
-  modal?.addEventListener("click", (event) => {
-    if (event.target === modal) closeModal();
-  });
-  document.addEventListener("keydown", onKeydown);
+    const onModalClick = (event: MouseEvent) => {
+      if (event.target === modal) closeModal();
+    };
+
+    modal.addEventListener("click", onModalClick);
+    document.addEventListener("keydown", onKeydown);
+  }
 </script>

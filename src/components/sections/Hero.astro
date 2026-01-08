@@ -232,7 +232,7 @@ const heroCopy = {
   </style>
 
   <script>
-    const parseTarget = (raw) => {
+    const parseTarget = (raw: string | null) => {
       const value = String(raw ?? "0");
       const target = Number(value.replace(/[^\d]/g, "")) || 0;
       const suffix = value.replace(/[\d\s]/g, "");
@@ -242,14 +242,14 @@ const heroCopy = {
     const animateCounts = () => {
       const stats = document.querySelectorAll(".stat-number");
 
-      const run = (el) => {
+      const run = (el: Element) => {
         const { target, suffix } = parseTarget(el.getAttribute("data-target"));
         const startValue =
           target > 10 ? Math.max(1, Math.floor(target * 0.05)) : 0;
         const duration = 2000;
         const startedAt = performance.now();
 
-        const step = (now) => {
+        const step = (now: number) => {
           const progress = Math.min((now - startedAt) / duration, 1);
           const current = Math.floor(
             startValue + (target - startValue) * progress
