@@ -21,12 +21,12 @@
   "header": {
     "nav": [
       {
-        "label": "Servicios",
-        "href": "#servicios"
-      },
-      {
         "label": "Doctores",
         "href": "#sobre"
+      },
+      {
+        "label": "Servicios",
+        "href": "#servicios"
       },
       {
         "label": "Antes y después",
@@ -35,6 +35,10 @@
       {
         "label": "Reseñas",
         "href": "#resenas"
+      },
+      {
+        "label": "Agenda",
+        "href": "#agenda"
       },
       {
         "label": "FAQ",
