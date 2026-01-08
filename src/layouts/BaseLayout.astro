@@ -1,4 +1,6 @@
 ---
+import site from "../data/site.json";
+import FloatingWhatsAppButton from "../components/common/FloatingWhatsAppButton.astro";
 import "../styles/global.css";
 
 type SeoData = {
@@ -125,6 +127,7 @@ const structuredData = {
       Saltar al contenido principal
     </a>
     <slot />
+    <FloatingWhatsAppButton whatsapp={site.contact.whatsapp} />
     <script type="module" src="/scripts/reveal.js"></script>
   </body>
 </html>
