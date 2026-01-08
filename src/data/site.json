@@ -214,7 +214,7 @@
   },
   "gallery": {
     "title": "Antes y después",
-    "note": "Casos reales tratados con planificación fotográfica y seguimiento. Imágenes de referencia listas para reemplazar.",
+    "note": "Resultados clínicos documentados con fotografía estandarizada y seguimiento.",
     "items": [
       {
         "title": "Carillas cerámicas",
@@ -239,7 +239,7 @@
     ]
   },
   "reviews": {
-    "title": "Pacientes que confían",
+    "title": "Reseñas que respaldan la calidad",
     "items": [
       {
         "name": "Camila S.",
@@ -304,22 +304,22 @@
   },
   "partners": {
     "title": "Convenios y aliados",
-    "text": "Trabajamos con aseguradoras y proveedores certificados. Reemplaza los logos por los de tus convenios.",
+    "text": "Convenios con isapres, seguros y empresas locales para facilitar tu atención.",
     "items": [
       {
-        "name": "Convenio 1",
+        "name": "Isapres asociadas",
         "logo": "https://dummyimage.com/180x90/b4ab9f/ffffff&text=Logo"
       },
       {
-        "name": "Convenio 2",
+        "name": "Seguros complementarios",
         "logo": "https://dummyimage.com/180x90/e6d6c6/202020&text=Logo"
       },
       {
-        "name": "Seguro Dental",
+        "name": "Convenios empresariales",
         "logo": "https://dummyimage.com/180x90/f8e8e0/202020&text=Logo"
       },
       {
-        "name": "Proveedor Clínico",
+        "name": "Proveedores clínicos",
         "logo": "https://dummyimage.com/180x90/b08050/ffffff&text=Logo"
       }
     ]

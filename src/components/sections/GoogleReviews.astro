@@ -36,14 +36,16 @@ const getInitial = (name: string) => (name?.trim()?.charAt(0) || "?").toUpperCas
   <div class="container-wide relative space-y-10">
     <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
       <div class="space-y-2">
-        <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--goldLight)]">Reseñas de Google</p>
+        <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--goldLight)]">Reseñas verificadas</p>
         <h2 class="text-3xl font-semibold text-[var(--charcoal)] sm:text-4xl">{data.placeName}</h2>
-        <p class="text-base text-[var(--charcoal)]/70">Reseñas reales de pacientes</p>
+        <p class="text-base text-[var(--charcoal)]/70">
+          Opiniones reales que confirman la calidad clínica y el trato cercano.
+        </p>
       </div>
       {data.googleUrl && (
         <a
           href={data.googleUrl}
-          class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-[var(--charcoal)] shadow-[0_10px_35px_rgba(32,32,32,0.08)] ring-1 ring-[rgba(32,32,32,0.06)] transition hover:-translate-y-[1px] hover:shadow-[0_14px_40px_rgba(32,32,32,0.12)]"
+          class="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-[13px] font-semibold text-[var(--charcoal)] shadow-[0_10px_35px_rgba(32,32,32,0.08)] ring-1 ring-[rgba(32,32,32,0.06)] transition hover:-translate-y-[1px] hover:shadow-[0_14px_40px_rgba(32,32,32,0.12)] sm:px-4 sm:py-2 sm:text-sm"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -113,7 +115,7 @@ const getInitial = (name: string) => (name?.trim()?.charAt(0) || "?").toUpperCas
                   {review.source || "Google"}
                 </span>
                 <span class="rounded-full bg-[rgba(32,32,32,0.04)] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--charcoal)]/70">
-                  5.0 / 5
+                  {review.rating.toFixed(1)}
                 </span>
               </div>
             </div>
