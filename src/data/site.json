@@ -218,22 +218,22 @@
     "items": [
       {
         "title": "Carillas cerámicas",
-        "image": "/cases/caso1.jpg",
+        "image": "/cases/carillas-ceramicas.webp",
         "alt": "Resultado de carillas cerámicas"
       },
       {
         "title": "Rehabilitación completa",
-        "image": "/cases/caso1.jpg",
+        "image": "/cases/rehabilitacion-completa.webp",
         "alt": "Rehabilitación oral completa"
       },
       {
         "title": "Blanqueamiento clínico",
-        "image": "/cases/caso1.jpg",
+        "image": "/cases/blanqueamiento-clinico.webp",
         "alt": "Resultado de blanqueamiento dental"
       },
       {
         "title": "Implantes guiados",
-        "image": "/cases/caso1.jpg",
+        "image": "/cases/implantes-guiados.webp",
         "alt": "Implantes dentales guiados digitalmente"
       }
     ]
