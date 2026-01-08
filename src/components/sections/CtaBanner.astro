@@ -19,7 +19,7 @@ const { data } = Astro.props as Props;
       <div class="absolute -left-16 bottom-10 h-60 w-60 rounded-full bg-[rgba(176,128,80,0.12)] blur-[90px]" />
       <div class="absolute inset-0 overflow-hidden rounded-3xl">
         <img src="/clinica.webp" alt="" loading="lazy" class="h-full w-full object-cover opacity-55 mix-blend-multiply" />
-        <div class="absolute inset-0 bg-gradient-to-r from-[rgba(248,232,224,0.78)] via-[rgba(248,232,224,0.52)] to-[rgba(255,255,255,0.7)]" />
+        <div class="absolute inset-0 bg-linear-to-r from-[rgba(248,232,224,0.78)] via-[rgba(248,232,224,0.52)] to-[rgba(255,255,255,0.7)]" />
       </div>
     </div>
 
@@ -27,9 +27,9 @@ const { data } = Astro.props as Props;
       <div class="space-y-4 text-center lg:text-left">
         <p class="pill mx-auto w-fit lg:mx-0">Coordinemos tu atención</p>
         <h3 class="text-3xl leading-tight sm:text-4xl lg:text-[40px]">{data.title}</h3>
-        <p class="text-lg leading-relaxed text-[var(--charcoal)]/75">{data.text}</p>
-        <div class="flex flex-col items-center gap-2 text-sm text-[var(--charcoal)]/70 lg:items-start">
-          <span class="inline-flex items-center gap-2 rounded-full bg-white/85 px-3 py-1.5 text-[var(--charcoal)] shadow-sm ring-1 ring-[rgba(176,128,80,0.22)]">
+        <p class="text-lg leading-relaxed text-(--charcoal)/75">{data.text}</p>
+        <div class="flex flex-col items-center gap-2 text-sm text-(--charcoal)/70 lg:items-start">
+          <span class="inline-flex items-center gap-2 rounded-full bg-white/85 px-3 py-1.5 text-(--charcoal) shadow-sm ring-1 ring-[rgba(176,128,80,0.22)]">
             <span class="h-2 w-2 rounded-full bg-[#25d366]" />
             Respuesta en minutos dentro del horario
           </span>
@@ -38,13 +38,13 @@ const { data } = Astro.props as Props;
 
         {data.hours && (
           <div class="inline-flex w-full flex-col items-start gap-3 rounded-2xl bg-white/80 p-4 text-left shadow-sm ring-1 ring-[rgba(176,128,80,0.22)] backdrop-blur-sm sm:flex-row sm:items-center sm:gap-3 lg:w-fit">
-            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[rgba(176,128,80,0.12)] text-[var(--goldLight)] ring-1 ring-[rgba(176,128,80,0.2)]">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-[rgba(176,128,80,0.12)] text-(--goldLight) ring-1 ring-[rgba(176,128,80,0.2)]">
               <Icon name="lucide:clock-4" class="h-5 w-5" stroke-width="1.6" />
             </div>
             <div class="space-y-0.5">
-              <p class="text-xs uppercase tracking-[0.16em] text-[var(--charcoal)]/65">Horario</p>
-              <p class="text-sm font-semibold text-[var(--charcoal)]">{data.hours}</p>
-              <p class="text-xs text-[var(--charcoal)]/60">Fuera de horario déjanos tu mensaje y te respondemos al abrir.</p>
+              <p class="text-xs uppercase tracking-[0.16em] text-(--charcoal)/65">Horario</p>
+              <p class="text-sm font-semibold text-(--charcoal)">{data.hours}</p>
+              <p class="text-xs text-(--charcoal)/60">Fuera de horario déjanos tu mensaje y te respondemos al abrir.</p>
             </div>
           </div>
         )}
@@ -52,7 +52,7 @@ const { data } = Astro.props as Props;
 
       <div class="relative flex items-center justify-center">
         <div class="absolute -left-6 top-4 h-28 w-28 rounded-full bg-white/60 blur-2xl" aria-hidden="true" />
-        <div class="relative w-full max-w-[380px] space-y-3">
+        <div class="relative w-full max-w-95 space-y-3">
           {[
             {
               title: "Equipo de coordinación",
@@ -68,7 +68,7 @@ const { data } = Astro.props as Props;
             }
           ].map((card, idx) => (
             <a
-              class="group flex items-center justify-between gap-3 rounded-3xl bg-white/88 px-4 py-3 shadow-[0_14px_34px_rgba(32,32,32,0.12)] ring-1 ring-[rgba(176,128,80,0.16)] backdrop-blur-sm transition hover:-translate-y-[1px] hover:shadow-[0_18px_40px_rgba(32,32,32,0.16)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(37,211,102,0.45)] focus-visible:ring-offset-2 focus-visible:ring-offset-white reveal-on-scroll"
+              class="group flex items-center justify-between gap-3 rounded-3xl bg-white/88 px-4 py-3 shadow-[0_14px_34px_rgba(32,32,32,0.12)] ring-1 ring-[rgba(176,128,80,0.16)] backdrop-blur-sm transition hover:-translate-y-px hover:shadow-[0_18px_40px_rgba(32,32,32,0.16)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(37,211,102,0.45)] focus-visible:ring-offset-2 focus-visible:ring-offset-white reveal-on-scroll"
               data-reveal
               data-reveal-delay={`${idx * 160}ms`}
               href={card.href}
@@ -81,15 +81,15 @@ const { data } = Astro.props as Props;
                   <img src={card.img} alt={card.title} class="h-full w-full object-cover" loading="lazy" />
                 </div>
                 <div class="space-y-0.5">
-                  <p class="text-[15px] font-semibold text-[var(--charcoal)] leading-tight">{card.title}</p>
-                  <p class="text-xs text-[var(--charcoal)]/65">{card.subtitle}</p>
+                  <p class="text-[15px] font-semibold text-(--charcoal) leading-tight">{card.title}</p>
+                  <p class="text-xs text-(--charcoal)/65">{card.subtitle}</p>
                   <span class="inline-flex items-center gap-2 text-[13px] font-semibold text-[#25d366]">
                     <span class="h-2.5 w-2.5 rounded-full bg-[#25d366] shadow-[0_0_0_5px_rgba(37,211,102,0.18)]" />
                     En linea ahora
                   </span>
                 </div>
               </div>
-              <span class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(37,211,102,0.08)] text-[#25d366] ring-1 ring-[rgba(37,211,102,0.2)] transition group-hover:translate-x-[2px]">
+              <span class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(37,211,102,0.08)] text-[#25d366] ring-1 ring-[rgba(37,211,102,0.2)] transition group-hover:translate-x-0.5">
                 <Icon name="lucide:message-circle" class="h-5 w-5" stroke-width="1.8" />
               </span>
             </a>

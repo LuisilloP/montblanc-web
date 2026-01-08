@@ -19,14 +19,14 @@ const gallery = [
   <div class="container-wide relative space-y-10">
     <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
       <div class="space-y-2">
-        <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--goldLight)]">Galería</p>
-        <h2 class="text-3xl font-semibold text-[var(--charcoal)] sm:text-4xl">Conoce nuestra clínica</h2>
-        <p class="text-base text-[var(--charcoal)]/70 sm:text-lg">Espacios pensados para tu comodidad y confianza.</p>
+        <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-(--goldLight)">Galería</p>
+        <h2 class="text-3xl font-semibold text-(--charcoal) sm:text-4xl">Conoce nuestra clínica</h2>
+        <p class="text-base text-(--charcoal)/70 sm:text-lg">Espacios pensados para tu comodidad y confianza.</p>
       </div>
       <div class="flex flex-wrap gap-3">
         <a
           href="https://wa.me/56900000000"
-          class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-[var(--charcoal)] shadow-[0_10px_35px_rgba(32,32,32,0.08)] ring-1 ring-[rgba(32,32,32,0.06)] transition hover:-translate-y-[1px] hover:shadow-[0_14px_40px_rgba(32,32,32,0.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--goldLight)]"
+          class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-(--charcoal) shadow-[0_10px_35px_rgba(32,32,32,0.08)] ring-1 ring-[rgba(32,32,32,0.06)] transition hover:-translate-y-px hover:shadow-[0_14px_40px_rgba(32,32,32,0.12)] focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-(--goldLight)"
           target="_blank"
           rel="noreferrer"
         >
@@ -34,7 +34,7 @@ const gallery = [
         </a>
         <a
           href="#ubicacion"
-          class="inline-flex items-center gap-2 rounded-full border border-[rgba(32,32,32,0.08)] bg-white/80 px-4 py-2 text-sm font-semibold text-[var(--charcoal)] shadow-sm backdrop-blur-[2px] transition hover:-translate-y-[1px] hover:shadow-[0_12px_32px_rgba(32,32,32,0.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--goldLight)]"
+          class="inline-flex items-center gap-2 rounded-full border border-[rgba(32,32,32,0.08)] bg-white/80 px-4 py-2 text-sm font-semibold text-(--charcoal) shadow-sm backdrop-blur-[2px] transition hover:-translate-y-px hover:shadow-[0_12px_32px_rgba(32,32,32,0.12)] focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-(--goldLight)"
         >
           Ver ubicación
         </a>
@@ -45,7 +45,7 @@ const gallery = [
       {gallery.map((item, index) => (
         <button
           type="button"
-          class={`group relative overflow-hidden rounded-2xl border border-white/40 bg-white/80 shadow-[0_18px_45px_rgba(0,0,0,0.08)] backdrop-blur-[2px] transition duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(0,0,0,0.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--goldLight)] reveal-on-scroll ${
+          class={`group relative overflow-hidden rounded-2xl border border-white/40 bg-white/80 shadow-[0_18px_45px_rgba(0,0,0,0.08)] backdrop-blur-[2px] transition duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(0,0,0,0.12)] focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-(--goldLight) reveal-on-scroll ${
             index === 0 ? "lg:col-span-2 lg:row-span-2" : ""
           }`}
           data-reveal
@@ -65,7 +65,7 @@ const gallery = [
             class="h-full w-full object-cover transition duration-300 ease-out group-hover:scale-[1.02]"
             style={index === 0 ? "aspect-ratio: 4 / 3;" : "aspect-ratio: 4 / 3;"}
           />
-          <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[rgba(18,18,18,0.35)] transition group-hover:to-[rgba(18,18,18,0.45)]" />
+          <div class="pointer-events-none absolute inset-0 bg-linear-to-b from-transparent via-transparent to-[rgba(18,18,18,0.35)] transition group-hover:to-[rgba(18,18,18,0.45)]" />
           <div class="pointer-events-none absolute inset-x-4 bottom-4 flex items-center justify-between text-white">
             <div class="space-y-1">
               <p class="text-xs uppercase tracking-[0.18em] text-white/80">Ambiente</p>
@@ -90,17 +90,17 @@ const gallery = [
       aria-modal="true"
       aria-label="Galería de la clínica"
     >
-    <div class="relative w-full max-w-5xl rounded-3xl bg-[var(--ivory)]/98 p-4 shadow-[0_28px_80px_rgba(0,0,0,0.35)]">
+    <div class="relative w-full max-w-5xl rounded-3xl bg-(--ivory)/98 p-4 shadow-[0_28px_80px_rgba(0,0,0,0.35)]">
       <div class="flex items-center justify-between gap-4 px-1 pb-3">
         <div class="space-y-1">
-          <p class="text-[11px] uppercase tracking-[0.2em] text-[var(--goldLight)]">Ambiente</p>
-          <p class="text-lg font-semibold text-[var(--charcoal)]" data-gallery-title></p>
+          <p class="text-[11px] uppercase tracking-[0.2em] text-(--goldLight)">Ambiente</p>
+          <p class="text-lg font-semibold text-(--charcoal)" data-gallery-title></p>
         </div>
         <div class="flex items-center gap-2">
           <button
             type="button"
             data-gallery-prev
-            class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[rgba(32,32,32,0.08)] bg-white/90 text-[var(--charcoal)] shadow-sm transition hover:-translate-y-[1px] hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--goldLight)]"
+            class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[rgba(32,32,32,0.08)] bg-white/90 text-(--charcoal) shadow-sm transition hover:-translate-y-px hover:shadow-lg focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-(--goldLight)"
             aria-label="Imagen anterior"
           >
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -110,7 +110,7 @@ const gallery = [
           <button
             type="button"
             data-gallery-next
-            class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[rgba(32,32,32,0.08)] bg-white/90 text-[var(--charcoal)] shadow-sm transition hover:-translate-y-[1px] hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--goldLight)]"
+            class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[rgba(32,32,32,0.08)] bg-white/90 text-(--charcoal) shadow-sm transition hover:-translate-y-px hover:shadow-lg focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-(--goldLight)"
             aria-label="Imagen siguiente"
           >
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -120,7 +120,7 @@ const gallery = [
           <button
             type="button"
             data-gallery-close
-            class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(32,32,32,0.08)] text-[var(--charcoal)] shadow-inner ring-1 ring-[rgba(32,32,32,0.08)] transition hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--goldLight)]"
+            class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(32,32,32,0.08)] text-(--charcoal) shadow-inner ring-1 ring-[rgba(32,32,32,0.08)] transition hover:scale-[1.02] focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-(--goldLight)"
             aria-label="Cerrar galería"
           >
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -142,7 +142,7 @@ const gallery = [
           style="aspect-ratio: 16 / 10;"
         />
       </div>
-      <p class="mt-3 px-1 text-sm text-[var(--charcoal)]/70">Imágenes referenciales listas para reemplazar por tus fotos reales.</p>
+      <p class="mt-3 px-1 text-sm text-(--charcoal)/70">Imágenes referenciales listas para reemplazar por tus fotos reales.</p>
     </div>
   </div>
 </section>

@@ -11,7 +11,7 @@ const { data } = Astro.props as Props;
   <div class="space-y-3">
     <p class="pill w-fit text-[11px] tracking-[0.2em]">Preguntas frecuentes</p>
     <h2 class="text-4xl leading-tight sm:text-5xl">{data.title}</h2>
-    <p class="text-lg text-[var(--charcoal)]/70">Respuestas rápidas. Ajusta la información según tus protocolos.</p>
+    <p class="text-lg text-(--charcoal)/70">Respuestas rápidas. Ajusta la información según tus protocolos.</p>
   </div>
 
   <div class="space-y-4">
@@ -21,13 +21,13 @@ const { data } = Astro.props as Props;
         data-reveal
         data-reveal-delay={`${idx * 120}ms`}
       >
-        <summary class="flex cursor-pointer items-center justify-between gap-3 text-xl font-semibold text-[var(--charcoal)]">
+        <summary class="flex cursor-pointer items-center justify-between gap-3 text-xl font-semibold text-(--charcoal)">
           <span>{item.question}</span>
-          <span class="flex h-8 w-8 items-center justify-center rounded-full shrink-0 bg-[rgba(176,128,80,0.12)] text-[var(--goldLight)]">
+          <span class="flex h-8 w-8 items-center justify-center rounded-full shrink-0 bg-[rgba(176,128,80,0.12)] text-(--goldLight)">
             <Icon name="lucide:plus" class="h-4 w-4 transition group-open:rotate-45" stroke-width="1.8" />
           </span>
         </summary>
-        <p class="mt-3 text-base leading-relaxed text-[var(--charcoal)]/75">{item.answer}</p>
+        <p class="mt-3 text-base leading-relaxed text-(--charcoal)/75">{item.answer}</p>
       </details>
     ))}
   </div>

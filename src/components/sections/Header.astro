@@ -22,7 +22,7 @@ const logoSrc = "/mont_logo.png";
     >
       <a
         href="#inicio"
-        class="group flex items-center gap-3 rounded-full px-1.5 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--goldLight)] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgba(248,240,232,0.6)]"
+        class="group flex items-center gap-3 rounded-full px-1.5 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--goldLight) focus-visible:ring-offset-2 focus-visible:ring-offset-[rgba(248,240,232,0.6)]"
         aria-label="Volver al inicio"
       >
         <div
@@ -38,12 +38,12 @@ const logoSrc = "/mont_logo.png";
             class="h-8 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02] group-focus-visible:scale-[1.02] md:h-9"
             onerror="this.classList.add('hidden'); this.nextElementSibling?.classList.remove('hidden');"
           />
-          <span class="logo-fallback hidden text-[11px] font-semibold tracking-[0.32em] text-[var(--charcoal)]">
+          <span class="logo-fallback hidden text-[11px] font-semibold tracking-[0.32em] text-(--charcoal)">
             MONT BLANC
           </span>
         </div>
         <div class="flex flex-col gap-0.5 leading-tight">
-          <span class="text-[12px] font-semibold uppercase tracking-[0.26em] text-[var(--charcoal)]/85 md:text-[13px]">
+          <span class="text-[12px] font-semibold uppercase tracking-[0.26em] text-(--charcoal)/85 md:text-[13px]">
             {brand.name}
           </span>
           {brand.tagline && (
@@ -69,7 +69,7 @@ const logoSrc = "/mont_logo.png";
         <button
           type="button"
           data-menu-button
-          class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(32,32,32,0.12)] bg-white/80 text-[var(--charcoal)] shadow-[0_8px_20px_rgba(32,32,32,0.08)] transition hover:border-[rgba(32,32,32,0.2)] hover:bg-[rgba(248,232,224,0.8)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--goldLight)] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgba(248,240,232,0.6)] md:hidden"
+          class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(32,32,32,0.12)] bg-white/80 text-(--charcoal) shadow-[0_8px_20px_rgba(32,32,32,0.08)] transition hover:border-[rgba(32,32,32,0.2)] hover:bg-[rgba(248,232,224,0.8)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--goldLight) focus-visible:ring-offset-2 focus-visible:ring-offset-[rgba(248,240,232,0.6)] md:hidden"
           aria-label="Abrir menú"
           aria-expanded="false"
         >
@@ -83,7 +83,7 @@ const logoSrc = "/mont_logo.png";
   <div
     data-mobile-overlay
     aria-hidden="true"
-    class="mobile-overlay pointer-events-none fixed inset-0 z-40 flex items-start justify-center px-4 pb-10 pt-[96px] opacity-0 transition-opacity duration-200 md:hidden"
+    class="mobile-overlay pointer-events-none fixed inset-0 z-40 flex items-start justify-center px-4 pb-10 pt-24 opacity-0 transition-opacity duration-200 md:hidden"
   >
     <div
       data-overlay-backdrop
@@ -110,12 +110,12 @@ const logoSrc = "/mont_logo.png";
               class="h-7 w-auto object-contain"
               onerror="this.classList.add('hidden'); this.nextElementSibling?.classList.remove('hidden');"
             />
-            <span class="logo-fallback hidden text-[11px] font-semibold tracking-[0.32em] text-[var(--charcoal)]">
+            <span class="logo-fallback hidden text-[11px] font-semibold tracking-[0.32em] text-(--charcoal)">
               MONT BLANC
             </span>
           </div>
           <div class="flex flex-col gap-0.5 leading-tight">
-            <span class="text-[12px] font-semibold uppercase tracking-[0.24em] text-[var(--charcoal)]/85">
+            <span class="text-[12px] font-semibold uppercase tracking-[0.24em] text-(--charcoal)/85">
               {brand.name}
             </span>
             {brand.tagline && (
@@ -128,7 +128,7 @@ const logoSrc = "/mont_logo.png";
         <button
           type="button"
           data-menu-close
-          class="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(32,32,32,0.12)] bg-white/80 text-[var(--charcoal)] shadow-[0_8px_20px_rgba(32,32,32,0.08)] transition hover:border-[rgba(32,32,32,0.2)] hover:bg-[rgba(248,232,224,0.9)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--goldLight)] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgba(248,240,232,0.7)]"
+          class="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(32,32,32,0.12)] bg-white/80 text-(--charcoal) shadow-[0_8px_20px_rgba(32,32,32,0.08)] transition hover:border-[rgba(32,32,32,0.2)] hover:bg-[rgba(248,232,224,0.9)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--goldLight) focus-visible:ring-offset-2 focus-visible:ring-offset-[rgba(248,240,232,0.7)]"
           aria-label="Cerrar menú"
         >
           <span class="sr-only">Cerrar menú</span>
@@ -142,7 +142,7 @@ const logoSrc = "/mont_logo.png";
       >
         {nav.map((item) => (
           <a
-            class="block py-3 text-lg font-semibold tracking-[0.02em] text-[var(--charcoal)]/90 transition hover:text-[var(--goldLight)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--goldLight)] focus-visible:ring-offset-4 focus-visible:ring-offset-[rgba(248,232,224,0.9)]"
+            class="block py-3 text-lg font-semibold tracking-[0.02em] text-(--charcoal)/90 transition hover:text-(--goldLight) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--goldLight) focus-visible:ring-offset-4 focus-visible:ring-offset-[rgba(248,232,224,0.9)]"
             href={item.href}
           >
             {item.label}

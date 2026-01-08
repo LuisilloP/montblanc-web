@@ -10,9 +10,9 @@ const { data } = Astro.props as Props;
     <div class="space-y-2">
       <p class="pill w-fit text-[11px] tracking-[0.2em]">Antes y después</p>
       <h2 class="text-4xl leading-tight sm:text-5xl">{data.title}</h2>
-      <p class="text-lg leading-relaxed text-[var(--charcoal)]/70 sm:text-xl">{data.note}</p>
+      <p class="text-lg leading-relaxed text-(--charcoal)/70 sm:text-xl">{data.note}</p>
     </div>
-    <div class="rounded-full border text-center border-[rgba(176,128,80,0.2)] bg-white/80 px-4 py-2 text-sm text-[var(--charcoal)]/70">
+    <div class="rounded-full border text-center border-[rgba(176,128,80,0.2)] bg-white/80 px-4 py-2 text-sm text-(--charcoal)/70">
       Resultados de referencia · Solicita tu plan personalizado
     </div>
   </div>
@@ -33,7 +33,7 @@ const { data } = Astro.props as Props;
           class="h-full w-full object-cover"
           style="aspect-ratio: 3 / 4;"
         />
-        <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[rgba(32,32,32,0.55)] opacity-80 transition group-hover:opacity-90" />
+        <div class="pointer-events-none absolute inset-0 bg-linear-to-b from-transparent via-transparent to-[rgba(32,32,32,0.55)] opacity-80 transition group-hover:opacity-90" />
         <div class="absolute bottom-4 left-4 right-4 flex items-start text-white">
           <div>
             <p class="text-sm uppercase tracking-[0.18em] text-[rgba(255,255,255,0.85)]">Caso</p>

@@ -46,7 +46,7 @@ const tagToneClasses: Record<string, string> = {
   emerald: 
     "bg-[rgba(16,185,129,0.9)] text-white ring-[rgba(16,185,129,0.95)] shadow-[0_12px_28px_rgba(16,185,129,0.22)]",
   //
-  neutral: "bg-white text-[var(--charcoal)] ring-[rgba(32,32,32,0.16)] shadow-[0_12px_28px_rgba(32,32,32,0.12)]",
+  neutral: "bg-white text-(--charcoal) ring-[rgba(32,32,32,0.16)] shadow-[0_12px_28px_rgba(32,32,32,0.12)]",
 };
 const tagToneClass = (tone?: string) => tagToneClasses[tone ?? "neutral"] ?? tagToneClasses.neutral;
 const getCtaHref = (item: Service) => item.ctaHref ?? data.ctaHref ?? "#";
@@ -62,7 +62,7 @@ const getCtaHref = (item: Service) => item.ctaHref ?? data.ctaHref ?? "#";
     <div class="max-w-4xl space-y-4">
       <p class="pill w-fit text-[11px] tracking-[0.2em]">Servicios</p>
       <h2 class="text-4xl leading-tight sm:text-5xl">{data.title}</h2>
-      <p class="text-lg leading-relaxed text-[var(--charcoal)]/75 sm:text-xl">{data.subtitle}</p>
+      <p class="text-lg leading-relaxed text-(--charcoal)/75 sm:text-xl">{data.subtitle}</p>
     </div>
 
     <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -86,7 +86,7 @@ const getCtaHref = (item: Service) => item.ctaHref ?? data.ctaHref ?? "#";
                 class={`absolute left-4 top-4 inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] ring-1 backdrop-blur ${tagToneClass(service.tagTone)}`}
               >
               <span
-                class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/70 text-[var(--goldLight)] ring-1 ring-white/70"
+                class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/70 text-(--goldLight) ring-1 ring-white/70"
                 aria-hidden="true"
               >
                 <Icon name={service.tagIcon ?? "lucide:sparkles"} class="h-3.5 w-3.5" stroke-width="1.6" />
@@ -98,20 +98,20 @@ const getCtaHref = (item: Service) => item.ctaHref ?? data.ctaHref ?? "#";
 
           <div class="flex flex-col gap-4 px-5 pb-6 pt-5 sm:px-6 sm:pb-7 sm:pt-6">
             <div class="space-y-2">
-              <h3 class="text-2xl leading-tight text-[var(--charcoal)]">{service.name}</h3>
-              <p class="text-base leading-relaxed text-[var(--charcoal)]/75">{service.description}</p>
+              <h3 class="text-2xl leading-tight text-(--charcoal)">{service.name}</h3>
+              <p class="text-base leading-relaxed text-(--charcoal)/75">{service.description}</p>
             </div>
 
             {service.detail && (
-              <p class="flex items-center gap-2 text-sm text-[var(--charcoal)]/70">
-                <span class="mt-[2px] h-1.5 w-1.5 rounded-full bg-[var(--goldLight)]" />
+              <p class="flex items-center gap-2 text-sm text-(--charcoal)/70">
+                <span class="mt-0.5 h-1.5 w-1.5 rounded-full bg-(--goldLight)" />
                 <span>{service.detail}</span>
               </p>
             )}
 
             <div class="mt-auto pt-1">
               <a
-                class="group/cta inline-flex w-full items-center justify-between rounded-full border border-[rgba(176,128,80,0.32)] bg-[rgba(248,232,224,0.7)] px-5 py-3 text-[var(--goldDeep)] font-semibold transition hover:-translate-y-[1px] hover:shadow-[0_12px_34px_rgba(176,128,80,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--goldLight)] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgba(248,232,224,0.7)]"
+                class="group/cta inline-flex w-full items-center justify-between rounded-full border border-[rgba(176,128,80,0.32)] bg-[rgba(248,232,224,0.7)] px-5 py-3 text-(--goldDeep) font-semibold transition hover:-translate-y-px hover:shadow-[0_12px_34px_rgba(176,128,80,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--goldLight) focus-visible:ring-offset-2 focus-visible:ring-offset-[rgba(248,232,224,0.7)]"
                 href={getCtaHref(service)}
                 aria-label={service.cta}
                 target="_blank"
@@ -119,7 +119,7 @@ const getCtaHref = (item: Service) => item.ctaHref ?? data.ctaHref ?? "#";
               >
                 <span>{service.cta}</span>
                 <span
-                  class="flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(176,128,80,0.25)] bg-white/95 text-[var(--goldDeep)] transition group-hover/cta:translate-x-[2px] group-hover/cta:-translate-y-[1px]"
+                  class="flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(176,128,80,0.25)] bg-white/95 text-(--goldDeep) transition group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-px"
                   aria-hidden="true"
                 >
                   <Icon name="lucide:arrow-right" class="h-4 w-4" stroke-width="1.6" />

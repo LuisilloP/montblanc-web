@@ -12,12 +12,12 @@ const { data } = Astro.props as Props;
     <div class="space-y-2">
       <p class="pill w-fit text-[11px] tracking-[0.2em]">Reseñas</p>
       <h2 class="text-4xl leading-tight sm:text-5xl">{data.title}</h2>
-      <p class="text-lg text-[var(--charcoal)]/70">
+      <p class="text-lg text-(--charcoal)/70">
         Experiencias reales de pacientes que valoran el detalle y los resultados.
       </p>
     </div>
-    <div class="flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-sm text-[var(--charcoal)]/70 ring-1 ring-[rgba(176,128,80,0.2)]">
-      <Icon name="lucide:star" class="h-4 w-4 text-[var(--goldLight)]" stroke-width="0" fill="currentColor" />
+    <div class="flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-sm text-(--charcoal)/70 ring-1 ring-[rgba(176,128,80,0.2)]">
+      <Icon name="lucide:star" class="h-4 w-4 text-(--goldLight)" stroke-width="0" fill="currentColor" />
       5.0 / 5 · Pacientes felices
     </div>
   </div>
@@ -31,12 +31,12 @@ const { data } = Astro.props as Props;
       >
         <div class="flex flex-wrap items-center gap-3">
           <div class="min-w-0">
-            <p class="text-base font-semibold text-[var(--charcoal)]">{review.name}</p>
-            {review.tag && <p class="text-xs uppercase tracking-[0.16em] text-[var(--goldLight)]">{review.tag}</p>}
+            <p class="text-base font-semibold text-(--charcoal)">{review.name}</p>
+            {review.tag && <p class="text-xs uppercase tracking-[0.16em] text-(--goldLight)">{review.tag}</p>}
           </div>
-          <div class="ml-auto flex items-center gap-2 rounded-full bg-white/70 px-2.5 py-1 text-xs text-[var(--charcoal)]/70 ring-1 ring-[rgba(176,128,80,0.18)]">
+          <div class="ml-auto flex items-center gap-2 rounded-full bg-white/70 px-2.5 py-1 text-xs text-(--charcoal)/70 ring-1 ring-[rgba(176,128,80,0.18)]">
             <div
-              class="flex items-center gap-1 text-[var(--goldLight)]"
+              class="flex items-center gap-1 text-(--goldLight)"
               aria-label={`Calificaci\u00f3n ${review.rating.toFixed(1)} de 5`}
               role="img"
             >
@@ -50,13 +50,13 @@ const { data } = Astro.props as Props;
                 />
               ))}
             </div>
-            <span class="font-semibold text-[var(--charcoal)]/80">{review.rating.toFixed(1)}</span>
-            <span class="text-[10px] text-[var(--charcoal)]/55">/ 5</span>
+            <span class="font-semibold text-(--charcoal)/80">{review.rating.toFixed(1)}</span>
+            <span class="text-[10px] text-(--charcoal)/55">/ 5</span>
           </div>
         </div>
-        <p class="text-base leading-relaxed text-[var(--charcoal)]/75">{review.text}</p>
-        <div class="mt-auto flex items-center gap-2 text-xs text-[var(--charcoal)]/60">
-          <span class="h-2 w-2 rounded-full bg-[var(--goldLight)]" />
+        <p class="text-base leading-relaxed text-(--charcoal)/75">{review.text}</p>
+        <div class="mt-auto flex items-center gap-2 text-xs text-(--charcoal)/60">
+          <span class="h-2 w-2 rounded-full bg-(--goldLight)" />
           Seguimiento post atención incluido
         </div>
       </article>

@@ -36,16 +36,16 @@ const getInitial = (name: string) => (name?.trim()?.charAt(0) || "?").toUpperCas
   <div class="container-wide relative space-y-10">
     <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
       <div class="space-y-2">
-        <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--goldLight)]">Reseñas verificadas</p>
-        <h2 class="text-3xl font-semibold text-[var(--charcoal)] sm:text-4xl">{data.placeName}</h2>
-        <p class="text-base text-[var(--charcoal)]/70">
+        <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-(--goldLight)">Reseñas verificadas</p>
+        <h2 class="text-3xl font-semibold text-(--charcoal) sm:text-4xl">{data.placeName}</h2>
+        <p class="text-base text-(--charcoal)/70">
           Opiniones reales que confirman la calidad clínica y el trato cercano.
         </p>
       </div>
       {data.googleUrl && (
         <a
           href={data.googleUrl}
-          class="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-[13px] font-semibold text-[var(--charcoal)] shadow-[0_10px_35px_rgba(32,32,32,0.08)] ring-1 ring-[rgba(32,32,32,0.06)] transition hover:-translate-y-[1px] hover:shadow-[0_14px_40px_rgba(32,32,32,0.12)] sm:px-4 sm:py-2 sm:text-sm"
+          class="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-[13px] font-semibold text-(--charcoal) shadow-[0_10px_35px_rgba(32,32,32,0.08)] ring-1 ring-[rgba(32,32,32,0.06)] transition hover:-translate-y-px hover:shadow-[0_14px_40px_rgba(32,32,32,0.12)] sm:px-4 sm:py-2 sm:text-sm"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -73,19 +73,19 @@ const getInitial = (name: string) => (name?.trim()?.charAt(0) || "?").toUpperCas
             data-reveal-delay={`${idx * 120}ms`}
             data-card
           >
-            <div class="flex h-full min-h-[260px] flex-col rounded-[20px] border border-[rgba(32,32,32,0.06)] bg-white/95 p-6 shadow-[0_18px_46px_rgba(0,0,0,0.08)] backdrop-blur-[2px]">
+            <div class="flex h-full min-h-65 flex-col rounded-[20px] border border-[rgba(32,32,32,0.06)] bg-white/95 p-6 shadow-[0_18px_46px_rgba(0,0,0,0.08)] backdrop-blur-[2px]">
               <div class="flex items-start justify-between gap-3">
                 <div class="flex items-center gap-3">
                   {review.avatar ? (
                     <img src={review.avatar} alt={`Avatar de ${review.author}`} class="h-10 w-10 rounded-full object-cover shadow-sm" loading="lazy" />
                   ) : (
-                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(32,32,32,0.08)] text-sm font-semibold text-[var(--charcoal)] shadow-inner">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(32,32,32,0.08)] text-sm font-semibold text-(--charcoal) shadow-inner">
                       {getInitial(review.author)}
                     </div>
                   )}
                   <div>
-                    <p class="text-base font-semibold leading-tight text-[var(--charcoal)]">{review.author}</p>
-                    <p class="text-xs text-[var(--charcoal)]/60">{review.relativeTime}</p>
+                    <p class="text-base font-semibold leading-tight text-(--charcoal)">{review.author}</p>
+                    <p class="text-xs text-(--charcoal)/60">{review.relativeTime}</p>
                   </div>
                 </div>
                 <div class="rounded-full bg-white/90 p-2 shadow-[0_8px_24px_rgba(32,32,32,0.12)] ring-1 ring-[rgba(32,32,32,0.06)]">
@@ -107,14 +107,14 @@ const getInitial = (name: string) => (name?.trim()?.charAt(0) || "?").toUpperCas
                 ))}
               </div>
 
-              <p class="clamp-4 mt-3 text-[15px] leading-relaxed text-[var(--charcoal)]/80">{review.text}</p>
+              <p class="clamp-4 mt-3 text-[15px] leading-relaxed text-(--charcoal)/80">{review.text}</p>
 
-              <div class="mt-auto flex items-center justify-between pt-4 text-xs text-[var(--charcoal)]/60">
+              <div class="mt-auto flex items-center justify-between pt-4 text-xs text-(--charcoal)/60">
                 <span class="flex items-center gap-2">
                   <span class="h-2 w-2 rounded-full bg-[#fbbc04]" />
                   {review.source || "Google"}
                 </span>
-                <span class="rounded-full bg-[rgba(32,32,32,0.04)] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--charcoal)]/70">
+                <span class="rounded-full bg-[rgba(32,32,32,0.04)] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-(--charcoal)/70">
                   {review.rating.toFixed(1)}
                 </span>
               </div>
