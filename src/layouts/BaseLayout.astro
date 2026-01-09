@@ -38,19 +38,18 @@ type Props = { seo?: SeoData };
 
 const { seo } = Astro.props as Props;
 
-const metaTitle = seo?.title ?? "Clínica Dental Mont Blanc | Odontología y Estética Facial";
-const description =
-  seo?.description ??
-  "Clínica dental boutique en Ovalle con urgencias, rehabilitación oral, implantes y armonización facial.";
-const canonical = seo?.canonical ?? "https://montblanc.cl/";
-const ogImage = seo?.image ?? "/og-montblanc.jpg";
-const siteName = seo?.siteName ?? "Clínica Dental Mont Blanc";
-const locale = seo?.locale ?? "es_CL";
+const metaTitle = seo?.title ?? site.meta?.title ?? site.brand?.name ?? "";
+const description = seo?.description ?? site.meta?.description ?? "";
+const canonical = seo?.canonical ?? site.meta?.url ?? "";
+const ogImage = seo?.image ?? site.meta?.image ?? "";
+const siteName = seo?.siteName ?? site.meta?.siteName ?? site.brand?.name ?? "";
+const locale = seo?.locale ?? site.meta?.locale ?? "";
 const keywords = seo?.keywords?.length ? seo.keywords.join(", ") : undefined;
-const twitterCard = seo?.twitter?.card ?? "summary_large_image";
+const twitterCard = seo?.twitter?.card ?? site.meta?.twitterCard ?? "";
 const authors =
   seo?.doctors?.length && seo.doctors.map((doctor) => doctor.name).filter(Boolean).join(", ");
-const robots = "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1";
+const robots = site.meta?.robots ?? "";
+const themeColor = site.meta?.themeColor ?? "";
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -94,25 +93,25 @@ const structuredData = {
     <meta name="description" content={description} />
     {keywords && <meta name="keywords" content={keywords} />}
     {authors && <meta name="author" content={authors} />}
-    <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="es-cl" href={canonical} />
-    <meta name="robots" content={robots} />
-    <meta name="theme-color" content="#F8F0E8" />
+    {canonical && <link rel="canonical" href={canonical} />}
+    {canonical && <link rel="alternate" hreflang="es-cl" href={canonical} />}
+    {robots && <meta name="robots" content={robots} />}
+    {themeColor && <meta name="theme-color" content={themeColor} />}
 
     <meta property="og:title" content={metaTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:site_name" content={siteName} />
-    <meta property="og:locale" content={locale} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    {siteName && <meta property="og:site_name" content={siteName} />}
+    {locale && <meta property="og:locale" content={locale} />}
 
-    <meta name="twitter:card" content={twitterCard} />
+    {twitterCard && <meta name="twitter:card" content={twitterCard} />}
     {seo?.twitter?.site && <meta name="twitter:site" content={seo.twitter.site} />}
     {seo?.twitter?.creator && <meta name="twitter:creator" content={seo.twitter.creator} />}
     <meta name="twitter:title" content={metaTitle} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
 
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
   </head>
@@ -124,10 +123,13 @@ const structuredData = {
       href="#contenido"
       class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded-full"
     >
-      Saltar al contenido principal
+      {site.a11y?.skipToContent}
     </a>
     <slot />
-    <FloatingWhatsAppButton whatsapp={site.contact.whatsapp} />
+    <FloatingWhatsAppButton
+      whatsapp={site.contact.whatsapp}
+      ariaLabel={site.a11y?.whatsappLabel ?? ""}
+    />
     <script type="module" src="/scripts/reveal.js"></script>
   </body>
 </html>

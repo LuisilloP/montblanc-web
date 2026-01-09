@@ -2,16 +2,20 @@
 import { Icon } from 'astro-icon/components';
 
 type Item = { question: string; answer: string };
-type Props = { data: { title: string; items: Item[] } };
+type Props = { data: { eyebrow?: string; title: string; intro?: string; items: Item[] } };
 
 const { data } = Astro.props as Props;
 ---
 
 <section id="faq" class="container-wide space-y-8 py-16 lg:space-y-12 lg:py-24" data-reveal>
   <div class="space-y-3">
-    <p class="pill w-fit text-[11px] tracking-[0.2em]">Preguntas frecuentes</p>
+    {data.eyebrow && (
+      <p class="pill w-fit text-[11px] tracking-[0.2em]">{data.eyebrow}</p>
+    )}
     <h2 class="text-4xl leading-tight sm:text-5xl">{data.title}</h2>
-    <p class="text-lg text-(--charcoal)/70">Respuestas rápidas. Ajusta la información según tus protocolos.</p>
+    {data.intro && (
+      <p class="text-lg text-(--charcoal)/70">{data.intro}</p>
+    )}
   </div>
 
   <div class="space-y-4">

@@ -17,7 +17,19 @@ type ReviewsData = {
   reviews: Review[];
 };
 
-const { data = reviewsData as ReviewsData } = Astro.props as { data?: ReviewsData };
+type Copy = {
+  eyebrow: string;
+  subtitle: string;
+  ctaLabel: string;
+  prevLabel: string;
+  nextLabel: string;
+  sourceFallback: string;
+};
+
+const { data = reviewsData as ReviewsData, copy } = Astro.props as {
+  data?: ReviewsData;
+  copy: Copy;
+};
 const instanceId = `google-reviews-${Math.random().toString(36).slice(2, 8)}`;
 const baseReviews = data.reviews || [];
 const enableLoop = false;
@@ -36,10 +48,10 @@ const getInitial = (name: string) => (name?.trim()?.charAt(0) || "?").toUpperCas
   <div class="container-wide relative space-y-10">
     <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
       <div class="space-y-2">
-        <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-(--goldLight)">Reseñas verificadas</p>
+        <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-(--goldLight)">{copy.eyebrow}</p>
         <h2 class="text-3xl font-semibold text-(--charcoal) sm:text-4xl">{data.placeName}</h2>
         <p class="text-base text-(--charcoal)/70">
-          Opiniones reales que confirman la calidad clínica y el trato cercano.
+          {copy.subtitle}
         </p>
       </div>
       {data.googleUrl && (
@@ -50,7 +62,7 @@ const getInitial = (name: string) => (name?.trim()?.charAt(0) || "?").toUpperCas
           rel="noopener noreferrer"
         >
           <GoogleG size={16} />
-          Ver en Google
+          {copy.ctaLabel}
         </a>
       )}
     </div>
@@ -112,7 +124,7 @@ const getInitial = (name: string) => (name?.trim()?.charAt(0) || "?").toUpperCas
               <div class="mt-auto flex items-center justify-between pt-4 text-xs text-(--charcoal)/60">
                 <span class="flex items-center gap-2">
                   <span class="h-2 w-2 rounded-full bg-[#fbbc04]" />
-                  {review.source || "Google"}
+                  {review.source || copy.sourceFallback}
                 </span>
                 <span class="rounded-full bg-[rgba(32,32,32,0.04)] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-(--charcoal)/70">
                   {review.rating.toFixed(1)}
@@ -127,7 +139,7 @@ const getInitial = (name: string) => (name?.trim()?.charAt(0) || "?").toUpperCas
         <button
           id={`${instanceId}-prev`}
           class="reviews-nav-btn pointer-events-auto"
-          aria-label="Anterior reseña"
+          aria-label={copy.prevLabel}
           type="button"
           data-dir="prev"
         >
@@ -138,7 +150,7 @@ const getInitial = (name: string) => (name?.trim()?.charAt(0) || "?").toUpperCas
         <button
           id={`${instanceId}-next`}
           class="reviews-nav-btn pointer-events-auto"
-          aria-label="Siguiente reseña"
+          aria-label={copy.nextLabel}
           type="button"
           data-dir="next"
         >

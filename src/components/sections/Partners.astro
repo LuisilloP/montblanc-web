@@ -1,13 +1,15 @@
 ---
 type Partner = { name: string; logo: string };
-type Props = { data: { title: string; text: string; items: Partner[] } };
+type Props = { data: { eyebrow?: string; title: string; text: string; items: Partner[] } };
 
 const { data } = Astro.props as Props;
 ---
 
 <section id="convenios" class="container-wide space-y-8 py-16 lg:space-y-12 lg:py-24" data-reveal>
   <div class="space-y-2">
-    <p class="pill w-fit text-[11px] tracking-[0.2em]">Convenios</p>
+    {data.eyebrow && (
+      <p class="pill w-fit text-[11px] tracking-[0.2em]">{data.eyebrow}</p>
+    )}
     <h2 class="text-4xl leading-tight sm:text-5xl">{data.title}</h2>
     <p class="text-lg text-(--charcoal)/70">{data.text}</p>
   </div>

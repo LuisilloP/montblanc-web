@@ -1,20 +1,34 @@
 ---
 type Item = { title: string; image: string; alt: string };
-type Props = { data: { title: string; note: string; items: Item[] } };
+type Props = {
+  data: {
+    eyebrow?: string;
+    title: string;
+    note: string;
+    badge?: string;
+    caseLabel?: string;
+    items: Item[];
+  };
+};
 
 const { data } = Astro.props as Props;
+const caseLabel = data.caseLabel ?? "Caso";
 ---
 
 <section id="antes-despues" class="container-wide space-y-8 py-16 lg:space-y-12 lg:py-24" data-reveal>
   <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
     <div class="space-y-2">
-      <p class="pill w-fit text-[11px] tracking-[0.2em]">Antes y después</p>
+      {data.eyebrow && (
+        <p class="pill w-fit text-[11px] tracking-[0.2em]">{data.eyebrow}</p>
+      )}
       <h2 class="text-4xl leading-tight sm:text-5xl">{data.title}</h2>
       <p class="text-lg leading-relaxed text-(--charcoal)/70 sm:text-xl">{data.note}</p>
     </div>
-    <div class="rounded-full border text-center border-[rgba(176,128,80,0.2)] bg-white/80 px-4 py-2 text-sm text-(--charcoal)/70">
-      Resultados de referencia · Solicita tu plan personalizado
-    </div>
+    {data.badge && (
+      <div class="rounded-full border text-center border-[rgba(176,128,80,0.2)] bg-white/80 px-4 py-2 text-sm text-(--charcoal)/70">
+        {data.badge}
+      </div>
+    )}
   </div>
 
   <div class="grid gap-6 md:grid-cols-2">
@@ -36,7 +50,7 @@ const { data } = Astro.props as Props;
         <div class="pointer-events-none absolute inset-0 bg-linear-to-b from-transparent via-transparent to-[rgba(32,32,32,0.55)] opacity-80 transition group-hover:opacity-90" />
         <div class="absolute bottom-4 left-4 right-4 flex items-start text-white">
           <div>
-            <p class="text-sm uppercase tracking-[0.18em] text-[rgba(255,255,255,0.85)]">Caso</p>
+            <p class="text-sm uppercase tracking-[0.18em] text-[rgba(255,255,255,0.85)]">{caseLabel}</p>
             <p class="text-lg font-semibold">{item.title}</p>
           </div>
         </div>

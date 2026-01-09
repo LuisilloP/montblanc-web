@@ -1,32 +1,27 @@
-﻿---
-const doctors = [
-  {
-    name: "Dra. Javiera Jara",
-    badge: "Odontologia integral y Estética Orofacial",
-    subtitle: "Tratamientos personalizados con mínima invasión.",
-    experienceYears: "7+",
-    tags: ["Estética", "Limpiezas", "Cirugía y Exodoncias"],
-    bullets: [
-      "Cirujana dentista USS.",
-      "⁠Diplomado en Medicina Estética UA.",
-      "⁠Miembro asociado de la Academia Internacional de Medicina y Cirugía Estética.",
-    ],
-    photo: "/doctores/doctora.webp",
-  },
-  {
-    name: "Dr. Gustavo Padilla",
-    badge: "Odontología integral y endodoncia",
-    subtitle: "⁠Rehabilitaciones que priorizan función y armonía",
-    experienceYears: "7+",
-    tags: ["Prótesis", "Coronas y carillas", "Endodoncia"],
-    bullets: [
-      "Cirujano Dentista UACH.",
-      "Diplomado en implantologia y rehabilitación UACH.",
-      "30+ Certificados, Congresos y Seminarios de actualización.",
-    ],
-    photo: "/doctores/doctor.webp",
-  },
-];
+---
+type Doctor = {
+  name: string;
+  badge: string;
+  subtitle: string;
+  experienceYears: string;
+  tags: string[];
+  bullets: string[];
+  photo: string;
+};
+
+type Props = {
+  data: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    experienceLabel: string;
+    experienceSuffix: string;
+    doctors: Doctor[];
+  };
+};
+
+const { data } = Astro.props as Props;
+const doctors = data?.doctors ?? [];
 ---
 
 <section
@@ -43,18 +38,13 @@ const doctors = [
       <p
         class="text-[11px] font-semibold uppercase tracking-[0.26em] text-(--goldLight)"
       >
-        Sobre nosotros
+        {data.eyebrow}
       </p>
       <h2 class="text-3xl font-semibold text-(--charcoal) sm:text-4xl">
-        Equipo odontologico que te acompaña
+        {data.title}
       </h2>
       <p class="text-base text-(--charcoal)/75 sm:text-lg">
-        Profesionales con experiencia que brindan las mejores alternativas de
-        tratamiento en base a sus necesidades, utilizando técnicas actualizadas
-        para el manejo y control del dolor durante y después de la atención.
-        Contamos con tecnología de vanguardia lo que mejora la comodidad durante
-        el tratamiento, su resultado y pronóstico. Todo entregado con trato
-        humano y cercano, sello característico de nuestros profesionales.
+        {data.description}
       </p>
     </div>
 
@@ -92,13 +82,13 @@ const doctors = [
               <div class="flex h-full flex-col gap-4 bg-transparent p-4 lg:p-5">
                 <div class="rounded-[22px] bg-[rgba(201,181,151,0.9)] p-6 text-(--charcoal) shadow-[0_14px_30px_-20px_rgba(0,0,0,0.25)]">
                   <p class="text-sm font-semibold text-(--charcoal)/80">
-                    Experiencia
+                    {data.experienceLabel}
                   </p>
                   <p class="text-4xl font-semibold leading-none text-(--charcoal)">
                     {doctor.experienceYears}
                   </p>
                   <p class="text-[11px] uppercase tracking-[0.18em] text-(--charcoal)/65">
-                    Años de práctica
+                    {data.experienceSuffix}
                   </p>
                   <div class="mt-3 flex flex-wrap gap-2">
                     {doctor.tags.map((tag) => (

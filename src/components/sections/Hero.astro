@@ -1,5 +1,4 @@
 ---
-type TrustItem = { title: string; detail: string };
 type Stat = { value: string; label: string };
 
 type VideoConfig = {
@@ -12,11 +11,12 @@ type VideoConfig = {
 type Props = {
   data: {
     eyebrow?: string;
-    title: string;
-    subtitle: string;
-    primaryCta: { label: string; href: string };
-    secondaryCta: { label: string; href: string };
-    trustBar: TrustItem[];
+    title?: string;
+    titleLines?: string[];
+    subtitle?: string;
+    note?: string;
+    primaryCta: { label: string; href: string; ariaLabel?: string };
+    secondaryCta: { label: string; href: string; ariaLabel?: string };
     stats?: Stat[];
     video?: VideoConfig;
   };
@@ -24,6 +24,24 @@ type Props = {
 
 const { data } = Astro.props as Props;
 const stats = data.stats ?? [];
+const titleLines =
+  data.titleLines && data.titleLines.length > 0
+    ? data.titleLines
+    : data.title
+      ? [data.title]
+      : [];
+const titleLine1 = titleLines[0] ?? "";
+const titleLine2 = titleLines[1];
+const heroEyebrow = data.eyebrow ?? "";
+const heroSubtitle = data.subtitle ?? "";
+const heroNote = data.note ?? "";
+const primaryLabel = data.primaryCta.label;
+const secondaryLabel = data.secondaryCta.label;
+const primaryAria = data.primaryCta.ariaLabel ?? primaryLabel;
+const secondaryAria = data.secondaryCta.ariaLabel ?? secondaryLabel;
+const hasEyebrow = Boolean(heroEyebrow);
+const hasSubtitle = Boolean(heroSubtitle);
+const hasNote = Boolean(heroNote);
 const posterSrc =
   data.video?.poster ?? "data:image/gif;base64,R0lGODlhAQABAAAAACw=";
 const inferType = (src: string | undefined) => {
@@ -41,17 +59,6 @@ const videoSources = [
     : null,
 ].filter(Boolean) as { src: string; type?: string }[];
 const hasVideo = videoSources.length > 0;
-
-const heroCopy = {
-  eyebrow: "CLÍNICA PREMIUM EN OVALLE",
-  titleLine1: "Odontología y estética facial",
-  titleLine2: "con precisión",
-  subtitle:
-    "Tratamientos personalizados con enfoque en la reducción del dolor, resultados estéticos-funcionales y una atención humana y cercana.",
-  primary: "Agendar por WhatsApp",
-  secondary: "Ver servicios",
-  note: "Respuesta en minutos en horario hábil.",
-};
 ---
 
 <section id="inicio" class="">
@@ -96,46 +103,56 @@ const heroCopy = {
       class="px-5 pb-28 pt-16 sm:px-8 sm:pb-32 sm:pt-16 lg:px-16 lg:pb-36 lg:pt-20"
     >
       <div class="max-w-screen-sm space-y-3 sm:space-y-4 lg:space-y-5">
-        <p
-          class="hero-eyebrow text-[10px] uppercase tracking-[0.32em] sm:text-[11px]"
-        >
-          {heroCopy.eyebrow}
-        </p>
+        {hasEyebrow && (
+          <p
+            class="hero-eyebrow text-[10px] uppercase tracking-[0.32em] sm:text-[11px]"
+          >
+            {heroEyebrow}
+          </p>
+        )}
         <h1
           class="hero-title hero-title-shadow font-(--font-heading) text-[34px] leading-[1.05] sm:text-[42px] lg:text-[54px]"
         >
-          {heroCopy.titleLine1}
-          <br />
-          <span class="text-[#d4b894]">{heroCopy.titleLine2}</span>
+          {titleLine1}
+          {titleLine2 && (
+            <>
+              <br />
+              <span class="text-[#d4b894]">{titleLine2}</span>
+            </>
+          )}
         </h1>
-        <p
-          class="hero-sub-shadow max-w-xl text-base leading-relaxed text-[rgba(248,240,232,0.88)] sm:text-lg"
-        >
-          {heroCopy.subtitle}
-        </p>
+        {hasSubtitle && (
+          <p
+            class="hero-sub-shadow max-w-xl text-base leading-relaxed text-[rgba(248,240,232,0.88)] sm:text-lg"
+          >
+            {heroSubtitle}
+          </p>
+        )}
         <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
           <a
             class="btn-primary w-full sm:w-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--goldLight) focus-visible:ring-offset-2 focus-visible:ring-offset-[rgba(12,8,4,0.7)]"
             href={data.primaryCta.href}
-            aria-label="Agendar por WhatsApp"
+            aria-label={primaryAria}
             target="_blank"
             rel="noreferrer"
           >
-            {heroCopy.primary}
+            {primaryLabel}
           </a>
           <a
             class="btn-secondary w-full sm:w-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--goldLight) focus-visible:ring-offset-2 focus-visible:ring-offset-[rgba(12,8,4,0.7)]"
             href={data.secondaryCta.href}
-            aria-label="Ver servicios"
+            aria-label={secondaryAria}
           >
-            {heroCopy.secondary}
+            {secondaryLabel}
           </a>
         </div>
-        <p
-          class="text-xs uppercase tracking-[0.12em] text-[rgba(248,240,232,0.72)] sm:text-[13px]"
-        >
-          {heroCopy.note}
-        </p>
+        {hasNote && (
+          <p
+            class="text-xs uppercase tracking-[0.12em] text-[rgba(248,240,232,0.72)] sm:text-[13px]"
+          >
+            {heroNote}
+          </p>
+        )}
       </div>
     </div>
   </div>

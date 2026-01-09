@@ -2,16 +2,23 @@
 import { Icon } from 'astro-icon/components';
 
 type NavItem = { label: string; href: string };
-
-type Props = {
-  brand: { name: string; tagline?: string };
-  nav: NavItem[];
-  whatsapp: string;
-  ctaLabel: string;
+type Labels = {
+  homeAria: string;
+  navPrimary: string;
+  menuOpen: string;
+  menuClose: string;
+  navMobile: string;
+  menuLabel: string;
 };
 
-const { brand, nav = [], whatsapp, ctaLabel } = Astro.props as Props;
-const logoSrc = "/mont_logo.png";
+type Props = {
+  brand: { name: string; tagline?: string; logo?: string };
+  nav: NavItem[];
+  labels: Labels;
+};
+
+const { brand, nav = [], labels } = Astro.props as Props;
+const logoSrc = brand.logo ?? "/mont_logo.png";
 ---
 
 <header data-header class="site-header fixed inset-x-0 top-0 z-50 pt-3 sm:pt-4">
@@ -23,14 +30,14 @@ const logoSrc = "/mont_logo.png";
       <a
         href="#inicio"
         class="group flex items-center gap-3 rounded-full px-1.5 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--goldLight) focus-visible:ring-offset-2 focus-visible:ring-offset-[rgba(248,240,232,0.6)]"
-        aria-label="Volver al inicio"
+        aria-label={labels.homeAria}
       >
         <div
           class="logo-mark flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-[rgba(32,32,32,0.08)] bg-white/80 shadow-[0_6px_16px_rgba(32,32,32,0.08)] md:h-11 md:w-11"
         >
           <img
             src={logoSrc}
-            alt="Mont Blanc"
+            alt={brand.name}
             width="853"
             height="653"
             loading="eager"
@@ -39,7 +46,7 @@ const logoSrc = "/mont_logo.png";
             onerror="this.classList.add('hidden'); this.nextElementSibling?.classList.remove('hidden');"
           />
           <span class="logo-fallback hidden text-[11px] font-semibold tracking-[0.32em] text-(--charcoal)">
-            MONT BLANC
+            {brand.name}
           </span>
         </div>
         <div class="flex flex-col gap-0.5 leading-tight">
@@ -57,7 +64,7 @@ const logoSrc = "/mont_logo.png";
 
       <nav
         class="desktop-nav hidden flex-1 items-center justify-center gap-1 md:flex"
-        aria-label="Navegación principal"
+        aria-label={labels.navPrimary}
       >
         {nav.map((item) => (
           <a class="nav-link" href={item.href}>{item.label}</a>
@@ -70,10 +77,10 @@ const logoSrc = "/mont_logo.png";
           type="button"
           data-menu-button
           class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(32,32,32,0.12)] bg-white/80 text-(--charcoal) shadow-[0_8px_20px_rgba(32,32,32,0.08)] transition hover:border-[rgba(32,32,32,0.2)] hover:bg-[rgba(248,232,224,0.8)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--goldLight) focus-visible:ring-offset-2 focus-visible:ring-offset-[rgba(248,240,232,0.6)] md:hidden"
-          aria-label="Abrir menú"
+          aria-label={labels.menuOpen}
           aria-expanded="false"
         >
-          <span class="sr-only">Abrir menú</span>
+          <span class="sr-only">{labels.menuOpen}</span>
           <Icon name="lucide:menu" class="h-5 w-5" stroke-width="1.6" />
         </button>
       </div>
@@ -94,7 +101,7 @@ const logoSrc = "/mont_logo.png";
       tabindex="-1"
       role="dialog"
       aria-modal="true"
-      aria-label="Menú de navegación"
+      aria-label={labels.menuLabel}
       class="relative z-10 w-full max-w-xl rounded-[28px] border border-[rgba(176,171,159,0.24)] bg-[rgba(248,232,224,0.98)] px-5 py-5 shadow-[0_22px_70px_rgba(32,32,32,0.18)] transition-all duration-200 ease-out"
     >
       <div class="flex items-center justify-between gap-3">
@@ -102,7 +109,7 @@ const logoSrc = "/mont_logo.png";
           <div class="logo-mark flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border border-[rgba(32,32,32,0.08)] bg-white/85 shadow-[0_6px_16px_rgba(32,32,32,0.08)]">
             <img
               src={logoSrc}
-              alt="Mont Blanc"
+              alt={brand.name}
               width="853"
               height="653"
               loading="eager"
@@ -111,7 +118,7 @@ const logoSrc = "/mont_logo.png";
               onerror="this.classList.add('hidden'); this.nextElementSibling?.classList.remove('hidden');"
             />
             <span class="logo-fallback hidden text-[11px] font-semibold tracking-[0.32em] text-(--charcoal)">
-              MONT BLANC
+              {brand.name}
             </span>
           </div>
           <div class="flex flex-col gap-0.5 leading-tight">
@@ -129,16 +136,16 @@ const logoSrc = "/mont_logo.png";
           type="button"
           data-menu-close
           class="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(32,32,32,0.12)] bg-white/80 text-(--charcoal) shadow-[0_8px_20px_rgba(32,32,32,0.08)] transition hover:border-[rgba(32,32,32,0.2)] hover:bg-[rgba(248,232,224,0.9)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--goldLight) focus-visible:ring-offset-2 focus-visible:ring-offset-[rgba(248,240,232,0.7)]"
-          aria-label="Cerrar menú"
+          aria-label={labels.menuClose}
         >
-          <span class="sr-only">Cerrar menú</span>
+          <span class="sr-only">{labels.menuClose}</span>
           <Icon name="lucide:x" class="h-5 w-5" stroke-width="1.6" />
         </button>
       </div>
 
       <nav
         class="mt-4 flex flex-col divide-y divide-[rgba(32,32,32,0.06)]"
-        aria-label="Navegación móvil"
+        aria-label={labels.navMobile}
       >
         {nav.map((item) => (
           <a

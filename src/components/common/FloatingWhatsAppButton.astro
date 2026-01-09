@@ -3,9 +3,10 @@ import { Icon } from 'astro-icon/components';
 
 type Props = {
     whatsapp: string;
+    ariaLabel: string;
 }
 
-const { whatsapp } = Astro.props;
+const { whatsapp, ariaLabel } = Astro.props;
 ---
 
 <a
@@ -13,7 +14,7 @@ const { whatsapp } = Astro.props;
   class="whatsapp-float"
   target="_blank"
   rel="noopener noreferrer"
-  aria-label="Contactar por WhatsApp"
+  aria-label={ariaLabel}
 >
   <Icon name="mdi:whatsapp" class="h-8 w-8 text-white" />
 </a>

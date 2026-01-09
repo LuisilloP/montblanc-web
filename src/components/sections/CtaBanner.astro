@@ -1,11 +1,37 @@
 ---
 import { Icon } from 'astro-icon/components';
 
+type CtaCard = {
+  title: string;
+  subtitle: string;
+  img: string;
+  href?: string;
+  statusLabel?: string;
+};
+
 type Props = {
-  data: { title: string; text: string; ctaLabel: string; ctaHref: string; hours?: string };
+  data: {
+    eyebrow?: string;
+    title: string;
+    text: string;
+    ctaHref?: string;
+    hours?: string;
+    note?: string;
+    subnote?: string;
+    hoursLabel?: string;
+    hoursNote?: string;
+    statusLabel?: string;
+    backgroundImage?: string;
+    cards?: CtaCard[];
+  };
 };
 
 const { data } = Astro.props as Props;
+const cards = data.cards ?? [];
+const hasBackground = Boolean(data.backgroundImage);
+const hoursLabel = data.hoursLabel ?? "Horario";
+const hoursNote = data.hoursNote ?? "";
+const statusLabel = data.statusLabel ?? "";
 ---
 
 <section id="agenda" class="container-wide py-16 lg:py-24" data-reveal>
@@ -17,24 +43,32 @@ const { data } = Astro.props as Props;
       <div class="absolute right-0 bottom-0 h-56 w-56 rounded-full bg-[rgba(115,88,55,0.16)] blur-3xl" />
       <div class="absolute -right-10 top-10 h-72 w-72 rounded-full bg-[rgba(37,211,102,0.12)] blur-[110px]" />
       <div class="absolute -left-16 bottom-10 h-60 w-60 rounded-full bg-[rgba(176,128,80,0.12)] blur-[90px]" />
-      <div class="absolute inset-0 overflow-hidden rounded-3xl">
-        <img src="/clinica.webp" alt="" loading="lazy" class="h-full w-full object-cover opacity-55 mix-blend-multiply" />
-        <div class="absolute inset-0 bg-linear-to-r from-[rgba(248,232,224,0.78)] via-[rgba(248,232,224,0.52)] to-[rgba(255,255,255,0.7)]" />
-      </div>
+      {hasBackground && (
+        <div class="absolute inset-0 overflow-hidden rounded-3xl">
+          <img src={data.backgroundImage} alt="" loading="lazy" class="h-full w-full object-cover opacity-55 mix-blend-multiply" />
+          <div class="absolute inset-0 bg-linear-to-r from-[rgba(248,232,224,0.78)] via-[rgba(248,232,224,0.52)] to-[rgba(255,255,255,0.7)]" />
+        </div>
+      )}
     </div>
 
     <div class="relative grid gap-10 lg:grid-cols-[1.15fr_1fr] lg:items-center">
       <div class="space-y-4 text-center lg:text-left">
-        <p class="pill mx-auto w-fit lg:mx-0">Coordinemos tu atención</p>
+        {data.eyebrow && (
+          <p class="pill mx-auto w-fit lg:mx-0">{data.eyebrow}</p>
+        )}
         <h3 class="text-3xl leading-tight sm:text-4xl lg:text-[40px]">{data.title}</h3>
         <p class="text-lg leading-relaxed text-(--charcoal)/75">{data.text}</p>
-        <div class="flex flex-col items-center gap-2 text-sm text-(--charcoal)/70 lg:items-start">
-          <span class="inline-flex items-center gap-2 rounded-full bg-white/85 px-3 py-1.5 text-(--charcoal) shadow-sm ring-1 ring-[rgba(176,128,80,0.22)]">
-            <span class="h-2 w-2 rounded-full bg-[#25d366]" />
-            Respuesta en minutos dentro del horario
-          </span>
-          <span>Agenda prioritaria para urgencias y seguimiento.</span>
-        </div>
+        {(data.note || data.subnote) && (
+          <div class="flex flex-col items-center gap-2 text-sm text-(--charcoal)/70 lg:items-start">
+            {data.note && (
+              <span class="inline-flex items-center gap-2 rounded-full bg-white/85 px-3 py-1.5 text-(--charcoal) shadow-sm ring-1 ring-[rgba(176,128,80,0.22)]">
+                <span class="h-2 w-2 rounded-full bg-[#25d366]" />
+                {data.note}
+              </span>
+            )}
+            {data.subnote && <span>{data.subnote}</span>}
+          </div>
+        )}
 
         {data.hours && (
           <div class="inline-flex w-full flex-col items-start gap-3 rounded-2xl bg-white/80 p-4 text-left shadow-sm ring-1 ring-[rgba(176,128,80,0.22)] backdrop-blur-sm sm:flex-row sm:items-center sm:gap-3 lg:w-fit">
@@ -42,9 +76,11 @@ const { data } = Astro.props as Props;
               <Icon name="lucide:clock-4" class="h-5 w-5" stroke-width="1.6" />
             </div>
             <div class="space-y-0.5">
-              <p class="text-xs uppercase tracking-[0.16em] text-(--charcoal)/65">Horario</p>
+              <p class="text-xs uppercase tracking-[0.16em] text-(--charcoal)/65">{hoursLabel}</p>
               <p class="text-sm font-semibold text-(--charcoal)">{data.hours}</p>
-              <p class="text-xs text-(--charcoal)/60">Fuera de horario déjanos tu mensaje y te respondemos al abrir.</p>
+              {hoursNote && (
+                <p class="text-xs text-(--charcoal)/60">{hoursNote}</p>
+              )}
             </div>
           </div>
         )}
@@ -53,25 +89,12 @@ const { data } = Astro.props as Props;
       <div class="relative flex items-center justify-center">
         <div class="absolute -left-6 top-4 h-28 w-28 rounded-full bg-white/60 blur-2xl" aria-hidden="true" />
         <div class="relative w-full max-w-95 space-y-3">
-          {[
-            {
-              title: "Equipo de coordinación",
-              subtitle: "Dra. Javiera Jara · Dr. Gustavo Padilla",
-              img: "/doctores/doctora.webp",
-              href: data.ctaHref
-            },
-            {
-              title: "Equipo clínico",
-              subtitle: "Atención y seguimiento por WhatsApp",
-              img: "/doctores/doctor.webp",
-              href: data.ctaHref
-            }
-          ].map((card, idx) => (
+          {cards.map((card, idx) => (
             <a
               class="group flex items-center justify-between gap-3 rounded-3xl bg-white/88 px-4 py-3 shadow-[0_14px_34px_rgba(32,32,32,0.12)] ring-1 ring-[rgba(176,128,80,0.16)] backdrop-blur-sm transition hover:-translate-y-px hover:shadow-[0_18px_40px_rgba(32,32,32,0.16)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(37,211,102,0.45)] focus-visible:ring-offset-2 focus-visible:ring-offset-white reveal-on-scroll"
               data-reveal
               data-reveal-delay={`${idx * 160}ms`}
-              href={card.href}
+              href={card.href ?? data.ctaHref ?? "#"}
               target="_blank"
               rel="noreferrer"
               aria-label={`Abrir WhatsApp con ${card.title}`}
@@ -83,10 +106,12 @@ const { data } = Astro.props as Props;
                 <div class="space-y-0.5">
                   <p class="text-[15px] font-semibold text-(--charcoal) leading-tight">{card.title}</p>
                   <p class="text-xs text-(--charcoal)/65">{card.subtitle}</p>
-                  <span class="inline-flex items-center gap-2 text-[13px] font-semibold text-[#25d366]">
-                    <span class="h-2.5 w-2.5 rounded-full bg-[#25d366] shadow-[0_0_0_5px_rgba(37,211,102,0.18)]" />
-                    En linea ahora
-                  </span>
+                  {statusLabel && (
+                    <span class="inline-flex items-center gap-2 text-[13px] font-semibold text-[#25d366]">
+                      <span class="h-2.5 w-2.5 rounded-full bg-[#25d366] shadow-[0_0_0_5px_rgba(37,211,102,0.18)]" />
+                      {card.statusLabel ?? statusLabel}
+                    </span>
+                  )}
                 </div>
               </div>
               <span class="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(37,211,102,0.08)] text-[#25d366] ring-1 ring-[rgba(37,211,102,0.2)] transition group-hover:translate-x-0.5">

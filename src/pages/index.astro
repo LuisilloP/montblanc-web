@@ -16,13 +16,13 @@ import seo from "../data/seo.json";
 ---
 
 <BaseLayout seo={seo}>
-  <Header brand={site.brand} nav={site.header.nav} whatsapp={site.contact.whatsapp} ctaLabel={site.header.ctaLabel} />
+  <Header brand={site.brand} nav={site.header.nav} labels={site.header.labels} />
   <main id="contenido" class="pt-16 pb-0 lg:pt-20">
     <Hero data={site.hero} />
-    <TeamProfiles />
+    <TeamProfiles data={site.about} />
     <Services data={site.services} />
     <Gallery data={site.gallery} />
-    <GoogleReviews data={montblancReviews} />
+    <GoogleReviews data={montblancReviews} copy={site.googleReviews} />
     <CtaBanner data={site.ctaBanner} />
     <Faq data={site.faq} />
     <Partners data={site.partners} />

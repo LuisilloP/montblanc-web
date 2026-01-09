@@ -6,7 +6,17 @@ type Service = {
   description: string;
   detail?: string;
   tag?: string;
-  tagTone?: "amber" | "blue" | "indigo" | "green" | "rose" | "neutral";
+  tagTone?:
+    | "amber"
+    | "blue"
+    | "indigo"
+    | "green"
+    | "rose"
+    | "neutral"
+    | "cyan"
+    | "orange"
+    | "sky"
+    | "emerald";
   tagIcon?: string;
   cta: string;
   ctaHref?: string;
@@ -16,6 +26,7 @@ type Service = {
 
 type Props = {
   data: {
+    eyebrow?: string;
     title: string;
     subtitle: string;
     ctaHref?: string;
@@ -60,7 +71,9 @@ const getCtaHref = (item: Service) => item.ctaHref ?? data.ctaHref ?? "#";
 
   <div class="container-wide relative space-y-10 lg:space-y-14">
     <div class="max-w-4xl space-y-4">
-      <p class="pill w-fit text-[11px] tracking-[0.2em]">Servicios</p>
+      {data.eyebrow && (
+        <p class="pill w-fit text-[11px] tracking-[0.2em]">{data.eyebrow}</p>
+      )}
       <h2 class="text-4xl leading-tight sm:text-5xl">{data.title}</h2>
       <p class="text-lg leading-relaxed text-(--charcoal)/75 sm:text-xl">{data.subtitle}</p>
     </div>

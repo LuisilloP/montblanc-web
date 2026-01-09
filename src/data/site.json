@@ -3,11 +3,17 @@
     "title": "Clinica Dental Mont Blanc | Dra. Javiera Jara y Dr. Gustavo Padilla",
     "description": "Dentistas en Ovalle para urgencias, limpiezas, rehabilitación oral, pr?tesis, endodoncia, implantes y armonización facial. Atención cercana y respuesta rápida por WhatsApp.",
     "url": "https://montblanc.cl",
-    "image": "/mont_logo.png"
+    "image": "/mont_logo.png",
+    "siteName": "Clínica Dental Mont Blanc",
+    "locale": "es_CL",
+    "twitterCard": "summary_large_image",
+    "robots": "index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1",
+    "themeColor": "#F8F0E8"
   },
   "brand": {
     "name": "MONT BLANC",
-    "tagline": "Odontología y Estética Facial"
+    "tagline": "Odontología y Estética Facial",
+    "logo": "/mont_logo.png"
   },
   "contact": {
     "phone": "+56967454506",
@@ -16,7 +22,8 @@
     "address": "Av. Manuel Peñafiel Olivares 1480, oficina 316B, 1840000 Ovalle, Coquimbo",
     "hours": "Lunes a sábado: 9:30-13:30 y 15:00-19:30. Domingo: cerrado.",
     "emergency": "+56 9 2222 1111",
-    "mapLink": "https://www.google.com/maps/place/Clinica+Dental+Mont+Blanc+-+Dra.+Javiera+Jara+%26+Dr.+Gustavo+Padilla/@-30.5773804,-71.1887003,17z/data=!3m1!4b1!4m6!3m5!1s0x968fcbed3a95dfe7:0xd471a6bf71a666bd!8m2!3d-30.5773804!4d-71.1887003!16s%2Fg%2F11y0fpjk_c?entry=ttu"
+    "mapLink": "https://www.google.com/maps/place/Clinica+Dental+Mont+Blanc+-+Dra.+Javiera+Jara+%26+Dr.+Gustavo+Padilla/@-30.5773804,-71.1887003,17z/data=!3m1!4b1!4m6!3m5!1s0x968fcbed3a95dfe7:0xd471a6bf71a666bd!8m2!3d-30.5773804!4d-71.1887003!16s%2Fg%2F11y0fpjk_c?entry=ttu",
+    "mapEmbed": "https://www.google.com/maps?q=Clinica+Dental+Mont+Blanc+-+Dra.+Javiera+Jara+%26+Dr.+Gustavo+Padilla&ll=-30.5773804,-71.1887003&z=17&output=embed"
   },
   "header": {
     "nav": [
@@ -49,39 +56,28 @@
         "href": "#convenios"
       }
     ],
-    "ctaLabel": "Agendar por WhatsApp"
+    "labels": {
+      "homeAria": "Volver al inicio",
+      "navPrimary": "Navegacion principal",
+      "menuOpen": "Abrir menu",
+      "menuClose": "Cerrar menu",
+      "navMobile": "Navegacion movil",
+      "menuLabel": "Menu de navegacion"
+    }
   },
   "hero": {
-    "eyebrow": "Clínica dental premium en Ovalle",
-    "title": "Odontología y estética facial de precisión",
-    "subtitle": "Tratamientos personalizados con tecnología avanzada y un equipo de especialistas que cuidan cada detalle.",
-    "bullets": [
-      "Clínica boutique en Ovalle",
-      "Equipo de 2 especialistas",
-      "Atención de urgencias en el día"
-    ],
+    "eyebrow": "CLINICA PREMIUM EN OVALLE",
+    "subtitle": "Tratamientos personalizados con enfoque en la reduccion del dolor, resultados esteticos-funcionales y una atencion humana y cercana.",
     "primaryCta": {
       "label": "Agendar por WhatsApp",
-      "href": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20agendar%20mi%20consulta."
+      "href": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20agendar%20mi%20consulta.",
+      "ariaLabel": "Agendar por WhatsApp"
     },
     "secondaryCta": {
       "label": "Ver servicios",
-      "href": "#servicios"
+      "href": "#servicios",
+      "ariaLabel": "Ver servicios"
     },
-    "trustBar": [
-      {
-        "title": "Horario",
-        "detail": "Lunes a sábado 9:30-13:30 / 15:00-19:30 · Domingo cerrado"
-      },
-      {
-        "title": "Ubicación",
-        "detail": "Av. Manuel Peñafiel Olivares 1480, oficina 316B, Ovalle"
-      },
-      {
-        "title": "Convenios",
-        "detail": "Isapres, seguros y particulares"
-      }
-    ],
     "video": {
       "poster": "https://dummyimage.com/1600x900/f8f0e8/b08050&text=Mont+Blanc+Cl%C3%ADnica+Dental",
       "webm": "/video.webm",
@@ -104,36 +100,53 @@
         "value": "7+",
         "label": "Años de experiencia"
       }
-    ]
+    ],
+    "titleLines": [
+      "Odontologia y estetica facial",
+      "con precision"
+    ],
+    "note": "Respuesta en minutos en horario habil."
   },
   "about": {
-    "title": "Mont Blanc es precisión clínica y calidez humana",
-    "description": "Diseñamos sonrisas y tratamientos faciales con criterio estético, tecnología 3D y protocolos seguros. Cada visita es personalizada y enfocada en tu comodidad.",
-    "highlights": [
-      "Evaluaciones digitales y planificación 3D",
-      "Sedación consciente y control del confort",
-      "Laboratorio asociado para rehabilitaciones precisas"
-    ],
+    "eyebrow": "Sobre nosotros",
+    "title": "Equipo odontologico que te acompana",
+    "description": "Profesionales con experiencia que brindan las mejores alternativas de\ntratamiento en base a sus necesidades, utilizando tecnicas actualizadas\npara el manejo y control del dolor durante y despues de la atencion.\nContamos con tecnologia de vanguardia lo que mejora la comodidad durante\nel tratamiento, su resultado y pronostico. Todo entregado con trato\nhumano y cercano, sello caracteristico de nuestros profesionales.",
+    "experienceLabel": "Experiencia",
+    "experienceSuffix": "Anos de practica",
     "doctors": [
       {
-        "name": "Dra. Valentina Mena",
-        "role": "Rehabilitación oral y estética",
-        "credentials": [
-          "Magíster en Rehabilitación Oral, U. de Chile",
-          "Certificada en carillas ultrafinas y diseño de sonrisa",
-          "Miembro Sociedad Chilena de Prótesis"
+        "name": "Dra. Javiera Jara",
+        "badge": "Odontologia integral y Estetica Orofacial",
+        "subtitle": "Tratamientos personalizados con minima invasion.",
+        "experienceYears": "7+",
+        "tags": [
+          "Estetica",
+          "Limpiezas",
+          "Cirugia y Exodoncias"
         ],
-        "photo": ""
+        "bullets": [
+          "Cirujana dentista USS.",
+          "Diplomado en Medicina Estetica UA.",
+          "Miembro asociado de la Academia Internacional de Medicina y Cirugia Estetica."
+        ],
+        "photo": "/doctores/doctora.webp"
       },
       {
-        "name": "Dr. Ignacio Rivas",
-        "role": "Cirugía oral e implantes",
-        "credentials": [
-          "Diplomado en Implantología, U. Mayor",
-          "Experto en extracción de terceros molares y regeneración",
-          "Atención de urgencias dentales en el día"
+        "name": "Dr. Gustavo Padilla",
+        "badge": "Odontologia integral y endodoncia",
+        "subtitle": "Rehabilitaciones que priorizan funcion y armonia",
+        "experienceYears": "7+",
+        "tags": [
+          "Protesis",
+          "Coronas y carillas",
+          "Endodoncia"
         ],
-        "photo": ""
+        "bullets": [
+          "Cirujano Dentista UACH.",
+          "Diplomado en implantologia y rehabilitacion UACH.",
+          "30+ Certificados, Congresos y Seminarios de actualizacion."
+        ],
+        "photo": "/doctores/doctor.webp"
       }
     ]
   },
@@ -214,7 +227,8 @@
         "image": "/services/urgencias-dentales.webp",
         "alt": "Paciente recibiendo atención de urgencia"
       }
-    ]
+    ],
+    "eyebrow": "Servicios"
   },
   "gallery": {
     "title": "Antes y después",
@@ -240,42 +254,35 @@
         "image": "/cases/implantes-guiados.webp",
         "alt": "Implantes dentales guiados digitalmente"
       }
-    ]
-  },
-  "reviews": {
-    "title": "Reseñas que respaldan la calidad",
-    "items": [
-      {
-        "name": "Camila S.",
-        "rating": 5,
-        "text": "Me explicaron cada paso y salí sin dolor. El resultado estético es increíble.",
-        "tag": "Carillas ultrafinas"
-      },
-      {
-        "name": "Diego R.",
-        "rating": 5,
-        "text": "Extrajeron mis muelas del juicio en una sola sesión, atentos a mi comodidad.",
-        "tag": "Cirugía oral"
-      },
-      {
-        "name": "Mónica P.",
-        "rating": 5,
-        "text": "Las coronas quedaron perfectas al primer ajuste, se nota el trabajo digital.",
-        "tag": "Rehabilitación"
-      },
-      {
-        "name": "Javier T.",
-        "rating": 5,
-        "text": "Atendieron mi urgencia en menos de una hora y me dieron seguimiento.",
-        "tag": "Urgencia dental"
-      }
-    ]
+    ],
+    "eyebrow": "Antes y despues",
+    "badge": "Resultados de referencia - Solicita tu plan personalizado",
+    "caseLabel": "Caso"
   },
   "ctaBanner": {
     "title": "Agenda tu evaluación",
     "text": "Coordinemos tu diagnóstico inicial por WhatsApp. Respuesta en minutos dentro del horario.",
-    "ctaLabel": "Escribir por WhatsApp",
-    "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20mi%20evaluaci%C3%B3n."
+    "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20mi%20evaluaci%C3%B3n.",
+    "eyebrow": "Coordinemos tu atencion",
+    "note": "Respuesta en minutos dentro del horario",
+    "subnote": "Agenda prioritaria para urgencias y seguimiento.",
+    "hours": "Lunes a sábado: 9:30-13:30 y 15:00-19:30. Domingo: cerrado.",
+    "hoursLabel": "Horario",
+    "hoursNote": "Fuera de horario dejanos tu mensaje y te respondemos al abrir.",
+    "statusLabel": "En linea ahora",
+    "backgroundImage": "/clinica.webp",
+    "cards": [
+      {
+        "title": "Equipo de coordinacion",
+        "subtitle": "Dra. Javiera Jara ? Dr. Gustavo Padilla",
+        "img": "/doctores/doctora.webp"
+      },
+      {
+        "title": "Equipo clinico",
+        "subtitle": "Atencion y seguimiento por WhatsApp",
+        "img": "/doctores/doctor.webp"
+      }
+    ]
   },
   "faq": {
     "title": "Preguntas frecuentes",
@@ -304,7 +311,9 @@
         "question": "¿Cuánto dura una rehabilitación completa?",
         "answer": "Dependiendo del caso, entre 4 y 10 semanas considerando planificación, provisionales y ajustes finales."
       }
-    ]
+    ],
+    "eyebrow": "Preguntas frecuentes",
+    "intro": "Respuestas rapidas. Ajusta la informacion segun tus protocolos."
   },
   "partners": {
     "title": "Convenios y aliados",
@@ -326,7 +335,8 @@
         "name": "Proveedores clínicos",
         "logo": "https://dummyimage.com/180x90/b08050/ffffff&text=Logo"
       }
-    ]
+    ],
+    "eyebrow": "Convenios"
   },
   "footer": {
     "legal": "© 2025 Mont Blanc. Todos los derechos reservados.",
@@ -348,13 +358,47 @@
       {
         "label": "Instagram",
         "href": "https://www.instagram.com/clinicadental.montblanc/",
-        "ariaLabel": "Visitar Instagram de Mont Blanc"
+        "ariaLabel": "Visitar Instagram de Mont Blanc",
+        "icon": "instagram"
       },
       {
         "label": "Facebook",
         "href": "https://facebook.com",
-        "ariaLabel": "Visitar Facebook de Mont Blanc"
+        "ariaLabel": "Visitar Facebook de Mont Blanc",
+        "icon": "facebook"
       }
-    ]
+    ],
+    "brandLabel": "MONT BLANC",
+    "description": "Clinica boutique con enfoque integral en odontologia y estetica facial. Coordinamos diagnosticos, urgencias y planes completos.",
+    "sections": {
+      "linksTitle": "Enlaces",
+      "socialTitle": "Redes",
+      "locationEyebrow": "Ubicacion",
+      "locationTitle": "Como llegar",
+      "locationSubtitle": "Edificio Arenas - Oficina 316B"
+    },
+    "map": {
+      "loadTitle": "Mapa listo para cargar",
+      "loadSubtitle": "Click para cargar Google Maps (mejor performance).",
+      "loadCta": "Ver mapa",
+      "loadAriaLabel": "Cargar mapa de Google",
+      "ctaLabel": "Abrir en Google Maps",
+      "ctaAriaLabel": "Abrir en Google Maps",
+      "iframeTitle": "Mapa ubicacion MONT BLANC"
+    },
+    "hoursLabel": "Horario",
+    "bottomNote": "Diseno listo para contenido real - Optimizado para rendimiento"
+  },
+  "a11y": {
+    "skipToContent": "Saltar al contenido principal",
+    "whatsappLabel": "Contactar por WhatsApp"
+  },
+  "googleReviews": {
+    "eyebrow": "Resenas verificadas",
+    "subtitle": "Opiniones reales que confirman la calidad clinica y el trato cercano.",
+    "ctaLabel": "Ver en Google",
+    "prevLabel": "Anterior resena",
+    "nextLabel": "Siguiente resena",
+    "sourceFallback": "Google"
   }
 }
