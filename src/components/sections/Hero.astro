@@ -36,7 +36,9 @@ const inferType = (src: string | undefined) => {
 const videoSources = [
   data.video?.webm ? { src: data.video.webm, type: "video/webm" } : null,
   data.video?.mp4 ? { src: data.video.mp4, type: "video/mp4" } : null,
-  data.video?.src ? { src: data.video.src, type: inferType(data.video.src) } : null
+  data.video?.src
+    ? { src: data.video.src, type: inferType(data.video.src) }
+    : null,
 ].filter(Boolean) as { src: string; type?: string }[];
 const hasVideo = videoSources.length > 0;
 
@@ -44,7 +46,8 @@ const heroCopy = {
   eyebrow: "CLÍNICA PREMIUM EN OVALLE",
   titleLine1: "Odontología y estética facial",
   titleLine2: "con precisión",
-  subtitle: "Tratamientos personalizados, enfoque estético y atención cercana.",
+  subtitle:
+    "Tratamientos personalizados con enfoque en la reducción del dolor, resultados estéticos-funcionales y una atención humana y cercana.",
   primary: "Agendar por WhatsApp",
   secondary: "Ver servicios",
   note: "Respuesta en minutos en horario hábil.",
