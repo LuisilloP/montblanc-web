@@ -81,7 +81,7 @@ const getCtaHref = (item: Service) => item.ctaHref ?? data.ctaHref ?? "#";
     <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
       {data.items.map((service, idx) => (
         <article
-          class="group overflow-hidden rounded-[26px] bg-white/92 shadow-[0_20px_60px_rgba(32,32,32,0.1)] ring-1 ring-[rgba(176,128,80,0.18)] transition duration-200 hover:-translate-y-1 hover:shadow-[0_26px_70px_rgba(32,32,32,0.14)] reveal-on-scroll"
+          class="group flex h-full flex-col overflow-hidden rounded-[26px] bg-white/92 shadow-[0_20px_60px_rgba(32,32,32,0.1)] ring-1 ring-[rgba(176,128,80,0.18)] transition duration-200 hover:-translate-y-1 hover:shadow-[0_26px_70px_rgba(32,32,32,0.14)] reveal-on-scroll"
           data-reveal
           data-reveal-delay={`${idx * 140}ms`}
         >
@@ -109,7 +109,7 @@ const getCtaHref = (item: Service) => item.ctaHref ?? data.ctaHref ?? "#";
           )}
           </div>
 
-          <div class="flex flex-col gap-4 px-5 pb-6 pt-5 sm:px-6 sm:pb-7 sm:pt-6">
+          <div class="flex flex-1 flex-col gap-4 px-5 pb-6 pt-5 sm:px-6 sm:pb-7 sm:pt-6">
             <div class="space-y-2">
               <h3 class="text-2xl leading-tight text-(--charcoal)">{service.name}</h3>
               <p class="text-base leading-relaxed text-(--charcoal)/75">{service.description}</p>

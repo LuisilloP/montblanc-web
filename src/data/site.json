@@ -20,7 +20,7 @@
     "email": "contacto@montblanc.cl",
     "whatsapp": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quisiera%20agendar%20una%20consulta.",
     "address": "Av. Manuel Peñafiel Olivares 1480, oficina 316B, 1840000 Ovalle, Coquimbo",
-    "hours": "Lunes a sábado: 9:30-13:30 y 15:00-19:30. Domingo: cerrado.",
+    "hours": "Lunes a sábado: 9:30-13:30 y 15:00-19:30.\nDomingo: cerrado.",
     "emergency": "+56 9 2222 1111",
     "mapLink": "https://www.google.com/maps/place/Clinica+Dental+Mont+Blanc+-+Dra.+Javiera+Jara+%26+Dr.+Gustavo+Padilla/@-30.5773804,-71.1887003,17z/data=!3m1!4b1!4m6!3m5!1s0x968fcbed3a95dfe7:0xd471a6bf71a666bd!8m2!3d-30.5773804!4d-71.1887003!16s%2Fg%2F11y0fpjk_c?entry=ttu",
     "mapEmbed": "https://www.google.com/maps?q=Clinica+Dental+Mont+Blanc+-+Dra.+Javiera+Jara+%26+Dr.+Gustavo+Padilla&ll=-30.5773804,-71.1887003&z=17&output=embed"
@@ -271,24 +271,34 @@
     "note": "Resultados clínicos documentados con fotografía estandarizada y seguimiento.",
     "items": [
       {
-        "title": "Carillas cerámicas",
-        "image": "/cases/carillas-ceramicas.webp",
-        "alt": "Resultado de carillas cerámicas"
+        "title": "Implantes dentales",
+        "image": "/cases/implantes_dentales.webp",
+        "alt": "Caso de implantes dentales"
       },
       {
-        "title": "Rehabilitación completa",
-        "image": "/cases/rehabilitacion-completa.webp",
-        "alt": "Rehabilitación oral completa"
+        "title": "Implantes dentales",
+        "image": "/cases/implantes_dentales_dos.webp",
+        "alt": "Segundo caso de implantes dentales"
       },
       {
-        "title": "Blanqueamiento clínico",
-        "image": "/cases/blanqueamiento-clinico.webp",
-        "alt": "Resultado de blanqueamiento dental"
+        "title": "Periodoncia",
+        "image": "/cases/periodoncia.webp",
+        "alt": "Resultado de tratamiento periodontal"
       },
       {
-        "title": "Implantes guiados",
-        "image": "/cases/implantes-guiados.webp",
-        "alt": "Implantes dentales guiados digitalmente"
+        "title": "Restauración dental",
+        "image": "/cases/restauracion.webp",
+        "alt": "Restauración y rehabilitación dental"
+      },
+      {
+        "title": "Rinomodelación",
+        "image": "/cases/rinomodelacion.webp",
+        "alt": "Resultado de rinomodelación con ácido hialurónico"
+      },
+      {
+        "title": "Sculptra",
+        "image": "/cases/Sculptra.webp",
+        "alt": "Bioestimulador Sculptra"
       }
     ],
     "eyebrow": "Antes y despues",
@@ -302,16 +312,17 @@
     "eyebrow": "Coordinemos tu atencion",
     "note": "Respuesta en minutos dentro del horario",
     "subnote": "Agenda prioritaria para urgencias y seguimiento.",
-    "hours": "Lunes a sábado: 9:30-13:30 y 15:00-19:30. Domingo: cerrado.",
+    "hours": "Lunes a sábado: 9:30-13:30 y 15:00-19:30.\nDomingo: cerrado.",
     "hoursLabel": "Horario",
     "hoursNote": "Fuera de horario dejanos tu mensaje y te respondemos al abrir.",
-    "statusLabel": "En linea ahora",
+    "statusLabel": "En línea ahora",
     "backgroundImage": "/clinica.webp",
     "cards": [
       {
-        "title": "Agenda directa por WhatsApp",
-        "subtitle": "Escribenos ahora y confirma tu evaluacion en minutos.",
-        "img": "/mont_logo.png"
+        "title": "Mont Blanc",
+        "subtitle": "Coordinación general por WhatsApp",
+        "img": "/montblanc_dark.webp",
+        "statusLabel": "En línea ahora"
       }
     ]
   },
@@ -351,20 +362,24 @@
     "text": "Convenios con isapres, seguros y empresas locales para facilitar tu atención.",
     "items": [
       {
-        "name": "Isapres asociadas",
-        "logo": "https://dummyimage.com/180x90/b4ab9f/ffffff&text=Logo"
+        "name": "Fonasa",
+        "logo": "/convenios/fonasa.webp"
       },
       {
-        "name": "Seguros complementarios",
-        "logo": "https://dummyimage.com/180x90/e6d6c6/202020&text=Logo"
+        "name": "Caja Los Héroes",
+        "logo": "/convenios/los_heroes.webp"
       },
       {
-        "name": "Convenios empresariales",
-        "logo": "https://dummyimage.com/180x90/f8e8e0/202020&text=Logo"
+        "name": "Dental Mirador",
+        "logo": "/convenios/dental_mirador.webp"
       },
       {
-        "name": "Proveedores clínicos",
-        "logo": "https://dummyimage.com/180x90/b08050/ffffff&text=Logo"
+        "name": "Dabed",
+        "logo": "/convenios/dabed.webp"
+      },
+      {
+        "name": "Harald",
+        "logo": "/convenios/logo_harald.webp"
       }
     ],
     "eyebrow": "Convenios"
@@ -404,9 +419,10 @@
     "sections": {
       "linksTitle": "Enlaces",
       "socialTitle": "Redes",
-      "locationEyebrow": "Ubicacion",
-      "locationTitle": "Como llegar",
-      "locationSubtitle": "Edificio Arenas - Oficina 316B"
+      "locationEyebrow": "Ubicación y horario",
+      "locationTitle": "Cómo llegar",
+      "locationSubtitle": "Edificio Arenas - Oficina 316B",
+      "locationHoursLabel": "Horario"
     },
     "map": {
       "loadTitle": "Mapa listo para cargar",
@@ -415,7 +431,7 @@
       "loadAriaLabel": "Cargar mapa de Google",
       "ctaLabel": "Abrir en Google Maps",
       "ctaAriaLabel": "Abrir en Google Maps",
-      "iframeTitle": "Mapa ubicacion MONT BLANC"
+      "iframeTitle": "Mapa ubicación MONT BLANC"
     },
     "hoursLabel": "Horario",
     "bottomNote": "Diseno listo para contenido real - Optimizado para rendimiento"

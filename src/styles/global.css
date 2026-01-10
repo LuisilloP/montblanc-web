@@ -114,18 +114,26 @@ a {
   transform: none;
 }
 
-.js-enabled .reveal-on-scroll {
+.js-enabled.has-reveal .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(32px);
+  transform: translateY(22px);
   transition:
-    opacity 720ms ease,
-    transform 720ms ease;
+    opacity 680ms ease,
+    transform 680ms ease;
   transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
 }
 
-.js-enabled .reveal-on-scroll.is-visible {
+.js-enabled.has-reveal .reveal-on-scroll.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+@media (max-width: 640px) {
+  .js-enabled.has-reveal .reveal-on-scroll {
+    transform: translateY(16px);
+    transition-duration: 560ms;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -137,7 +145,7 @@ a {
   }
 
   .reveal-on-scroll,
-  .js-enabled .reveal-on-scroll {
+  .js-enabled.has-reveal .reveal-on-scroll {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
