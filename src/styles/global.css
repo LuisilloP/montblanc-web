@@ -121,7 +121,6 @@ a {
     opacity 680ms ease,
     transform 680ms ease;
   transition-delay: var(--reveal-delay, 0ms);
-  will-change: opacity, transform;
 }
 
 .js-enabled.has-reveal .reveal-on-scroll.is-visible {
