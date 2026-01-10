@@ -7,6 +7,16 @@ type RevealOptions = {
   threshold: number;
 };
 
+const getViewportRect = (root: Element | null) =>
+  root instanceof Element
+    ? root.getBoundingClientRect()
+    : {
+        top: 0,
+        left: 0,
+        right: window.innerWidth,
+        bottom: window.innerHeight,
+      };
+
 const prepareElement = (el: HTMLElement) => {
   el.classList.add("reveal-on-scroll");
   const delay = el.getAttribute("data-reveal-delay");
@@ -87,6 +97,63 @@ const getObserver = (options: RevealOptions) => {
   return Object.assign(observer, { isInViewport });
 };
 
+type TrackedTarget = { el: HTMLElement; root: Element | null };
+
+const addManualFallback = (targets: TrackedTarget[]) => {
+  const pending = new Set(targets.map((item) => item.el));
+  if (!pending.size) return;
+
+  let rafId: number | null = null;
+
+  const checkAndReveal = () => {
+    if (!pending.size) return;
+
+    targets.forEach(({ el, root }) => {
+      if (!pending.has(el)) return;
+
+      if (el.classList.contains("is-visible")) {
+        pending.delete(el);
+        return;
+      }
+
+      const rect = el.getBoundingClientRect();
+      const rootRect = getViewportRect(root);
+      const isVisible = rect.bottom > rootRect.top && rect.top < rootRect.bottom;
+
+      if (isVisible) {
+        revealNow(el);
+        pending.delete(el);
+      }
+    });
+
+    if (!pending.size) {
+      cleanup();
+    }
+  };
+
+  const schedule = () => {
+    if (rafId !== null) return;
+    rafId = requestAnimationFrame(() => {
+      rafId = null;
+      checkAndReveal();
+    });
+  };
+
+  const cleanup = () => {
+    window.removeEventListener("scroll", schedule);
+    window.removeEventListener("resize", schedule);
+    window.removeEventListener("orientationchange", schedule);
+  };
+
+  window.addEventListener("scroll", schedule, { passive: true });
+  window.addEventListener("resize", schedule);
+  window.addEventListener("orientationchange", schedule);
+
+  schedule();
+  setTimeout(schedule, 450);
+  setTimeout(schedule, 1200);
+};
+
 const initReveal = () => {
   if (typeof window === "undefined" || typeof document === "undefined") return;
 
@@ -105,6 +172,8 @@ const initReveal = () => {
     return;
   }
 
+  const trackedTargets: TrackedTarget[] = [];
+
   elements.forEach((el) => {
     prepareElement(el);
     const options: RevealOptions = {
@@ -114,6 +183,7 @@ const initReveal = () => {
     };
     const observer = getObserver(options);
     observer.observe(el);
+    trackedTargets.push({ el, root: options.root });
     if ((observer as IntersectionObserver & { isInViewport?: (el: HTMLElement) => boolean }).isInViewport?.(el)) {
       requestAnimationFrame(() => {
         el.classList.add("is-visible");
@@ -122,6 +192,7 @@ const initReveal = () => {
     }
   });
 
+  addManualFallback(trackedTargets);
   rootElement.classList.add("has-reveal");
 };
 
