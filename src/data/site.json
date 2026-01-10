@@ -156,6 +156,66 @@
     "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20agendar%20mi%20consulta.",
     "items": [
       {
+        "name": "Urgencias dentales",
+        "description": "Atención inmediata, control del dolor y seguimiento post urgencia.",
+        "detail": "Diagnóstico rápido y estabilización en la misma visita.",
+        "tag": "Urgencias",
+        "tagIcon": "lucide:siren",
+        "tagTone": "rose",
+        "cta": "Llamar ahora",
+        "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20tengo%20una%20urgencia%20dental.",
+        "image": "/services/urgencias-dentales.webp",
+        "alt": "Paciente recibiendo atención de urgencia"
+      },
+      {
+        "name": "Tratamientos periodontales (limpiezas)",
+        "description": "Limpieza profunda, indicaciones de higiene y mantenimiento de salud periodontal.",
+        "detail": "Profilaxis avanzada + plan de cuidado en casa.",
+        "tag": "Limpieza",
+        "tagIcon": "lucide:droplets",
+        "tagTone": "emerald",
+        "cta": "Agenda tu higiene avanzada",
+        "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20agendar%20mi%20higiene%20periodontal.",
+        "image": "/services/periodoncia.webp",
+        "alt": "Higiene dental profesional"
+      },
+      {
+        "name": "Prótesis / Coronas / Carillas",
+        "description": "Precisión, estética y función en rehabilitación fija y removible.",
+        "detail": "Materiales de alta calidad.",
+        "tag": "Rehabilitación",
+        "tagIcon": "lucide:scan-face",
+        "tagTone": "sky",
+        "cta": "Solicita tu plan digital",
+        "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20mi%20plan%20digital.",
+        "image": "/services/protesis.webp",
+        "alt": "Radiografía dental en pantalla"
+      },
+      {
+        "name": "Extracciones dentales y terceros molares (muelas del juicio)",
+        "description": "Control del dolor, comodidad y seguridad en el procedimiento.",
+        "detail": "Seguimiento continuo post exodoncia.",
+        "tag": "Cirugía",
+        "tagIcon": "lucide:activity",
+        "tagTone": "indigo",
+        "cta": "Reserva tu cirugía segura",
+        "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20coordinar%20mi%20cirug%C3%ADa.",
+        "image": "/services/extraccion-muelas-juicio.webp",
+        "alt": "Equipo realizando cirugía dental"
+      },
+      {
+        "name": "Endodoncia",
+        "description": "Conserva tu diente con endodoncia mecanizada.",
+        "detail": "Procedimiento indoloro y con tecnología de vanguardia.",
+        "tag": "Endodoncia",
+        "tagIcon": "lucide:gem",
+        "tagTone": "orange",
+        "cta": "Alivia tu dolor",
+        "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20carillas%20ultrafinas.",
+        "image": "/services/endodoncia.webp",
+        "alt": "Tratamiento de endodoncia"
+      },
+      {
         "name": "Blanqueamiento",
         "description": "Sonrisa más luminosa con procedimiento seguro.",
         "detail": "Incluyen plan de sesiones y control de sensibilidad con supervisión.",
@@ -168,64 +228,40 @@
         "alt": "Paciente recibiendo blanqueamiento dental"
       },
       {
-        "name": "Prótesis / Coronas / Carillas",
-        "description": "⁠Precisión, estética y función en rehabilitacion fija y removible.",
-        "detail": "Materiales de alta calidad.",
-        "tag": "Rehabilitación",
-        "tagIcon": "lucide:scan-face",
-        "tagTone": "sky",
-        "cta": "Solicita tu plan digital",
-        "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20mi%20plan%20digital.",
-        "image": "/services/",
-        "alt": "Radiografía dental en pantalla"
+        "name": "Botox",
+        "description": "Se aplica en músculos específicos para relajar temporalmente y suavizar arrugas de expresión (frente, entrecejo, patas de gallo).",
+        "detail": "Logra un aspecto más joven y descansado con resultados graduales.",
+        "tag": "Toxina botulínica",
+        "tagIcon": "lucide:syringe",
+        "tagTone": "cyan",
+        "cta": "Agenda tu evaluación facial",
+        "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20coordinar%20toxina%20botulinica%20(Botox).",
+        "image": "/services/botox.webp",
+        "alt": "Aplicación de toxina botulínica en frente"
       },
       {
-        "name": "⁠Extracciones dentales y terceros molares (muelas del juicio)",
-        "description": "Control del dolor, comodidad y seguridad en el procedimiento.",
-        "detail": "⁠Seguimiento continuo post exodoncia.",
-        "tag": "Cirugía",
-        "tagIcon": "lucide:activity",
-        "tagTone": "indigo",
-        "cta": "Reserva tu cirugía segura",
-        "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20coordinar%20mi%20cirug%C3%ADa.",
-        "image": "/services/",
-        "alt": "Equipo realizando cirugía dental"
+        "name": "Rinomodelación, perfilado labial, aumento de mentón y pómulos",
+        "description": "Relleno temporal para restaurar volumen, hidratar y armonizar tu rostro en una sola sesión sin cirugía.",
+        "detail": "Resultados y efectos inmediatos",
+        "tag": "Ácido hialurónico",
+        "tagIcon": "lucide:blend",
+        "tagTone": "cyan",
+        "cta": "Agenda tu perfilado sin cirugía",
+        "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20coordinar%20%C3%A1cido%20hialur%C3%B3nico%20(perfilado%20sin%20cirug%C3%ADa).",
+        "image": "/services/rinomodelacion.webp",
+        "alt": "Aplicación de ácido hialurónico en nariz y labios"
       },
       {
-        "name": "Endodoncia",
-        "description": "Conserva tu diente con endodoncia mecanizada.",
-        "detail": "⁠Procedimiento indoloro y con tecnología de vanguardia.",
-        "tag": "Endodoncia",
-        "tagIcon": "lucide:gem",
-        "tagTone": "orange",
-        "cta": "⁠Alivia tu dolor",
-        "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20carillas%20ultrafinas.",
-        "image": "/services/",
-        "alt": "Colocación de carilla dental"
-      },
-      {
-        "name": "Tratamientos periodontales (limpiezas)",
-        "description": "⁠Limpieza profunda, indicaciones de higiene y mantenimiento de salud periodontal.",
-        "detail": "Profilaxis avanzada + plan de cuidado en casa.",
-        "tag": "Limpieza",
-        "tagIcon": "lucide:droplets",
+        "name": "Sculptra",
+        "description": "Mejora la firmeza, textura y volumen de la piel estimulando la producción de nuevo colágeno.",
+        "detail": "Ayuda a suavizar arrugas profundas y pliegues faciales de forma natural y duradera.",
+        "tag": "Bioestimulación",
+        "tagIcon": "lucide:wand-2",
         "tagTone": "emerald",
-        "cta": "Agenda tu higiene avanzada",
-        "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20agendar%20mi%20higiene%20periodontal.",
-        "image": "/services/",
-        "alt": "Higiene dental profesional"
-      },
-      {
-        "name": "Urgencias dentales",
-        "description": "Atención inmediata, control del dolor y seguimiento post urgencia.",
-        "detail": "Diagnóstico rápido y estabilización en la misma visita.",
-        "tag": "Urgencias",
-        "tagIcon": "lucide:siren",
-        "tagTone": "rose",
-        "cta": "Llamar ahora",
-        "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20tengo%20una%20urgencia%20dental.",
-        "image": "/services/urgencias-dentales.webp",
-        "alt": "Paciente recibiendo atención de urgencia"
+        "cta": "Programa tu sesión de Sculptra",
+        "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20coordinar%20Sculptra%20(bioestimulador).",
+        "image": "/services/sculptra.webp",
+        "alt": "Aplicación de bioestimulador Sculptra en mejilla"
       }
     ],
     "eyebrow": "Servicios"
@@ -288,28 +324,28 @@
     "title": "Preguntas frecuentes",
     "items": [
       {
-        "question": "¿Ofrecen evaluación digital de sonrisa?",
-        "answer": "Sí, usamos fotografía clínica y diseño digital para planificar carillas y rehabilitaciones antes de intervenir."
-      },
-      {
         "question": "¿Cómo funciona la atención de urgencias?",
         "answer": "Escríbenos o llámanos al número de urgencias. Reservamos bloques diarios para dolor, traumatismos o fracturas."
       },
       {
+        "question": "¿Trabajan con FONASA?",
+        "answer": "Si, tenemos un arancel rebajado con precios exclusivos para pacientes con FONASA."
+      },
+      {
         "question": "¿Trabajan con convenios o seguros?",
-        "answer": "Sí, gestionamos reembolsos con isapres y seguros. Consulta por tu plan para revisar cobertura."
+        "answer": "Sí, gestionamos reembolsos con isapres y seguros complementarios. Además tenemos convenios y descuentos con instituciones como Caja de Compensación Los Héroes y Ferreterías Dabed,y alianzas clínicas para cuando se requiera abordaje multidisciplinario."
       },
       {
-        "question": "¿Qué técnicas usan para blanqueamiento?",
-        "answer": "Realizamos blanqueamiento clínico con barrera gingival y refuerzo domiciliario personalizado."
-      },
-      {
-        "question": "¿Realizan sedación consciente?",
-        "answer": "Contamos con sedación consciente y protocolos de control de ansiedad para procedimientos quirúrgicos."
+        "question": "¿Duele realizar un blanqueamiento?",
+        "answer": "No duele, es un procedimiento que bien indicado es seguro e indoloro."
       },
       {
         "question": "¿Cuánto dura una rehabilitación completa?",
-        "answer": "Dependiendo del caso, entre 4 y 10 semanas considerando planificación, provisionales y ajustes finales."
+        "answer": "Todo depende del caso clínico, pero como referencia puede ser entre una semana los casos menos complejos. hasta 6-12 meses aquellos pacientes en los que se requieran múltiples abordajes."
+      },
+      {
+        "question": "¿Cual es la diferencia entre bótox (toxina botulínica) y un bioestimulador (Sculptra)?",
+        "answer": "El bótox inmoviliza el músculo por 3-6 meses dependiendo de la gesticulación del paciente, mientras que el Sculptra estimula la producción de colágeno propio de la cara entregando firmeza y eliminando arrugas por hasta 24 meses."
       }
     ],
     "eyebrow": "Preguntas frecuentes",
