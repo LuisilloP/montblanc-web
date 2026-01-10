@@ -14,20 +14,22 @@ const { data } = Astro.props as Props;
     <p class="text-lg text-(--charcoal)/70">{data.text}</p>
   </div>
 
-  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
     {data.items.map((partner, idx) => (
       <div
-        class="card flex h-32 items-center justify-center px-5 py-4 reveal-on-scroll"
+        class="card flex h-40 items-center justify-center px-6 py-6 bg-white/92 ring-1 ring-[rgba(176,128,80,0.12)] shadow-[0_18px_50px_rgba(32,32,32,0.08)] reveal-on-scroll"
         data-reveal
         data-reveal-delay={`${idx * 140}ms`}
       >
-        <img
-          src={partner.logo}
-          alt={`Logo de ${partner.name}`}
-          class="max-h-16 w-auto object-contain"
-          loading="lazy"
-          decoding="async"
-        />
+        <div class="flex h-full w-full items-center justify-center rounded-xl bg-white/96 ring-1 ring-[rgba(176,128,80,0.1)] shadow-[0_12px_32px_rgba(32,32,32,0.06)] px-4 py-3">
+          <img
+            src={partner.logo}
+            alt={`Logo de ${partner.name}`}
+            class="mx-auto w-full max-w-[240px] max-h-20 md:max-h-24 object-contain"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
       </div>
     ))}
   </div>

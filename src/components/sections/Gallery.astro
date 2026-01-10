@@ -31,7 +31,7 @@ const caseLabel = data.caseLabel ?? "Caso";
     )}
   </div>
 
-  <div class="grid gap-6 md:grid-cols-2">
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
     {data.items.map((item, idx) => (
       <article
         class="group relative overflow-hidden rounded-3xl border border-[rgba(176,128,80,0.18)] bg-white/60 shadow-md transition hover:-translate-y-1 hover:shadow-xl reveal-on-scroll"
@@ -44,8 +44,8 @@ const caseLabel = data.caseLabel ?? "Caso";
           alt={item.alt}
           loading="lazy"
           decoding="async"
-          class="h-full w-full object-cover"
-          style="aspect-ratio: 3 / 4;"
+          class="h-full w-full object-contain bg-white"
+          style="aspect-ratio: 5 / 4;"
         />
         <div class="pointer-events-none absolute inset-0 bg-linear-to-b from-transparent via-transparent to-[rgba(32,32,32,0.55)] opacity-80 transition group-hover:opacity-90" />
         <div class="absolute bottom-4 left-4 right-4 flex items-start text-white">
