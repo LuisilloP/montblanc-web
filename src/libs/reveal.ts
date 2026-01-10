@@ -193,6 +193,19 @@ const initReveal = () => {
   });
 
   addManualFallback(trackedTargets);
+
+  const revealRemaining = () => {
+    elements.forEach((el) => {
+      if (!el.classList.contains("is-visible")) {
+        revealNow(el);
+      }
+    });
+  };
+
+  window.addEventListener("load", () => setTimeout(revealRemaining, 180));
+  setTimeout(revealRemaining, 1500);
+  setTimeout(revealRemaining, 3000);
+
   rootElement.classList.add("has-reveal");
 };
 
