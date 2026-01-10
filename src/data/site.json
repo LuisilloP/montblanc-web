@@ -309,14 +309,9 @@
     "backgroundImage": "/clinica.webp",
     "cards": [
       {
-        "title": "Equipo de coordinacion",
-        "subtitle": "Dra. Javiera Jara ? Dr. Gustavo Padilla",
-        "img": "/doctores/doctora.webp"
-      },
-      {
-        "title": "Equipo clinico",
-        "subtitle": "Atencion y seguimiento por WhatsApp",
-        "img": "/doctores/doctor.webp"
+        "title": "Agenda directa por WhatsApp",
+        "subtitle": "Escribenos ahora y confirma tu evaluacion en minutos.",
+        "img": "/mont_logo.png"
       }
     ]
   },
