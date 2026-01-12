@@ -78,7 +78,7 @@ const getCtaHref = (item: Service) => item.ctaHref ?? data.ctaHref ?? "#";
       <p class="text-lg leading-relaxed text-(--charcoal)/75 sm:text-xl">{data.subtitle}</p>
     </div>
 
-    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {data.items.map((service, idx) => (
         <article
           class="group flex h-full flex-col overflow-hidden rounded-[26px] bg-white/92 shadow-[0_20px_60px_rgba(32,32,32,0.1)] ring-1 ring-[rgba(176,128,80,0.18)] transition duration-200 hover:-translate-y-1 hover:shadow-[0_26px_70px_rgba(32,32,32,0.14)] reveal-on-scroll"

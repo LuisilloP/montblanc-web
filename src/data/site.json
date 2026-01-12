@@ -271,34 +271,34 @@
     "note": "Resultados clínicos documentados con fotografía estandarizada y seguimiento.",
     "items": [
       {
-        "title": "Implantes dentales",
+        "title": "Rehabilitación con prótesis",
         "image": "/cases/implantes_dentales.webp",
         "alt": "Caso de implantes dentales"
       },
       {
-        "title": "Implantes dentales",
+        "title": "Tratamiento periodontal y rehabilitación con prótesiss",
         "image": "/cases/implantes_dentales_dos.webp",
         "alt": "Segundo caso de implantes dentales"
       },
       {
-        "title": "Periodoncia",
+        "title": "Restauraciones de resina compuesta",
+        "image": "/cases/restauracion.webp",
+        "alt": "Restauración y rehabilitación dental"
+      },
+      {
+        "title": "Tratamiento periodontal (limpieza)",
         "image": "/cases/periodoncia.webp",
         "alt": "Resultado de tratamiento periodontal"
       },
       {
-        "title": "Restauración dental",
-        "image": "/cases/restauracion.webp",
-        "alt": "Restauración y rehabilitación dental"
+        "title": "Armonización orofacial (rinomodelación y perfilado labial)",
+        "image": "/cases/Sculptra.webp",
+        "alt": "Bioestimulador Sculptra"
       },
       {
         "title": "Rinomodelación",
         "image": "/cases/rinomodelacion.webp",
         "alt": "Resultado de rinomodelación con ácido hialurónico"
-      },
-      {
-        "title": "Sculptra",
-        "image": "/cases/Sculptra.webp",
-        "alt": "Bioestimulador Sculptra"
       }
     ],
     "eyebrow": "Antes y después",
