@@ -68,6 +68,7 @@
   "hero": {
     "eyebrow": "TU CLÍNICA DENTAL DE CONFIANZA EN OVALLE",
     "subtitle": "Tratamientos personalizados con enfoque en la reducción del dolor, resultados estéticos-funcionales y una atención humana y cercana.",
+    "subtitleCompact": "Tratamientos personalizados con enfoque en la reducción del dolor",
     "primaryCta": {
       "label": "Agendar por WhatsApp",
       "href": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20agendar%20mi%20consulta.",

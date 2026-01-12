@@ -34,13 +34,14 @@ const titleLine1 = titleLines[0] ?? "";
 const titleLine2 = titleLines[1];
 const heroEyebrow = data.eyebrow ?? "";
 const heroSubtitle = data.subtitle ?? "";
+const heroSubtitleCompact = data.subtitleCompact ?? heroSubtitle;
 const heroNote = data.note ?? "";
 const primaryLabel = data.primaryCta.label;
 const secondaryLabel = data.secondaryCta.label;
 const primaryAria = data.primaryCta.ariaLabel ?? primaryLabel;
 const secondaryAria = data.secondaryCta.ariaLabel ?? secondaryLabel;
 const hasEyebrow = Boolean(heroEyebrow);
-const hasSubtitle = Boolean(heroSubtitle);
+const hasSubtitle = Boolean(heroSubtitle || heroSubtitleCompact);
 const hasNote = Boolean(heroNote);
 const posterSrc =
   data.video?.poster ?? "data:image/gif;base64,R0lGODlhAQABAAAAACw=";
@@ -100,34 +101,37 @@ const hasVideo = videoSources.length > 0;
     class="relative z-10 flex min-h-[82vh] sm:min-h-[86vh] lg:min-h-[92vh] flex-col justify-end"
   >
     <div
-      class="px-5 pb-28 pt-16 sm:px-8 sm:pb-32 sm:pt-16 lg:px-16 lg:pb-36 lg:pt-20"
+      class="px-5 pb-28 pt-12 sm:px-8 sm:pb-32 sm:pt-16 lg:px-16 lg:pb-36 lg:pt-20"
     >
       <div class="max-w-screen-sm space-y-3 sm:space-y-4 lg:space-y-5">
-        {hasEyebrow && (
-          <p
-            class="hero-eyebrow text-[10px] uppercase tracking-[0.32em] sm:text-[11px]"
-          >
-            {heroEyebrow}
-          </p>
-        )}
+        {
+          hasEyebrow && (
+            <p class="hero-eyebrow text-[10px] uppercase tracking-[0.32em] sm:text-[11px]">
+              {heroEyebrow}
+            </p>
+          )
+        }
         <h1
           class="hero-title hero-title-shadow font-(--font-heading) text-[34px] leading-[1.05] sm:text-[42px] lg:text-[54px]"
         >
           {titleLine1}
-          {titleLine2 && (
-            <>
-              <br />
-              <span class="text-[#d4b894]">{titleLine2}</span>
-            </>
-          )}
+          {
+            titleLine2 && (
+              <>
+                <br />
+                <span class="text-[#d4b894]">{titleLine2}</span>
+              </>
+            )
+          }
         </h1>
-        {hasSubtitle && (
-          <p
-            class="hero-sub-shadow max-w-xl text-base leading-relaxed text-[rgba(248,240,232,0.88)] sm:text-lg"
-          >
-            {heroSubtitle}
-          </p>
-        )}
+        {
+          hasSubtitle && (
+            <p class="hero-sub-shadow max-w-xl text-base leading-relaxed text-[rgba(248,240,232,0.88)] sm:text-lg">
+              <span class="hero-sub-long">{heroSubtitle}</span>
+              <span class="hero-sub-short">{heroSubtitleCompact}</span>
+            </p>
+          )
+        }
         <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
           <a
             class="btn-primary w-full sm:w-auto focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--goldLight) focus-visible:ring-offset-2 focus-visible:ring-offset-[rgba(12,8,4,0.7)]"
@@ -146,13 +150,13 @@ const hasVideo = videoSources.length > 0;
             {secondaryLabel}
           </a>
         </div>
-        {hasNote && (
-          <p
-            class="text-xs uppercase tracking-[0.12em] text-[rgba(248,240,232,0.72)] sm:text-[13px]"
-          >
-            {heroNote}
-          </p>
-        )}
+        {
+          hasNote && (
+            <p class="text-xs uppercase tracking-[0.12em] text-[rgba(248,240,232,0.72)] sm:text-[13px]">
+              {heroNote}
+            </p>
+          )
+        }
       </div>
     </div>
   </div>
@@ -221,6 +225,20 @@ const hasVideo = videoSources.length > 0;
 
     .hero-sub-shadow {
       text-shadow: 0 4px 18px rgba(0, 0, 0, 0.28);
+    }
+
+    .hero-sub-short {
+      display: none;
+    }
+
+    @media (max-height: 700px) {
+      .hero-sub-long {
+        display: none;
+      }
+
+      .hero-sub-short {
+        display: inline;
+      }
     }
 
     .hero-title {
