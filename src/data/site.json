@@ -1,8 +1,8 @@
 {
   "meta": {
-    "title": "Clinica Dental Mont Blanc | Dra. Javiera Jara y Dr. Gustavo Padilla",
-    "description": "Dentistas en Ovalle para urgencias, limpiezas, rehabilitación oral, pr?tesis, endodoncia, implantes y armonización facial. Atención cercana y respuesta rápida por WhatsApp.",
-    "url": "https://montblanc.cl",
+    "title": "Clínica Dental Mont Blanc | Dra. Javiera Jara y Dr. Gustavo Padilla",
+    "description": "Dentistas en Ovalle para urgencias, limpiezas, rehabilitación oral, prótesis, endodoncia, implantes y armonización facial. Atención cercana y respuesta rápida por WhatsApp.",
+    "url": "https://clinicamontblanc.cl",
     "image": "/mont_logo.png",
     "siteName": "Clínica Dental Mont Blanc",
     "locale": "es_CL",
@@ -58,16 +58,16 @@
     ],
     "labels": {
       "homeAria": "Volver al inicio",
-      "navPrimary": "Navegacion principal",
-      "menuOpen": "Abrir menu",
-      "menuClose": "Cerrar menu",
-      "navMobile": "Navegacion movil",
-      "menuLabel": "Menu de navegacion"
+      "navPrimary": "Navegación principal",
+      "menuOpen": "Abrir menú",
+      "menuClose": "Cerrar menú",
+      "navMobile": "Navegación móvil",
+      "menuLabel": "Menú de navegación"
     }
   },
   "hero": {
     "eyebrow": "TU CLÍNICA DENTAL DE CONFIANZA EN OVALLE",
-    "subtitle": "Tratamientos personalizados con enfoque en la reduccion del dolor, resultados esteticos-funcionales y una atencion humana y cercana.",
+    "subtitle": "Tratamientos personalizados con enfoque en la reducción del dolor, resultados estéticos-funcionales y una atención humana y cercana.",
     "primaryCta": {
       "label": "Agendar por WhatsApp",
       "href": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20agendar%20mi%20consulta.",
@@ -102,49 +102,49 @@
       }
     ],
     "titleLines": [
-      "Odontologia y estetica facial",
-      "con precision"
+      "Odontología y estética facial",
+      "con precisión"
     ],
-    "note": "Respuesta en minutos en horario habil."
+    "note": "Respuesta en minutos en horario hábil."
   },
   "about": {
     "eyebrow": "Sobre nosotros",
-    "title": "Equipo odontologico que te acompana",
-    "description": "Profesionales con experiencia que brindan las mejores alternativas de\ntratamiento en base a sus necesidades, utilizando tecnicas actualizadas\npara el manejo y control del dolor durante y despues de la atencion.\nContamos con tecnologia de vanguardia lo que mejora la comodidad durante\nel tratamiento, su resultado y pronostico. Todo entregado con trato\nhumano y cercano, sello caracteristico de nuestros profesionales.",
+    "title": "Equipo odontológico que te acompaña",
+    "description": "Profesionales con experiencia que brindan las mejores alternativas de\ntratamiento en base a sus necesidades, utilizando técnicas actualizadas\npara el manejo y control del dolor durante y después de la atención.\nContamos con tecnología de vanguardia, lo que mejora la comodidad durante\nel tratamiento, su resultado y pronóstico. Todo entregado con trato\nhumano y cercano, sello característico de nuestros profesionales.",
     "experienceLabel": "Experiencia",
-    "experienceSuffix": "Anos de practica",
+    "experienceSuffix": "Años de práctica",
     "doctors": [
       {
         "name": "Dra. Javiera Jara",
-        "badge": "Odontologia integral y Estetica Orofacial",
-        "subtitle": "Tratamientos personalizados con minima invasion.",
+        "badge": "Odontología integral y Estética Orofacial",
+        "subtitle": "Tratamientos personalizados con mínima invasión.",
         "experienceYears": "7+",
         "tags": [
-          "Estetica",
+          "Estética",
           "Limpiezas",
-          "Cirugia y Exodoncias"
+          "Cirugía y exodoncias"
         ],
         "bullets": [
           "Cirujana dentista USS.",
-          "Diplomado en Medicina Estetica UA.",
-          "Miembro asociado de la Academia Internacional de Medicina y Cirugia Estetica."
+          "Diplomado en Medicina Estética UA.",
+          "Miembro asociado de la Academia Internacional de Medicina y Cirugía Estética."
         ],
         "photo": "/doctores/doctora.webp"
       },
       {
         "name": "Dr. Gustavo Padilla",
-        "badge": "Odontologia integral y endodoncia",
-        "subtitle": "Rehabilitaciones que priorizan funcion y armonia",
+        "badge": "Odontología integral y endodoncia",
+        "subtitle": "Rehabilitaciones que priorizan función y armonía",
         "experienceYears": "7+",
         "tags": [
-          "Protesis",
+          "Prótesis",
           "Coronas y carillas",
           "Endodoncia"
         ],
         "bullets": [
-          "Cirujano Dentista UACH.",
-          "Diplomado en implantologia y rehabilitacion UACH.",
-          "30+ Certificados, Congresos y Seminarios de actualizacion."
+          "Cirujano dentista UACH.",
+          "Diplomado en implantología y rehabilitación UACH.",
+          "30+ certificados, congresos y seminarios de actualización."
         ],
         "photo": "/doctores/doctor.webp"
       }
@@ -301,7 +301,7 @@
         "alt": "Bioestimulador Sculptra"
       }
     ],
-    "eyebrow": "Antes y despues",
+    "eyebrow": "Antes y después",
     "badge": "Resultados de referencia - Solicita tu plan personalizado",
     "caseLabel": "Caso"
   },
@@ -309,12 +309,12 @@
     "title": "Agenda tu evaluación",
     "text": "Coordinemos tu diagnóstico inicial por WhatsApp. Respuesta en minutos dentro del horario.",
     "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20mi%20evaluaci%C3%B3n.",
-    "eyebrow": "Coordinemos tu atencion",
+    "eyebrow": "Coordinemos tu atención",
     "note": "Respuesta en minutos dentro del horario",
     "subnote": "Agenda prioritaria para urgencias y seguimiento.",
     "hours": "Lunes a sábado: 9:30-13:30 y 15:00-19:30.\nDomingo: cerrado.",
     "hoursLabel": "Horario",
-    "hoursNote": "Fuera de horario dejanos tu mensaje y te respondemos al abrir.",
+    "hoursNote": "Fuera de horario déjanos tu mensaje y te respondemos al abrir.",
     "statusLabel": "En línea ahora",
     "backgroundImage": "/clinica.webp",
     "cards": [
@@ -335,11 +335,11 @@
       },
       {
         "question": "¿Trabajan con FONASA?",
-        "answer": "Si, tenemos un arancel rebajado con precios exclusivos para pacientes con FONASA."
+        "answer": "Sí, tenemos un arancel rebajado con precios exclusivos para pacientes con FONASA."
       },
       {
         "question": "¿Trabajan con convenios o seguros?",
-        "answer": "Sí, gestionamos reembolsos con isapres y seguros complementarios. Además tenemos convenios y descuentos con instituciones como Caja de Compensación Los Héroes y Ferreterías Dabed,y alianzas clínicas para cuando se requiera abordaje multidisciplinario."
+        "answer": "Sí, gestionamos reembolsos con isapres y seguros complementarios. Además, tenemos convenios y descuentos con instituciones como Caja de Compensación Los Héroes y Ferreterías Dabed, y alianzas clínicas para cuando se requiera abordaje multidisciplinario."
       },
       {
         "question": "¿Duele realizar un blanqueamiento?",
@@ -347,15 +347,15 @@
       },
       {
         "question": "¿Cuánto dura una rehabilitación completa?",
-        "answer": "Todo depende del caso clínico, pero como referencia puede ser entre una semana los casos menos complejos. hasta 6-12 meses aquellos pacientes en los que se requieran múltiples abordajes."
+        "answer": "Todo depende del caso clínico, pero como referencia puede ser entre una semana en los casos menos complejos hasta 6-12 meses en aquellos pacientes en los que se requieran múltiples abordajes."
       },
       {
-        "question": "¿Cual es la diferencia entre bótox (toxina botulínica) y un bioestimulador (Sculptra)?",
+        "question": "¿Cuál es la diferencia entre bótox (toxina botulínica) y un bioestimulador (Sculptra)?",
         "answer": "El bótox inmoviliza el músculo por 3-6 meses dependiendo de la gesticulación del paciente, mientras que el Sculptra estimula la producción de colágeno propio de la cara entregando firmeza y eliminando arrugas por hasta 24 meses."
       }
     ],
     "eyebrow": "Preguntas frecuentes",
-    "intro": "Respuestas rapidas. Ajusta la informacion segun tus protocolos."
+    "intro": "Respuestas rápidas. Ajusta la información según tus protocolos."
   },
   "partners": {
     "title": "Convenios y aliados",
@@ -415,7 +415,7 @@
       }
     ],
     "brandLabel": "MONT BLANC",
-    "description": "Clinica boutique con enfoque integral en odontologia y estetica facial. Coordinamos diagnosticos, urgencias y planes completos.",
+    "description": "Clínica boutique con enfoque integral en odontología y estética facial. Coordinamos diagnósticos, urgencias y planes completos.",
     "sections": {
       "linksTitle": "Enlaces",
       "socialTitle": "Redes",
@@ -426,7 +426,7 @@
     },
     "map": {
       "loadTitle": "Mapa listo para cargar",
-      "loadSubtitle": "Click para cargar Google Maps (mejor performance).",
+      "loadSubtitle": "Haz clic para cargar Google Maps (mejor rendimiento).",
       "loadCta": "Ver mapa",
       "loadAriaLabel": "Cargar mapa de Google",
       "ctaLabel": "Abrir en Google Maps",
@@ -434,18 +434,18 @@
       "iframeTitle": "Mapa ubicación MONT BLANC"
     },
     "hoursLabel": "Horario",
-    "bottomNote": "Diseno listo para contenido real - Optimizado para rendimiento"
+    "bottomNote": "Diseño listo para contenido real - Optimizado para rendimiento"
   },
   "a11y": {
     "skipToContent": "Saltar al contenido principal",
     "whatsappLabel": "Contactar por WhatsApp"
   },
   "googleReviews": {
-    "eyebrow": "Resenas verificadas",
-    "subtitle": "Opiniones reales que confirman la calidad clinica y el trato cercano.",
+    "eyebrow": "Reseñas verificadas",
+    "subtitle": "Opiniones reales que confirman la calidad clínica y el trato cercano.",
     "ctaLabel": "Ver en Google",
-    "prevLabel": "Anterior resena",
-    "nextLabel": "Siguiente resena",
+    "prevLabel": "Reseña anterior",
+    "nextLabel": "Siguiente reseña",
     "sourceFallback": "Google"
   }
 }
