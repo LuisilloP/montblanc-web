@@ -387,18 +387,7 @@
   "footer": {
     "legal": "© 2025 Mont Blanc. Todos los derechos reservados.",
     "links": [
-      {
-        "label": "Política de privacidad",
-        "href": "#"
-      },
-      {
-        "label": "Términos y condiciones",
-        "href": "#"
-      },
-      {
-        "label": "Consentimiento informado",
-        "href": "#"
-      }
+
     ],
     "social": [
       {
@@ -426,7 +415,7 @@
     },
     "map": {
       "loadTitle": "Mapa listo para cargar",
-      "loadSubtitle": "Haz clic para cargar Google Maps (mejor rendimiento).",
+      "loadSubtitle": "Haz clic para cargar Google Maps.",
       "loadCta": "Ver mapa",
       "loadAriaLabel": "Cargar mapa de Google",
       "ctaLabel": "Abrir en Google Maps",
@@ -434,7 +423,7 @@
       "iframeTitle": "Mapa ubicación MONT BLANC"
     },
     "hoursLabel": "Horario",
-    "bottomNote": "Diseño listo para contenido real - Optimizado para rendimiento"
+    "bottomNote": "Desarrollado en Colaboracion - Bledev.tech & LuisDev "
   },
   "a11y": {
     "skipToContent": "Saltar al contenido principal",
