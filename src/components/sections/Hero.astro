@@ -97,10 +97,10 @@ const hasVideo = videoSources.length > 0;
   </div>
 
   <div
-    class="relative z-10 flex min-h-[82vh] sm:min-h-[86vh] lg:min-h-[92vh] flex-col justify-end"
+    class="hero-shell relative z-10 flex min-h-[82vh] sm:min-h-[86vh] lg:min-h-[92vh] flex-col justify-end"
   >
     <div
-      class="px-5 pb-28 pt-16 sm:px-8 sm:pb-32 sm:pt-16 lg:px-16 lg:pb-36 lg:pt-20"
+      class="hero-body px-5 pb-28 pt-16 sm:px-8 sm:pb-32 sm:pt-16 lg:px-16 lg:pb-36 lg:pt-20"
     >
       <div class="max-w-screen-sm space-y-3 sm:space-y-4 lg:space-y-5">
         {hasEyebrow && (
@@ -159,10 +159,10 @@ const hasVideo = videoSources.length > 0;
 
   {
     stats.length > 0 && (
-      <div class="pointer-events-none absolute inset-x-0 bottom-0 z-20">
-        <div class="pointer-events-auto w-full bg-[rgba(12,8,4,0.48)] backdrop-blur-sm">
-          <div class="mx-auto max-w-6xl px-5 py-4 sm:px-8 sm:py-5">
-            <div class="grid grid-cols-2 gap-y-4 text-center text-[rgba(248,240,232,0.95)] sm:grid-cols-4 sm:gap-y-0 sm:divide-x sm:divide-[rgba(248,240,232,0.14)]">
+      <div class="hero-stats pointer-events-none absolute inset-x-0 bottom-0 z-20">
+        <div class="hero-stats-panel pointer-events-auto w-full bg-[rgba(12,8,4,0.48)] backdrop-blur-sm">
+          <div class="hero-stats-content mx-auto max-w-6xl px-5 py-4 sm:px-8 sm:py-5">
+            <div class="hero-stats-grid grid grid-cols-2 gap-y-4 text-center text-[rgba(248,240,232,0.95)] sm:grid-cols-4 sm:gap-y-0 sm:divide-x sm:divide-[rgba(248,240,232,0.14)]">
               {stats.map((stat) => (
                 <div class="flex flex-col items-center gap-1">
                   <span
@@ -248,6 +248,31 @@ const hasVideo = videoSources.length > 0;
           rgba(12, 10, 8, 0) 82%
         );
       background-color: #0f0c08;
+    }
+
+    @media (max-height: 720px) and (max-width: 640px) {
+      .hero-body {
+        padding-top: 3rem;
+        padding-bottom: 2.5rem;
+      }
+
+      .hero-stats {
+        position: static;
+        margin-top: 0.75rem;
+      }
+
+      .hero-stats-content {
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+      }
+
+      .hero-stats-grid {
+        row-gap: 0.75rem;
+      }
+
+      .stat-number {
+        font-size: 1.5rem;
+      }
     }
   </style>
 
