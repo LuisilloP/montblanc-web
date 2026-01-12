@@ -307,7 +307,7 @@
   },
   "ctaBanner": {
     "title": "Agenda tu evaluación",
-    "text": "Coordinemos tu diagnóstico inicial por WhatsApp. Respuesta en minutos dentro del horario.",
+    "text": "Coordinemos tu diagnóstico inicial por WhatsApp.",
     "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20mi%20evaluaci%C3%B3n.",
     "eyebrow": "Coordinemos tu atención",
     "note": "Respuesta en minutos dentro del horario",
@@ -403,13 +403,13 @@
     "social": [
       {
         "label": "Instagram",
-        "href": "https://www.instagram.com/clinicadental.montblanc/",
+        "href": "https://www.instagram.com/clinicadental_montblanc/",
         "ariaLabel": "Visitar Instagram de Mont Blanc",
         "icon": "instagram"
       },
       {
         "label": "Facebook",
-        "href": "https://facebook.com",
+        "href": "https://www.facebook.com/people/Cl%C3%ADnica-Dental-Mont-Blanc/61586641433273/",
         "ariaLabel": "Visitar Facebook de Mont Blanc",
         "icon": "facebook"
       }
