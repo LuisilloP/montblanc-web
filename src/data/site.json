@@ -187,7 +187,7 @@
         "tag": "Rehabilitación",
         "tagIcon": "lucide:scan-face",
         "tagTone": "sky",
-        "cta": "Solicita tu plan digital",
+        "cta": "Solicita tu plan de tratamiento",
         "ctaHref": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quiero%20mi%20plan%20digital.",
         "image": "/services/protesis.webp",
         "alt": "Radiografía dental en pantalla"
@@ -387,9 +387,7 @@
   },
   "footer": {
     "legal": "© 2025 Mont Blanc. Todos los derechos reservados.",
-    "links": [
-
-    ],
+    "links": [],
     "social": [
       {
         "label": "Instagram",

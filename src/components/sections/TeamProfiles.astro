@@ -57,7 +57,7 @@ const doctors = data?.doctors ?? [];
             data-reveal-delay={`${idx * 180}ms`}
           >
             <div class="grid grid-cols-1 lg:grid-cols-[1.45fr_1fr]">
-              <div class="relative min-h-110 lg:min-h-130">
+              <div class="relative min-h-110 overflow-hidden lg:min-h-130">
                 <img
                   src={doctor.photo}
                   alt={`Foto de ${doctor.name}`}
@@ -65,7 +65,10 @@ const doctors = data?.doctors ?? [];
                   decoding="async"
                   width="900"
                   height="1200"
-                  class="absolute inset-0 h-full w-full object-cover"
+                  class:list={{
+                    "absolute inset-0 h-full w-full object-cover object-center": true,
+                    "scale-[1.28]": doctor.photo.includes("doctor.webp"),
+                  }}
                 />
                 <span class="absolute left-4 top-4 rounded-full bg-[rgba(0,0,0,0.35)] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/90 backdrop-blur">
                   {doctor.badge}

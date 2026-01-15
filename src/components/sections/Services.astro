@@ -61,6 +61,10 @@ const tagToneClasses: Record<string, string> = {
 };
 const tagToneClass = (tone?: string) => tagToneClasses[tone ?? "neutral"] ?? tagToneClasses.neutral;
 const getCtaHref = (item: Service) => item.ctaHref ?? data.ctaHref ?? "#";
+const isSculptra = (item: Service) =>
+  item.image.toLowerCase().includes("sculptra.webp");
+const getObjectPosition = (item: Service) =>
+  isSculptra(item) ? "70% center" : "center";
 ---
 
 <section id="servicios" class="relative overflow-hidden py-16 lg:py-24" data-reveal>
@@ -91,8 +95,11 @@ const getCtaHref = (item: Service) => item.ctaHref ?? data.ctaHref ?? "#";
               alt={service.alt ?? service.name}
               loading="lazy"
               decoding="async"
-              class="h-full w-full object-cover transition duration-300 group-hover:scale-[1.02]"
-              style="aspect-ratio: 4 / 3;"
+              class:list={{
+                "h-full w-full object-cover transition duration-300": true,
+                "group-hover:scale-[1.02]": !isSculptra(service),
+              }}
+              style={`aspect-ratio: 4 / 3; object-position: ${getObjectPosition(service)};`}
             />
             {service.tag && (
               <span
