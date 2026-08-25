@@ -24,6 +24,7 @@ import { createRequire } from "node:module";
 import { readdirSync, rmSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import path from "node:path";
 import process from "node:process";
 
 const require = createRequire(import.meta.url);
@@ -33,7 +34,7 @@ const require = createRequire(import.meta.url);
 const esReintento = process.env.MB_SHARP_REINTENTO === "1";
 
 const dirImg = () =>
-  require.resolve("sharp/package.json").replace(/sharp[\/]package\.json$/, "@img");
+  path.join(path.dirname(path.dirname(require.resolve("sharp/package.json"))), "@img");
 
 const listarBinarios = () => {
   try {
@@ -57,9 +58,12 @@ const borrarNativos = () => {
   const patron = new RegExp(`^sharp-${process.platform}(musl)?-${process.arch}$`);
   const borrados = [];
   for (const nombre of listarBinarios()) {
-    if (patron.test(nombre)) {
-      rmSync(`${base}/${nombre}`, { recursive: true, force: true });
+    if (!patron.test(nombre)) continue;
+    try {
+      rmSync(path.join(base, nombre), { recursive: true, force: true });
       borrados.push(nombre);
+    } catch (err) {
+      console.error(`  no se pudo quitar : ${nombre} (${err.code ?? err.message})`);
     }
   }
   return borrados;
@@ -81,6 +85,15 @@ const instalarWasm = (version) => {
   });
   return npm.status === 0;
 };
+
+// El binario nativo se quita aquí, antes de importar sharp: una vez importado
+// queda abierto por el proceso y ya no se puede borrar en todos los sistemas.
+if (process.env.MB_SHARP_QUITAR_NATIVOS === "1") {
+  const quitados = borrarNativos();
+  if (quitados.length) {
+    console.error(`  binarios quitados : ${quitados.join(", ")} (el CPU no los admite)`);
+  }
+}
 
 try {
   const sharp = (await import("sharp")).default;
@@ -105,17 +118,15 @@ try {
     console.error(`  error original    : ${mensaje.split("\n")[0]}`);
 
     if (instalarWasm(version)) {
-      // Solo si el nativo existe pero el CPU no lo admite: si simplemente
-      // faltaba, borrar no aporta y podría tirar un binario que sí sirve.
-      if (cpuIncompatible) {
-        const borrados = borrarNativos();
-        if (borrados.length) {
-          console.error(`  binarios quitados : ${borrados.join(", ")} (el CPU no los admite)`);
-        }
-      }
       const hijo = spawnSync(process.execPath, [fileURLToPath(import.meta.url)], {
         stdio: "inherit",
-        env: { ...process.env, MB_SHARP_REINTENTO: "1" }
+        env: {
+          ...process.env,
+          MB_SHARP_REINTENTO: "1",
+          // Solo si el nativo existe pero el CPU no lo admite: si faltaba,
+          // quitarlo no aporta y podría tirar un binario que sí sirve.
+          ...(cpuIncompatible ? { MB_SHARP_QUITAR_NATIVOS: "1" } : {})
+        }
       });
       process.exit(hijo.status ?? 1);
     }
