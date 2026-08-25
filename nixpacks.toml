@@ -1,0 +1,16 @@
+# El CPU de este servidor es anterior a x86-64-v2, así que los prebuilds nativos
+# de sharp (@img/sharp-linux-x64) abortan con "Unsupported CPU" y el build se
+# cae. scripts/check-sharp.js lo detecta, instala el binario WebAssembly de
+# sharp (corre en cualquier CPU) y quita el nativo inservible — hace falta
+# quitarlo porque sharp prueba el nativo primero y, si lo carga y el CPU no le
+# sirve, aborta sin seguir buscando.
+#
+# Se ejecuta aquí, en la fase de install, para que quede resuelto en su propia
+# capa cacheada y la fase de build no dependa de la red. Igual se vuelve a
+# ejecutar en `npm run build`: si ya está resuelto, solo verifica y sigue.
+[phases.install]
+dependsOn = ["setup"]
+cmds = [
+  "npm ci --include=optional",
+  "node scripts/check-sharp.js"
+]

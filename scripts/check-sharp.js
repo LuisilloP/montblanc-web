@@ -21,7 +21,8 @@
  * borrar en Windows) y cada intento parte de cero, sin módulos cacheados.
  */
 import { createRequire } from "node:module";
-import { readdirSync, rmSync } from "node:fs";
+import { readdirSync, rmSync, mkdtempSync, cpSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
@@ -31,8 +32,10 @@ const require = createRequire(import.meta.url);
 const esteArchivo = fileURLToPath(import.meta.url);
 const patronNativo = new RegExp(`^sharp-${process.platform}(musl)?-${process.arch}$`);
 
-const dirImg = () =>
-  path.join(path.dirname(path.dirname(require.resolve("sharp/package.json"))), "@img");
+const dirNodeModules = () =>
+  path.dirname(path.dirname(require.resolve("sharp/package.json")));
+
+const dirImg = () => path.join(dirNodeModules(), "@img");
 
 const listarBinarios = () => {
   try {
@@ -41,6 +44,8 @@ const listarBinarios = () => {
     return [];
   }
 };
+
+const wasmInstalado = () => listarBinarios().includes("sharp-wasm32");
 
 const versionSharp = () => {
   try {
@@ -124,30 +129,52 @@ const instalarWasm = (version) => {
     encoding: "utf8",
     shell: process.platform === "win32"
   }).stdout?.trim();
-  console.error(`  npm               : ${npmVersion ?? "?"}`);
+  console.error(`  npm               : ${npmVersion ?? "(no se pudo ejecutar)"}`);
 
-  // npm 10+ entiende --cpu y resuelve el paquete aunque no coincida con el CPU
-  // de esta máquina. npm 9 ignora el flag y aborta con EBADPLATFORM, y ahí la
-  // única salida es --force: el binario es WebAssembly, corre en cualquier CPU,
-  // así que la comprobación de plataforma que se salta no aporta nada aquí.
-  for (const extra of ["--cpu=wasm32", "--force"]) {
-    const args = [
-      "install",
-      extra,
-      "--no-save",
-      "--no-audit",
-      "--no-fund",
-      `@img/sharp-wasm32@${version}`
-    ];
-    console.error(`  ejecutando        : npm ${args.join(" ")}`);
-    const npm = spawnSync("npm", args, {
-      stdio: "inherit",
-      shell: process.platform === "win32"
-    });
-    if (npm.status === 0) return true;
-    console.error("  falló; reintentando con otra estrategia de instalación.");
+  // Se instala en un directorio aparte y después se copia. Pedirlo sobre el
+  // árbol del proyecto no sirve: npm ve el paquete en el lockfile como
+  // dependencia opcional de sharp saltada por CPU, da el árbol por completo y
+  // responde "up to date" sin instalar nada. En un directorio limpio no hay
+  // árbol previo que consultar, y --force salta la comprobación de plataforma
+  // (el paquete declara cpu=wasm32; es WebAssembly, corre en cualquier CPU).
+  const temporal = mkdtempSync(path.join(tmpdir(), "sharp-wasm-"));
+  const args = [
+    "install",
+    "--force",
+    "--no-save",
+    "--no-audit",
+    "--no-fund",
+    "--prefix",
+    temporal,
+    `@img/sharp-wasm32@${version}`
+  ];
+  console.error(`  ejecutando        : npm ${args.join(" ")}`);
+  const npm = spawnSync("npm", args, {
+    stdio: "inherit",
+    shell: process.platform === "win32"
+  });
+  if (npm.error) {
+    console.error(`  npm falló         : ${npm.error.code ?? npm.error.message}`);
+    return false;
   }
-  return false;
+  if (npm.status !== 0) return false;
+
+  try {
+    // force:false deja intacto lo que el proyecto ya tenga.
+    cpSync(path.join(temporal, "node_modules"), dirNodeModules(), {
+      recursive: true,
+      force: false,
+      errorOnExist: false
+    });
+  } catch (err) {
+    console.error(`  no se pudo copiar : ${err.code ?? err.message}`);
+    return false;
+  } finally {
+    rmSync(temporal, { recursive: true, force: true });
+  }
+
+  // Confirmar que el binario quedó donde sharp lo va a buscar.
+  return wasmInstalado();
 };
 
 const primero = verificar();
@@ -164,7 +191,9 @@ console.error(
     "(más lento, pero corre en cualquier CPU).\n"
 );
 
-if (instalarWasm(version)) {
+// Lo normal es que el binario ya venga de la fase de install (nixpacks.toml).
+// Instalarlo aquí es el plan B, para builds que no pasan por ahí.
+if (wasmInstalado() || instalarWasm(version)) {
   // Solo si el nativo está pero el CPU no lo admite: si simplemente faltaba,
   // quitarlo no aporta y podría tirar un binario que sí sirve.
   if (primero.status === 2) {
@@ -180,3 +209,4 @@ if (instalarWasm(version)) {
 console.error("\n  la instalación de @img/sharp-wasm32 falló.\n");
 verificar({ MB_SHARP_DIAGNOSTICO: "1" });
 process.exit(1);
+ 
