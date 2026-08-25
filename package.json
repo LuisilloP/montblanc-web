@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "node scripts/check-sharp.js && astro build",
     "start": "node scripts/start-preview.js",
     "preview": "astro preview",
     "astro": "astro"
@@ -25,5 +25,11 @@
   },
   "devDependencies": {
     "ffmpeg-static": "^5.3.0"
+  },
+  "optionalDependencies": {
+    "@img/sharp-libvips-linux-arm64": "1.2.4",
+    "@img/sharp-libvips-linux-x64": "1.2.4",
+    "@img/sharp-linux-arm64": "0.34.5",
+    "@img/sharp-linux-x64": "0.34.5"
   }
 }
