@@ -120,20 +120,34 @@ const quitarNativos = () => {
 };
 
 const instalarWasm = (version) => {
-  const args = [
-    "install",
-    "--no-save",
-    "--no-audit",
-    "--no-fund",
-    "--cpu=wasm32",
-    `@img/sharp-wasm32@${version}`
-  ];
-  console.error(`  ejecutando        : npm ${args.join(" ")}`);
-  const npm = spawnSync("npm", args, {
-    stdio: "inherit",
+  const npmVersion = spawnSync("npm", ["--version"], {
+    encoding: "utf8",
     shell: process.platform === "win32"
-  });
-  return npm.status === 0;
+  }).stdout?.trim();
+  console.error(`  npm               : ${npmVersion ?? "?"}`);
+
+  // npm 10+ entiende --cpu y resuelve el paquete aunque no coincida con el CPU
+  // de esta máquina. npm 9 ignora el flag y aborta con EBADPLATFORM, y ahí la
+  // única salida es --force: el binario es WebAssembly, corre en cualquier CPU,
+  // así que la comprobación de plataforma que se salta no aporta nada aquí.
+  for (const extra of ["--cpu=wasm32", "--force"]) {
+    const args = [
+      "install",
+      extra,
+      "--no-save",
+      "--no-audit",
+      "--no-fund",
+      `@img/sharp-wasm32@${version}`
+    ];
+    console.error(`  ejecutando        : npm ${args.join(" ")}`);
+    const npm = spawnSync("npm", args, {
+      stdio: "inherit",
+      shell: process.platform === "win32"
+    });
+    if (npm.status === 0) return true;
+    console.error("  falló; reintentando con otra estrategia de instalación.");
+  }
+  return false;
 };
 
 const primero = verificar();
