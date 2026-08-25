@@ -1,34 +1,47 @@
 ---
+import { Image } from 'astro:assets';
+import { resolveImage } from '../../libs/images';
+
 type Partner = { name: string; logo: string };
 type Props = { data: { eyebrow?: string; title: string; text: string; items: Partner[] } };
 
 const { data } = Astro.props as Props;
+const items = data.items.map((partner) => ({ partner, asset: resolveImage(partner.logo) }));
 ---
 
-<section id="convenios" class="container-wide space-y-8 py-16 lg:space-y-12 lg:py-24" data-reveal>
+<section id="convenios" class="container-wide section-rhythm space-y-8 lg:space-y-12" data-reveal>
   <div class="space-y-2">
     {data.eyebrow && (
       <p class="pill w-fit text-[11px] tracking-[0.2em]">{data.eyebrow}</p>
     )}
-    <h2 class="text-4xl leading-tight sm:text-5xl">{data.title}</h2>
-    <p class="text-lg text-(--charcoal)/70">{data.text}</p>
+    <h2 class="h-section">{data.title}</h2>
+    <p class="section-lede">{data.text}</p>
   </div>
 
-  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-    {data.items.map((partner, idx) => (
+  <!-- Flex centrado en lugar de rejilla: con 5 convenios, una rejilla de 4
+       columnas deja el ultimo solo, con 3 huecos a su lado. Asi la fila
+       incompleta queda centrada, y aguanta si se anaden o quitan convenios. -->
+  <div class="flex flex-wrap justify-center gap-4 sm:gap-6">
+    {items.map(({ partner, asset }, idx) => (
       <div
-        class="card flex h-40 items-center justify-center px-6 py-6 bg-white/92 ring-1 ring-[rgba(176,128,80,0.12)] shadow-[0_18px_50px_rgba(32,32,32,0.08)] reveal-on-scroll"
+        class="card flex h-28 basis-[calc(50%-0.5rem)] items-center justify-center px-4 py-4 sm:h-40 sm:basis-[calc(50%-0.75rem)] sm:px-6 sm:py-6 lg:basis-[calc(33.333%-1rem)] bg-white/92 ring-1 ring-[rgba(176,128,80,0.12)] shadow-[0_18px_50px_rgba(32,32,32,0.08)] reveal-on-scroll"
         data-reveal
         data-reveal-delay={`${idx * 140}ms`}
       >
         <div class="flex h-full w-full items-center justify-center rounded-xl bg-white/96 ring-1 ring-[rgba(176,128,80,0.1)] shadow-[0_12px_32px_rgba(32,32,32,0.06)] px-4 py-3">
-          <img
-            src={partner.logo}
-            alt={`Logo de ${partner.name}`}
-            class="mx-auto w-full max-w-[240px] max-h-20 md:max-h-24 object-contain"
-            loading="lazy"
-            decoding="async"
-          />
+          {asset ? (
+            <Image
+              src={asset}
+              alt={`Logo de ${partner.name}`}
+              widths={[200, 260, 400, 520]}
+              sizes="(min-width: 640px) 240px, 40vw"
+              class="mx-auto max-h-16 w-full max-w-[240px] object-contain sm:max-h-20 md:max-h-24"
+              loading="lazy"
+              decoding="async"
+            />
+          ) : (
+            <img src={partner.logo} alt={`Logo de ${partner.name}`} class="mx-auto max-h-16 w-full max-w-[240px] object-contain sm:max-h-20" loading="lazy" decoding="async" />
+          )}
         </div>
       </div>
     ))}

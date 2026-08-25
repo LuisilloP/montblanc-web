@@ -5,16 +5,28 @@ type Item = { question: string; answer: string };
 type Props = { data: { eyebrow?: string; title: string; intro?: string; items: Item[] } };
 
 const { data } = Astro.props as Props;
+
+// Esquema FAQPage: es el que genera resultados enriquecidos en búsquedas del
+// tipo "duele el blanqueamiento", que es como llega buena parte del tráfico local.
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: data.items.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: { "@type": "Answer", text: item.answer },
+  })),
+};
 ---
 
-<section id="faq" class="container-wide space-y-8 py-16 lg:space-y-12 lg:py-24" data-reveal>
+<section id="faq" class="container-wide section-rhythm space-y-8 lg:space-y-12" data-reveal>
   <div class="space-y-3">
     {data.eyebrow && (
       <p class="pill w-fit text-[11px] tracking-[0.2em]">{data.eyebrow}</p>
     )}
-    <h2 class="text-4xl leading-tight sm:text-5xl">{data.title}</h2>
+    <h2 class="h-section">{data.title}</h2>
     {data.intro && (
-      <p class="text-lg text-(--charcoal)/70">{data.intro}</p>
+      <p class="section-lede">{data.intro}</p>
     )}
   </div>
 
@@ -25,7 +37,7 @@ const { data } = Astro.props as Props;
         data-reveal
         data-reveal-delay={`${idx * 120}ms`}
       >
-        <summary class="flex cursor-pointer items-center justify-between gap-3 text-xl font-semibold text-(--charcoal)">
+        <summary class="flex min-h-11 cursor-pointer items-center justify-between gap-3 text-lg font-semibold text-(--charcoal) sm:text-xl">
           <span>{item.question}</span>
           <span class="flex h-8 w-8 items-center justify-center rounded-full shrink-0 bg-[rgba(176,128,80,0.12)] text-(--goldLight)">
             <Icon name="lucide:plus" class="h-4 w-4 transition group-open:rotate-45" stroke-width="1.8" />
@@ -35,4 +47,6 @@ const { data } = Astro.props as Props;
       </details>
     ))}
   </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} is:inline />
 </section>

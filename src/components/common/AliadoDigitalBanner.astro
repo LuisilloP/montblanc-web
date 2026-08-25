@@ -1,0 +1,105 @@
+---
+interface Props {
+  text?: string;
+  href?: string;
+  label?: string;
+  variant?: 'subtle' | 'strong';
+  class?: string;
+}
+
+const {
+  text = 'Diseñado por Aliado Digital',
+  href = 'https://aliadodigital.cl/',
+  label = 'Sitio web',
+  variant = 'subtle',
+  class: className = '',
+} = Astro.props;
+
+const normalizedHref = href.trim();
+const hasLink = normalizedHref.length > 0;
+const toneClass = variant === 'strong' ? 'ad-banner--strong' : 'ad-banner--subtle';
+---
+
+<div class:list={['ad-banner', toneClass, className]}>
+  <div class="ad-banner__inner">
+    <span class="ad-banner__label">{label}</span>
+    {
+      hasLink ? (
+        <a href={normalizedHref} target="_blank" rel="noopener noreferrer" class="ad-banner__link">{text}</a>
+      ) : (
+        <span class="ad-banner__text">{text}</span>
+      )
+    }
+  </div>
+</div>
+
+<style>
+  .ad-banner {
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  .ad-banner--subtle {
+    background:
+      linear-gradient(112deg, rgba(215, 38, 61, 0.18) 0%, rgba(173, 31, 85, 0.12) 42%, rgba(11, 63, 150, 0.18) 100%),
+      #151515;
+  }
+
+  .ad-banner--strong {
+    background: linear-gradient(112deg, #d7263d 0%, #ad1f55 45%, #0b3f96 100%);
+  }
+
+  .ad-banner__inner {
+    max-width: 80rem;
+    margin: 0 auto;
+    min-height: 2.15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    padding: 0.25rem 1rem;
+  }
+
+  .ad-banner__label {
+    color: rgba(255, 255, 255, 0.54);
+    font-size: 0.59rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .ad-banner__link,
+  .ad-banner__text {
+    color: rgba(236, 244, 255, 0.8);
+    font-size: 0.69rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  .ad-banner__link {
+    text-decoration: none !important;
+    transition: color 180ms ease, opacity 180ms ease;
+  }
+
+  .ad-banner__link:hover {
+    color: rgba(236, 244, 255, 0.94);
+    opacity: 0.95;
+    text-decoration: none !important;
+  }
+
+  @media (max-width: 640px) {
+    .ad-banner__inner {
+      min-height: 2rem;
+      padding: 0.22rem 0.75rem;
+    }
+
+    .ad-banner__label {
+      font-size: 0.56rem;
+    }
+
+    .ad-banner__link,
+    .ad-banner__text {
+      font-size: 0.66rem;
+    }
+  }
+</style>

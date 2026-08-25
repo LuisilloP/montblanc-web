@@ -1,6 +1,7 @@
 ---
 import site from "../data/site.json";
 import FloatingWhatsAppButton from "../components/common/FloatingWhatsAppButton.astro";
+import AliadoDigitalBanner from "../components/common/AliadoDigitalBanner.astro";
 import "../styles/global.css";
 
 type SeoData = {
@@ -41,7 +42,12 @@ const { seo } = Astro.props as Props;
 const metaTitle = seo?.title ?? site.meta?.title ?? site.brand?.name ?? "";
 const description = seo?.description ?? site.meta?.description ?? "";
 const canonical = seo?.canonical ?? site.meta?.url ?? "";
-const ogImage = seo?.image ?? site.meta?.image ?? "";
+const rawOgImage = seo?.image ?? site.meta?.image ?? "";
+// WhatsApp y Facebook exigen URL absoluta en og:image; con una relativa no
+// muestran vista previa al compartir el enlace.
+const ogImage = rawOgImage && Astro.site
+  ? new URL(rawOgImage, Astro.site).href
+  : rawOgImage;
 const siteName = seo?.siteName ?? site.meta?.siteName ?? site.brand?.name ?? "";
 const locale = seo?.locale ?? site.meta?.locale ?? "";
 const keywords = seo?.keywords?.length ? seo.keywords.join(", ") : undefined;
@@ -126,10 +132,13 @@ const structuredData = {
       {site.a11y?.skipToContent}
     </a>
     <slot />
+    <AliadoDigitalBanner />
     <FloatingWhatsAppButton
       whatsapp={site.contact.whatsapp}
       ariaLabel={site.a11y?.whatsappLabel ?? ""}
     />
-    <script type="module" src="/scripts/reveal.js"></script>
+    <script>
+      import "../libs/reveal";
+    </script>
   </body>
 </html>

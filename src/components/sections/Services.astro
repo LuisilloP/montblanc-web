@@ -1,5 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import { resolveImage } from '../../libs/images';
 
 type Service = {
   name: string;
@@ -65,9 +67,14 @@ const isSculptra = (item: Service) =>
   item.image.toLowerCase().includes("sculptra.webp");
 const getObjectPosition = (item: Service) =>
   isSculptra(item) ? "70% center" : "center";
+
+const items = data.items.map((service) => ({
+  service,
+  asset: resolveImage(service.image),
+}));
 ---
 
-<section id="servicios" class="relative overflow-hidden py-16 lg:py-24" data-reveal>
+<section id="servicios" class="section-rhythm relative overflow-hidden" data-reveal>
   <div
     class="absolute inset-0 section-backdrop"
     aria-hidden="true"
@@ -78,29 +85,41 @@ const getObjectPosition = (item: Service) =>
       {data.eyebrow && (
         <p class="pill w-fit text-[11px] tracking-[0.2em]">{data.eyebrow}</p>
       )}
-      <h2 class="text-4xl leading-tight sm:text-5xl">{data.title}</h2>
-      <p class="text-lg leading-relaxed text-(--charcoal)/75 sm:text-xl">{data.subtitle}</p>
+      <h2 class="h-section">{data.title}</h2>
+      <p class="section-lede max-w-3xl">{data.subtitle}</p>
     </div>
 
-    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {data.items.map((service, idx) => (
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {items.map(({ service, asset }, idx) => (
         <article
           class="group flex h-full flex-col overflow-hidden rounded-[26px] bg-white/92 shadow-[0_20px_60px_rgba(32,32,32,0.1)] ring-1 ring-[rgba(176,128,80,0.18)] transition duration-200 hover:-translate-y-1 hover:shadow-[0_26px_70px_rgba(32,32,32,0.14)] reveal-on-scroll"
           data-reveal
           data-reveal-delay={`${idx * 140}ms`}
         >
           <div class="relative overflow-hidden">
-            <img
-              src={service.image}
-              alt={service.alt ?? service.name}
-              loading="lazy"
-              decoding="async"
-              class:list={{
-                "h-full w-full object-cover transition duration-300": true,
-                "group-hover:scale-[1.02]": !isSculptra(service),
-              }}
-              style={`aspect-ratio: 4 / 3; object-position: ${getObjectPosition(service)};`}
-            />
+            {asset ? (
+              <Image
+                src={asset}
+                alt={service.alt ?? service.name}
+                widths={[360, 480, 640, 900]}
+                sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 92vw"
+                loading="lazy"
+                decoding="async"
+                class:list={{
+                  "service-media h-full w-full object-cover transition duration-300": true,
+                  "group-hover:scale-[1.02]": !isSculptra(service),
+                }}
+                style={`object-position: ${getObjectPosition(service)};`}
+              />
+            ) : (
+              <img
+                src={service.image}
+                alt={service.alt ?? service.name}
+                loading="lazy"
+                decoding="async"
+                class="service-media h-full w-full object-cover"
+              />
+            )}
             {service.tag && (
               <span
                 class={`absolute left-4 top-4 inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] ring-1 backdrop-blur ${tagToneClass(service.tagTone)}`}
@@ -118,7 +137,7 @@ const getObjectPosition = (item: Service) =>
 
           <div class="flex flex-1 flex-col gap-4 px-5 pb-6 pt-5 sm:px-6 sm:pb-7 sm:pt-6">
             <div class="space-y-2">
-              <h3 class="text-2xl leading-tight text-(--charcoal)">{service.name}</h3>
+              <h3 class="h-card text-(--charcoal)">{service.name}</h3>
               <p class="text-base leading-relaxed text-(--charcoal)/75">{service.description}</p>
             </div>
 
@@ -151,4 +170,18 @@ const getObjectPosition = (item: Service) =>
       ))}
     </div>
   </div>
+
+  <style>
+    /* En móvil las tarjetas van a una columna: 16:9 acorta el recorrido
+       sin perder legibilidad de la foto. */
+    .service-media {
+      aspect-ratio: 16 / 9;
+    }
+
+    @media (min-width: 640px) {
+      .service-media {
+        aspect-ratio: 4 / 3;
+      }
+    }
+  </style>
 </section>

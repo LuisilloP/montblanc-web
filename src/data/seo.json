@@ -4,7 +4,7 @@
   "canonical": "https://clinicamontblanc.cl/",
   "siteName": "Clínica Dental Mont Blanc",
   "locale": "es_CL",
-  "image": "/mont_logo.png",
+  "image": "/og-image.jpg",
   "keywords": [
     "Clínica Dental Mont Blanc",
     "dentista Ovalle",
@@ -68,8 +68,9 @@
     "Toxina botulínica (bótox)"
   ],
   "openHours": [
-    "Mo-Sa 09:30-13:30",
-    "Mo-Sa 15:00-19:30"
+    "Mo-Fr 09:30-13:30",
+    "Mo-Fr 15:00-19:30",
+    "Sa 09:30-14:00"
   ],
   "areaServed": [
     "Ovalle",

@@ -38,9 +38,18 @@ const loopedReviews = hasLoop ? [baseReviews[baseReviews.length - 1], ...baseRev
 const startIndex = hasLoop ? 1 : 0;
 
 const getInitial = (name: string) => (name?.trim()?.charAt(0) || "?").toUpperCase();
+
+const reviewCount = baseReviews.length;
+const averageRating = reviewCount
+  ? baseReviews.reduce((sum, review) => sum + (review.rating || 0), 0) / reviewCount
+  : 0;
+const averageLabel = averageRating.toLocaleString("es-CL", {
+  minimumFractionDigits: 1,
+  maximumFractionDigits: 1,
+});
 ---
 
-<section id="resenas" class="relative overflow-hidden py-16 lg:py-24" data-reveal>
+<section id="resenas" class="section-rhythm relative overflow-hidden" data-reveal>
   <div class="pointer-events-none absolute inset-0 opacity-70">
     <div class="absolute inset-0 section-backdrop" />
   </div>
@@ -48,16 +57,33 @@ const getInitial = (name: string) => (name?.trim()?.charAt(0) || "?").toUpperCas
   <div class="container-wide relative space-y-10">
     <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
       <div class="space-y-2">
-        <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-(--goldLight)">{copy.eyebrow}</p>
-        <h2 class="text-3xl font-semibold text-(--charcoal) sm:text-4xl">{data.placeName}</h2>
+        <p class="pill w-fit text-[11px] tracking-[0.2em]">{copy.eyebrow}</p>
+        <h2 class="h-section text-(--charcoal)">{data.placeName}</h2>
         <p class="text-base text-(--charcoal)/70">
           {copy.subtitle}
         </p>
+        {reviewCount > 0 && (
+          <p class="flex flex-wrap items-center gap-x-2 gap-y-1 pt-1">
+            <span class="font-(--font-heading) text-3xl leading-none text-(--charcoal)">
+              {averageLabel}
+            </span>
+            <span class="flex items-center gap-0.5 text-[#fbbc04]" aria-hidden="true">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class={`h-4 w-4 ${i < Math.round(averageRating) ? "opacity-100" : "opacity-30"}`} fill="currentColor">
+                  <path d="M10 2l2.09 4.26L17 7.27l-3.5 3.41.83 4.85L10 13.77l-4.33 2.76.83-4.85L3 7.27l4.91-.99L10 2z" />
+                </svg>
+              ))}
+            </span>
+            <span class="text-sm text-(--charcoal)/65">
+              {reviewCount} reseñas en Google
+            </span>
+          </p>
+        )}
       </div>
       {data.googleUrl && (
         <a
           href={data.googleUrl}
-          class="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-[13px] font-semibold text-(--charcoal) shadow-[0_10px_35px_rgba(32,32,32,0.08)] ring-1 ring-[rgba(32,32,32,0.06)] transition hover:-translate-y-px hover:shadow-[0_14px_40px_rgba(32,32,32,0.12)] sm:px-4 sm:py-2 sm:text-sm"
+          class="inline-flex min-h-11 shrink-0 items-center gap-2 self-start rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-(--charcoal) shadow-[0_10px_35px_rgba(32,32,32,0.08)] ring-1 ring-[rgba(32,32,32,0.06)] transition hover:-translate-y-px hover:shadow-[0_14px_40px_rgba(32,32,32,0.12)]"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -159,6 +185,19 @@ const getInitial = (name: string) => (name?.trim()?.charAt(0) || "?").toUpperCas
           </svg>
         </button>
       </div>
+
+      {baseReviews.length > 1 && (
+        <div class="reviews-dots" data-dots>
+          {baseReviews.map((_, i) => (
+            <button
+              type="button"
+              class="reviews-dot"
+              data-dot={i}
+              aria-label={`Ir a la reseña ${i + 1} de ${baseReviews.length}`}
+            />
+          ))}
+        </div>
+      )}
     </div>
   </div>
 </section>
@@ -255,6 +294,49 @@ const getInitial = (name: string) => (name?.trim()?.charAt(0) || "?").toUpperCas
     outline-offset: 3px;
   }
 
+  .reviews-dots {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    margin-top: 2px;
+  }
+
+  .reviews-dot {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+  }
+
+  .reviews-dot::before {
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    background: rgba(32, 32, 32, 0.2);
+    transition: width 220ms ease, background 220ms ease;
+  }
+
+  .reviews-dot.is-active::before {
+    width: 22px;
+    background: var(--goldText);
+  }
+
+  .reviews-dot:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: -6px;
+    border-radius: 9999px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reviews-dot::before { transition: none; }
+  }
+
   .reviews-nav-wrap {
     padding-left: max(16px, calc(var(--edge-pad) - 48px));
     padding-right: max(16px, calc(var(--edge-pad) - 48px));
@@ -270,7 +352,7 @@ const getInitial = (name: string) => (name?.trim()?.charAt(0) || "?").toUpperCas
 
   @media (max-width: 640px) {
     .reviews-shell {
-      --card-width: min(92vw, 460px);
+      --card-width: min(84vw, 420px);
       --edge-pad: calc((100vw - var(--card-width)) / 2);
       --fade: 0px;
     }
@@ -316,6 +398,55 @@ const getInitial = (name: string) => (name?.trim()?.charAt(0) || "?").toUpperCas
 
     prevButton?.addEventListener("click", () => scrollByStep(-1));
     nextButton?.addEventListener("click", () => scrollByStep(1));
+
+    const dots = Array.from(carousel.parentElement?.querySelectorAll("[data-dot]") ?? []);
+    const cards = Array.from(carousel.querySelectorAll("[data-card]"));
+
+    const syncDots = () => {
+      if (!dots.length || !cards.length) return;
+      const center = carousel.scrollLeft + carousel.clientWidth / 2;
+      let active = 0;
+      let best = Infinity;
+      cards.forEach((card, i) => {
+        const mid = card.offsetLeft + card.offsetWidth / 2 - carousel.offsetLeft;
+        const distance = Math.abs(mid - center);
+        if (distance < best) {
+          best = distance;
+          active = i;
+        }
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("is-active", i === active);
+        dot.setAttribute("aria-current", i === active ? "true" : "false");
+      });
+    };
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", () => {
+        const card = cards[i];
+        if (!card) return;
+        carousel.scrollTo({
+          left: card.offsetLeft - carousel.offsetLeft - (carousel.clientWidth - card.offsetWidth) / 2,
+          behavior: "smooth",
+        });
+      });
+    });
+
+    let ticking = false;
+    carousel.addEventListener(
+      "scroll",
+      () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          ticking = false;
+          syncDots();
+        });
+      },
+      { passive: true }
+    );
+    window.addEventListener("resize", syncDots);
+    syncDots();
 
     carousel.addEventListener("keydown", (event) => {
       if (event.key === "ArrowRight") {

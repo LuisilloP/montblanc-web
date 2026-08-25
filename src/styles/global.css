@@ -8,39 +8,64 @@
   --gold: #B08050;
   --goldLight: #A8783F;
   --goldDeep: #8A5B2A;
+  /* Oro legible: 5.16:1 sobre crema, 5.82:1 sobre blanco. Usar para TEXTO.
+     --gold y --goldLight quedan para superficies, bordes y adornos. */
+  --goldText: #8A5B2A;
+  --goldBtnFrom: #96682F;
+  --goldBtnTo: #8A5B2A;
   --charcoal: #202020;
   --stone: #B4AB9F;
   --bg-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
   --font-heading: "Playfair Display", "Times New Roman", serif;
-  --font-body: "Playfair Display","Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --shadow-soft: 0 20px 55px rgba(32, 32, 32, 0.08);
   --shadow-glow: 0 10px 40px rgba(176, 128, 80, 0.15);
   --radius-lg: 24px;
+  /* Alto de la barra fija + holgura, para que los anclajes no queden debajo */
+  --header-offset: 6.5rem;
 }
 
 * {
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  background-color: var(--ivory);
-  background-image:
-    radial-gradient(circle at 18% 20%, rgba(176, 128, 80, 0.08), transparent 34%),
-    radial-gradient(circle at 82% 8%, rgba(168, 120, 63, 0.08), transparent 28%),
-    linear-gradient(130deg, rgba(230, 214, 198, 0.4), rgba(248, 232, 224, 0.2));
-  background-size: 1200px 1200px, 900px 900px, cover;
-  color: var(--charcoal);
-  font-family: var(--font-body);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
+@layer base {
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--ivory);
+    background-image:
+      radial-gradient(circle at 18% 20%, rgba(176, 128, 80, 0.08), transparent 34%),
+      radial-gradient(circle at 82% 8%, rgba(168, 120, 63, 0.08), transparent 28%),
+      linear-gradient(130deg, rgba(230, 214, 198, 0.4), rgba(248, 232, 224, 0.2));
+    background-size: 1200px 1200px, 900px 900px, cover;
+    color: var(--charcoal);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
 
+  /* Playfair queda reservada a los titulares. El cuerpo, la interfaz y los
+     botones van en Inter, que ya se descargaba sin usarse. */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-heading);
+  }
 
-a {
-  color: inherit;
-  text-decoration: none;
+  /* Esta regla DEBE vivir en una capa. Sin capa gana a todas las utilidades de
+     Tailwind y ningún enlace puede fijar su propio color. */
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Los destinos del menú no deben aterrizar bajo la cabecera fija */
+  section[id],
+  footer[id],
+  [id="ubicacion"] {
+    scroll-margin-top: var(--header-offset);
+  }
 }
 
 ::selection {
@@ -61,32 +86,57 @@ a {
     @apply mx-auto w-full max-w-[90rem] px-4 sm:px-6 lg:px-10 xl:px-12;
   }
 
+  /* Ritmo vertical único para todas las secciones */
+  .section-rhythm {
+    @apply py-16 lg:py-24;
+  }
+
   .section-backdrop {
     background: linear-gradient(180deg, rgba(248, 240, 232, 0.6), rgba(248, 240, 232, 0.32));
   }
 
+  /* --- Escala tipográfica --- */
+
+  .h-section {
+    @apply font-(--font-heading) text-3xl leading-tight sm:text-4xl lg:text-[42px];
+  }
+
+  .h-card {
+    @apply font-(--font-heading) text-2xl leading-tight;
+  }
+
+  .h-sub {
+    @apply font-(--font-heading) text-xl leading-snug sm:text-2xl;
+  }
+
+  .section-lede {
+    @apply max-w-2xl text-base leading-relaxed text-(--charcoal)/75 sm:text-lg;
+  }
+
+  /* --- Controles --- */
+
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 sm:px-7 py-3.5 sm:py-4 text-base font-semibold text-white transition shadow-sm;
-    background: linear-gradient(120deg, var(--gold), var(--goldLight));
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-6 sm:px-7 py-3.5 sm:py-4 text-base font-semibold text-white transition shadow-sm;
+    background: linear-gradient(120deg, var(--goldBtnFrom), var(--goldBtnTo));
     box-shadow: var(--shadow-glow);
   }
 
   .btn-primary:hover {
     transform: translateY(-1px);
-    box-shadow: 0 12px 30px rgba(176, 128, 80, 0.25);
+    box-shadow: 0 12px 30px rgba(138, 91, 42, 0.3);
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 sm:px-7 py-3.5 sm:py-4 text-base font-semibold transition;
-    color: var(--goldLight);
-    border: 1px solid rgba(176, 128, 80, 0.25);
-    background: rgba(248, 232, 224, 0.6);
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-6 sm:px-7 py-3.5 sm:py-4 text-base font-semibold transition;
+    color: var(--goldText);
+    border: 1px solid rgba(176, 128, 80, 0.35);
+    background: rgba(248, 232, 224, 0.72);
   }
 
   .btn-secondary:hover {
-    border-color: var(--gold);
-    color: var(--gold);
-    background: rgba(230, 214, 198, 0.7);
+    border-color: var(--goldText);
+    color: var(--goldDeep);
+    background: rgba(230, 214, 198, 0.8);
   }
 
   .card {
@@ -99,14 +149,20 @@ a {
 
   .pill {
     @apply inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.15em];
-    background: rgba(176, 128, 80, 0.1);
-    color: var(--goldLight);
+    background: rgba(176, 128, 80, 0.12);
+    color: var(--goldText);
   }
 
   .gold-divider {
     height: 1px;
     background: linear-gradient(90deg, transparent, rgba(176, 128, 80, 0.45), transparent);
   }
+}
+
+/* Zonas táctiles: mínimo 44px en controles pequeños */
+summary,
+.tap-target {
+  min-height: 44px;
 }
 
 .reveal-on-scroll {

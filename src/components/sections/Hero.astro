@@ -14,6 +14,7 @@ type Props = {
     title?: string;
     titleLines?: string[];
     subtitle?: string;
+    subtitleCompact?: string;
     note?: string;
     primaryCta: { label: string; href: string; ariaLabel?: string };
     secondaryCta: { label: string; href: string; ariaLabel?: string };
@@ -62,8 +63,11 @@ const videoSources = [
 const hasVideo = videoSources.length > 0;
 ---
 
-<section id="inicio" class="">
-  <div class="absolute inset-0">
+<section
+  id="inicio"
+  class="relative isolate flex min-h-svh flex-col overflow-hidden pt-24 lg:pt-28"
+>
+  <div class="absolute inset-0 -z-10">
     <div
       class="absolute inset-0 bg-cover bg-center hero-fallback"
       aria-hidden="true"
@@ -74,15 +78,15 @@ const hasVideo = videoSources.length > 0;
         <video
           class="hero-video pointer-events-none absolute inset-0 h-full w-full object-cover opacity-95"
           poster={posterSrc}
-          autoplay
           muted
           loop
           playsinline
-          preload="metadata"
+          preload="none"
           aria-hidden="true"
+          data-hero-video
         >
           {videoSources.map((source) => (
-            <source src={source.src} type={source.type} />
+            <source data-src={source.src} type={source.type} />
           ))}
         </video>
       )
@@ -97,11 +101,9 @@ const hasVideo = videoSources.length > 0;
     </div>
   </div>
 
-  <div
-    class="hero-body relative z-10 flex min-h-[82vh] sm:min-h-[86vh] lg:min-h-[92vh] flex-col"
-  >
+  <div class="hero-body relative z-10 flex flex-1 flex-col">
     <div
-      class="px-5 pb-28 pt-12 sm:px-8 sm:pb-32 sm:pt-16 lg:px-16 lg:pb-36 lg:pt-20"
+      class="px-5 py-12 sm:px-8 sm:py-16 lg:px-16 lg:py-20"
     >
       <div class="max-w-screen-sm space-y-3 sm:space-y-4 lg:space-y-5">
         {
@@ -163,8 +165,7 @@ const hasVideo = videoSources.length > 0;
 
   {
     stats.length > 0 && (
-      <div class="pointer-events-none absolute inset-x-0 bottom-0 z-20">
-        <div class="pointer-events-auto w-full bg-[rgba(12,8,4,0.48)] backdrop-blur-sm">
+      <div class="relative z-20 mt-auto w-full bg-[rgba(12,8,4,0.48)] backdrop-blur-sm">
           <div class="mx-auto max-w-6xl px-5 py-4 sm:px-8 sm:py-5">
             <div class="grid grid-cols-2 gap-y-4 text-center text-[rgba(248,240,232,0.95)] sm:grid-cols-4 sm:gap-y-0 sm:divide-x sm:divide-[rgba(248,240,232,0.14)]">
               {stats.map((stat) => (
@@ -180,7 +181,6 @@ const hasVideo = videoSources.length > 0;
                   </span>
                 </div>
               ))}
-            </div>
           </div>
         </div>
       </div>
@@ -207,6 +207,8 @@ const hasVideo = videoSources.length > 0;
 
     .stat-number {
       animation: countFadeIn 0.6s ease forwards;
+      display: inline-block;
+      font-variant-numeric: tabular-nums;
     }
 
     .hero-video {
@@ -276,10 +278,41 @@ const hasVideo = videoSources.length > 0;
   </style>
 
   <script>
+    // El vídeo es decoración: en móvil y con ahorro de datos basta el póster.
+    const setupHeroVideo = () => {
+      const video = document.querySelector<HTMLVideoElement>("[data-hero-video]");
+      if (!video) return;
+
+      const wide = window.matchMedia("(min-width: 1024px)");
+      const calm = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const connection = (navigator as Navigator & { connection?: { saveData?: boolean } })
+        .connection;
+      let loaded = false;
+
+      const load = () => {
+        if (loaded || !wide.matches || calm.matches || connection?.saveData === true) return;
+        loaded = true;
+        video.querySelectorAll<HTMLSourceElement>("source[data-src]").forEach((source) => {
+          const src = source.dataset.src;
+          if (src) source.src = src;
+        });
+        video.load();
+        void video.play().catch(() => {});
+      };
+
+      load();
+      wide.addEventListener("change", load);
+    };
+
+    setupHeroVideo();
+
+    // El dato viene en formato chileno ("40.000+"): el sufijo es sólo lo que
+    // sigue al último dígito, no todo lo que no sea número.
     const parseTarget = (raw: string | null) => {
-      const value = String(raw ?? "0");
-      const target = Number(value.replace(/[^\d]/g, "")) || 0;
-      const suffix = value.replace(/[\d\s]/g, "");
+      const value = String(raw ?? "0").trim();
+      const match = value.match(/^([\d.,\s]*\d)?(.*)$/);
+      const target = Number((match?.[1] ?? "").replace(/[^\d]/g, "")) || 0;
+      const suffix = match?.[2] ?? "";
       return { target, suffix };
     };
 
@@ -298,7 +331,7 @@ const hasVideo = videoSources.length > 0;
           const current = Math.floor(
             startValue + (target - startValue) * progress
           );
-          el.textContent = current.toLocaleString("en-US") + suffix;
+          el.textContent = current.toLocaleString("es-CL") + suffix;
           if (progress < 1) requestAnimationFrame(step);
         };
 
@@ -319,6 +352,11 @@ const hasVideo = videoSources.length > 0;
 
       stats.forEach((el) => {
         const { suffix } = parseTarget(el.getAttribute("data-target"));
+        // Reservar el ancho del valor final: si no, contar mueve el layout.
+        const finalWidth = el.getBoundingClientRect().width;
+        if (finalWidth) {
+          (el as HTMLElement).style.minWidth = `${Math.ceil(finalWidth)}px`;
+        }
         el.textContent = "0" + suffix;
         observer.observe(el);
       });

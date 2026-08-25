@@ -3,7 +3,7 @@
     "title": "Clínica Dental Mont Blanc | Dra. Javiera Jara y Dr. Gustavo Padilla",
     "description": "Dentistas en Ovalle para urgencias, limpiezas, rehabilitación oral, prótesis, endodoncia, implantes y armonización facial. Atención cercana y respuesta rápida por WhatsApp.",
     "url": "https://clinicamontblanc.cl",
-    "image": "/mont_logo.png",
+    "image": "/og-image.jpg",
     "siteName": "Clínica Dental Mont Blanc",
     "locale": "es_CL",
     "twitterCard": "summary_large_image",
@@ -20,7 +20,7 @@
     "email": "contacto@montblanc.cl",
     "whatsapp": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20quisiera%20agendar%20una%20consulta.",
     "address": "Av. Manuel Peñafiel Olivares 1480, oficina 316B, 1840000 Ovalle, Coquimbo",
-    "hours": "Lunes a sábado: 9:30-13:30 y 15:00-19:30.\nDomingo: cerrado.",
+    "hours": "Lunes a viernes: 9:30-13:30 y 15:00-19:30.\nSábado: 9:30-14:00.\nDomingo: cerrado.",
     "emergency": "+56 9 2222 1111",
     "mapLink": "https://www.google.com/maps/place/Clinica+Dental+Mont+Blanc+-+Dra.+Javiera+Jara+%26+Dr.+Gustavo+Padilla/@-30.5773804,-71.1887003,17z/data=!3m1!4b1!4m6!3m5!1s0x968fcbed3a95dfe7:0xd471a6bf71a666bd!8m2!3d-30.5773804!4d-71.1887003!16s%2Fg%2F11y0fpjk_c?entry=ttu",
     "mapEmbed": "https://www.google.com/maps?q=Clinica+Dental+Mont+Blanc+-+Dra.+Javiera+Jara+%26+Dr.+Gustavo+Padilla&ll=-30.5773804,-71.1887003&z=17&output=embed"
@@ -80,7 +80,7 @@
       "ariaLabel": "Ver servicios"
     },
     "video": {
-      "poster": "https://dummyimage.com/1600x900/f8f0e8/b08050&text=Mont+Blanc+Cl%C3%ADnica+Dental",
+      "poster": "/hero-poster.webp",
       "webm": "/video.webm",
       "mp4": "/video.mp4"
     },
@@ -313,7 +313,7 @@
     "eyebrow": "Coordinemos tu atención",
     "note": "Respuesta en minutos dentro del horario",
     "subnote": "Agenda prioritaria para urgencias y seguimiento.",
-    "hours": "Lunes a sábado: 9:30-13:30 y 15:00-19:30.\nDomingo: cerrado.",
+    "hours": "Lunes a viernes: 9:30-13:30 y 15:00-19:30.\nSábado: 9:30-14:00.\nDomingo: cerrado.",
     "hoursLabel": "Horario",
     "hoursNote": "Fuera de horario déjanos tu mensaje y te respondemos al abrir.",
     "statusLabel": "En línea ahora",
@@ -325,7 +325,8 @@
         "img": "/montblanc_dark.webp",
         "statusLabel": "En línea ahora"
       }
-    ]
+    ],
+    "ctaLabel": "Agendar por WhatsApp"
   },
   "faq": {
     "title": "Preguntas frecuentes",
@@ -356,7 +357,7 @@
       }
     ],
     "eyebrow": "Preguntas frecuentes",
-    "intro": "Respuestas rápidas. Ajusta la información según tus protocolos."
+    "intro": "Resolvemos aquí las dudas más habituales antes de la primera consulta. Si la tuya no está, escríbenos por WhatsApp."
   },
   "partners": {
     "title": "Convenios y aliados",
@@ -386,7 +387,7 @@
     "eyebrow": "Convenios"
   },
   "footer": {
-    "legal": "© 2025 Mont Blanc. Todos los derechos reservados.",
+    "legal": "Mont Blanc. Todos los derechos reservados.",
     "links": [],
     "social": [
       {
@@ -421,8 +422,7 @@
       "ctaAriaLabel": "Abrir en Google Maps",
       "iframeTitle": "Mapa ubicación MONT BLANC"
     },
-    "hoursLabel": "Horario",
-    "bottomNote": "Desarrollado en Colaboracion - Bledev.tech & LuisDev "
+    "hoursLabel": "Horario"
   },
   "a11y": {
     "skipToContent": "Saltar al contenido principal",
