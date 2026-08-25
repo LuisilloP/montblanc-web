@@ -1,9 +1,15 @@
 # El CPU de este servidor es anterior a x86-64-v2, así que los prebuilds nativos
-# de sharp (@img/sharp-linux-x64) abortan con "Unsupported CPU" y el build se
-# cae. scripts/check-sharp.js lo detecta, instala el binario WebAssembly de
-# sharp (corre en cualquier CPU) y quita el nativo inservible — hace falta
-# quitarlo porque sharp prueba el nativo primero y, si lo carga y el CPU no le
-# sirve, aborta sin seguir buscando.
+# de sharp (@img/sharp-linux-x64) abortan con "Unsupported CPU".
+# scripts/check-sharp.js lo detecta e intenta pasarse al binario WebAssembly de
+# sharp, quitando el nativo inservible (hace falta quitarlo porque sharp prueba
+# el nativo primero y, si lo carga y el CPU no le sirve, aborta sin seguir
+# buscando).
+#
+# En este servidor el binario WebAssembly tampoco corre: V8 necesita SIMD
+# (SSE4.1) para compilarlo y este CPU no lo tiene. Por eso el script ya no tumba
+# el build: sale con 0 y astro.config.mjs cae al servicio de imágenes
+# `passthrough`, que copia las imágenes sin optimizar. Se pierde el
+# redimensionado responsive, no el deploy.
 #
 # Se ejecuta aquí, en la fase de install, para que quede resuelto en su propia
 # capa cacheada y la fase de build no dependa de la red. Igual se vuelve a

@@ -2,19 +2,24 @@
  * Comprobación previa al build (y reparación cuando el CPU no admite el
  * binario nativo de sharp).
  *
- * `astro build` necesita sharp para generar las variantes responsive de las
- * imágenes. Si sharp no carga, Astro aborta con un escueto "Could not find
- * Sharp" que no dice si falta el paquete, si falta su binario nativo o si el
- * binario no corresponde a esta plataforma. Este script hace la misma carga que
- * hace Astro, pero cuando falla informa de qué hay realmente instalado.
+ * sharp es lo que usa Astro para generar las variantes responsive de las
+ * imágenes. Cuando no carga, Astro solo dice "Could not find Sharp", sin
+ * aclarar si falta el paquete, si falta su binario nativo o si el binario no
+ * corresponde a esta plataforma. Este script hace la misma carga que hace
+ * Astro, pero cuando falla informa de qué hay realmente instalado.
  *
- * Además arregla el caso que nos rompe el deploy: los prebuilds de
+ * Además intenta arreglar el caso que nos rompe el deploy: los prebuilds de
  * `@img/sharp-linux-x64` exigen microarquitectura x86-64-v2 y muchos VPS (CPU
  * antiguo, o el modelo genérico de CPU de QEMU) no la ofrecen. sharp prueba
  * `@img/sharp-<plataforma>` antes que `@img/sharp-wasm32` y, si el nativo carga
  * pero el CPU no es v2, aborta sin seguir probando: por eso hay que instalar el
- * binario WebAssembly *y* quitar el nativo inservible. Va más lento, pero corre
- * en cualquier CPU.
+ * binario WebAssembly *y* quitar el nativo inservible.
+ *
+ * El script nunca tumba el build. Si tampoco sirve el binario WebAssembly (hace
+ * falta SIMD/SSE4.1, que algunos CPU tampoco tienen), sale con 0 y deja el aviso:
+ * astro.config.mjs detecta lo mismo por su cuenta y cae al servicio de imágenes
+ * `passthrough`, que copia las imágenes sin optimizar. Con MB_SHARP_ESTRICTO=1
+ * vuelve a fallar duro.
  *
  * Trabaja en dos niveles: este proceso orquesta y un proceso hijo hace la carga.
  * Así el que repara nunca tiene el binario abierto (uno cargado no se puede
@@ -76,7 +81,7 @@ if (process.env.MB_SHARP_VERIFICAR === "1") {
 
     if (process.env.MB_SHARP_DIAGNOSTICO === "1") {
       const binarios = listarBinarios();
-      console.error("\ncheck-sharp: sharp no se puede cargar, y el build lo necesita.\n");
+      console.error("\ncheck-sharp: sharp no se puede cargar.\n");
       console.error(`  plataforma        : ${process.platform}-${process.arch}`);
       console.error(`  node              : ${process.version}`);
       console.error(`  binario esperado  : @img/sharp-${process.platform}-${process.arch}`);
@@ -177,18 +182,30 @@ const instalarWasm = (version) => {
   return wasmInstalado();
 };
 
+/**
+ * Sale sin romper el build. Si sharp no se puede usar, astro.config.mjs lo
+ * detecta solo y cae al servicio de imágenes `passthrough`: las imágenes se
+ * copian sin optimizar, pero el deploy sale. Con MB_SHARP_ESTRICTO=1 el script
+ * vuelve a fallar duro (útil en local, donde sharp sí debería funcionar).
+ */
+const rendirse = (motivo) => {
+  console.error(`\ncheck-sharp: ${motivo}`);
+  console.error(
+    "  El build sigue igual: astro.config.mjs usará el servicio de imágenes\n" +
+      "  `passthrough` y las imágenes se copiarán sin optimizar.\n"
+  );
+  process.exit(process.env.MB_SHARP_ESTRICTO === "1" ? 1 : 0);
+};
+
 const primero = verificar();
 if (primero.status === 0) process.exit(0);
 
 const version = versionSharp();
-if (!version) {
-  console.error("\ncheck-sharp: sharp no está instalado. Revisa el `npm ci` del build.\n");
-  process.exit(1);
-}
+if (!version) rendirse("sharp no está instalado. Revisa el `npm ci` del build.");
 
 console.error(
   "\ncheck-sharp: pasando al binario WebAssembly de sharp " +
-    "(más lento, pero corre en cualquier CPU).\n"
+    "(más lento, pero corre en cualquier CPU con soporte SIMD).\n"
 );
 
 // Lo normal es que el binario ya venga de la fase de install (nixpacks.toml).
@@ -203,10 +220,10 @@ if (wasmInstalado() || instalarWasm(version)) {
     }
   }
   const segundo = verificar({ MB_SHARP_DIAGNOSTICO: "1" });
-  process.exit(segundo.status === 0 ? 0 : 1);
+  if (segundo.status === 0) process.exit(0);
+  rendirse("ni el binario nativo ni el de WebAssembly funcionan en este CPU.");
 }
 
 console.error("\n  la instalación de @img/sharp-wasm32 falló.\n");
 verificar({ MB_SHARP_DIAGNOSTICO: "1" });
-process.exit(1);
- 
+rendirse("no se pudo dejar sharp operativo.");
