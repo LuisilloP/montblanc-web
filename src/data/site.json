@@ -270,41 +270,102 @@
   "gallery": {
     "title": "Antes y después",
     "note": "Resultados clínicos documentados con fotografía estandarizada y seguimiento.",
+    "eyebrow": "Antes y después",
+    "beforeLabel": "Antes",
+    "afterLabel": "Después",
+    "filterAllLabel": "Todos",
+    "zoomLabel": "Ampliar caso",
+    "cta": {
+      "label": "Consultar por este tratamiento",
+      "href": "https://wa.me/56967454506?text=Hola%20Mont%20Blanc%2C%20vi%20el%20caso%20de%20%22{caso}%22%20y%20quiero%20una%20evaluaci%C3%B3n."
+    },
+    "disclaimer": "Casos reales de pacientes de la clínica, publicados con su consentimiento. Cada tratamiento se planifica según el diagnóstico individual: los resultados varían de una persona a otra.",
     "items": [
       {
+        "id": "protesis-01",
         "title": "Rehabilitación con prótesis",
-        "image": "/cases/implantes_dentales.webp",
-        "alt": "Caso de implantes dentales"
+        "category": "Rehabilitación oral",
+        "meta": "",
+        "before": {
+          "image": "/cases/protesis-01-antes.webp",
+          "alt": "Hombre adulto sonriendo antes del tratamiento, con ausencia de piezas en el sector anterior superior"
+        },
+        "after": {
+          "image": "/cases/protesis-01-despues.webp",
+          "alt": "El mismo paciente sonriendo tras la rehabilitación, con la arcada superior completa"
+        }
       },
       {
+        "id": "periodoncia-protesis-01",
         "title": "Tratamiento periodontal y rehabilitación con prótesis",
-        "image": "/cases/tratamiento_periodontal.webp",
-        "alt": "Segundo caso de implantes dentales"
+        "category": "Rehabilitación oral",
+        "meta": "",
+        "before": {
+          "image": "/cases/periodoncia-protesis-01-antes.webp",
+          "alt": "Hombre adulto mayor sonriendo antes del tratamiento, con pérdida de varias piezas anteriores"
+        },
+        "after": {
+          "image": "/cases/periodoncia-protesis-01-despues.webp",
+          "alt": "El mismo paciente sonriendo tras el tratamiento periodontal y la rehabilitación con prótesis"
+        }
       },
       {
+        "id": "restauracion-01",
         "title": "Restauraciones de resina compuesta",
-        "image": "/cases/restauracion.webp",
-        "alt": "Restauración y rehabilitación dental"
+        "category": "Estética dental",
+        "meta": "",
+        "before": {
+          "image": "/cases/restauracion-01-antes.webp",
+          "alt": "Primer plano de los incisivos superiores con una fractura visible en el borde del incisivo central"
+        },
+        "after": {
+          "image": "/cases/restauracion-01-despues.webp",
+          "alt": "Los mismos incisivos tras la restauración con resina compuesta, con el borde reconstruido"
+        }
       },
       {
+        "id": "periodoncia-01",
         "title": "Tratamiento periodontal (limpieza)",
-        "image": "/cases/periodoncia.webp",
-        "alt": "Resultado de tratamiento periodontal"
+        "category": "Periodoncia",
+        "meta": "",
+        "before": {
+          "image": "/cases/periodoncia-01-antes.webp",
+          "alt": "Primer plano de ambas arcadas con acumulación de sarro y encías inflamadas"
+        },
+        "after": {
+          "image": "/cases/periodoncia-01-despues.webp",
+          "alt": "Las mismas arcadas tras el tratamiento periodontal, con las encías desinflamadas y las piezas limpias"
+        }
       },
       {
+        "id": "armonizacion-01",
         "title": "Armonización orofacial (rinomodelación y perfilado labial)",
-        "image": "/cases/Sculptra.webp",
-        "alt": "Bioestimulador Sculptra"
+        "category": "Armonización orofacial",
+        "meta": "",
+        "before": {
+          "image": "/cases/armonizacion-01-antes.webp",
+          "alt": "Rostro de frente antes de la armonización orofacial"
+        },
+        "after": {
+          "image": "/cases/armonizacion-01-despues.webp",
+          "alt": "El mismo rostro de frente tras la armonización orofacial"
+        }
       },
       {
+        "id": "rinomodelacion-01",
         "title": "Rinomodelación",
-        "image": "/cases/rinomodelacion.webp",
-        "alt": "Resultado de rinomodelación con ácido hialurónico"
+        "category": "Armonización orofacial",
+        "meta": "",
+        "before": {
+          "image": "/cases/rinomodelacion-01-antes.webp",
+          "alt": "Perfil del rostro antes de la rinomodelación"
+        },
+        "after": {
+          "image": "/cases/rinomodelacion-01-despues.webp",
+          "alt": "El mismo perfil tras la rinomodelación con ácido hialurónico"
+        }
       }
-    ],
-    "eyebrow": "Antes y después",
-    "badge": "Resultados de referencia - Solicita tu plan personalizado",
-    "caseLabel": "Caso"
+    ]
   },
   "ctaBanner": {
     "title": "Agenda tu evaluación",

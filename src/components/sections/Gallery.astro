@@ -1,70 +1,425 @@
 ---
 import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
 import { resolveImage } from '../../libs/images';
 
-type Item = { title: string; image: string; alt: string };
+type Foto = { image: string; alt: string };
+
+type Item = {
+  id: string;
+  title: string;
+  category?: string;
+  meta?: string;
+  before: Foto;
+  after: Foto;
+};
+
 type Props = {
   data: {
     eyebrow?: string;
     title: string;
     note: string;
-    badge?: string;
-    caseLabel?: string;
+    beforeLabel?: string;
+    afterLabel?: string;
+    filterAllLabel?: string;
+    zoomLabel?: string;
+    disclaimer?: string;
+    cta?: { label: string; href: string };
     items: Item[];
   };
 };
 
 const { data } = Astro.props as Props;
-const caseLabel = data.caseLabel ?? "Caso";
-const items = data.items.map((item) => ({ item, asset: resolveImage(item.image) }));
+
+const etiquetaAntes = data.beforeLabel ?? 'Antes';
+const etiquetaDespues = data.afterLabel ?? 'Después';
+const etiquetaTodos = data.filterAllLabel ?? 'Todos';
+const etiquetaZoom = data.zoomLabel ?? 'Ampliar caso';
+
+/**
+ * El diagrama de cada caso lo decide la proporción de la foto, no un campo del
+ * JSON: los retratos (4:5) se leen lado a lado, pero los primeros planos de la
+ * arcada son tan apaisados que a media tarjeta quedarían en una franja de
+ * treinta píxeles de alto. Esos van apilados, como los compuso la clínica.
+ */
+const casos = data.items.map((item) => {
+  const antes = resolveImage(item.before.image);
+  const despues = resolveImage(item.after.image);
+  const apaisada = antes ? antes.width / antes.height >= 1 : false;
+  return { item, antes, despues, apaisada };
+});
+
+const categorias = [
+  ...new Set(data.items.map((item) => item.category).filter(Boolean))
+] as string[];
+
+const ctaHref = (titulo: string) =>
+  data.cta?.href.replace('{caso}', encodeURIComponent(titulo));
+
+const visorId = 'antes-despues-visor';
 ---
 
 <section id="antes-despues" class="container-wide section-rhythm space-y-8 lg:space-y-12" data-reveal>
-  <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-    <div class="space-y-2">
-      {data.eyebrow && (
-        <p class="pill w-fit text-[11px] tracking-[0.2em]">{data.eyebrow}</p>
-      )}
-      <h2 class="h-section">{data.title}</h2>
-      <p class="section-lede">{data.note}</p>
-    </div>
-    {data.badge && (
-      <div class="rounded-full border text-center border-[rgba(176,128,80,0.2)] bg-white/80 px-4 py-2 text-sm text-(--charcoal)/70">
-        {data.badge}
-      </div>
+  <div class="space-y-2">
+    {data.eyebrow && (
+      <p class="pill w-fit text-[11px] tracking-[0.2em]">{data.eyebrow}</p>
     )}
+    <h2 class="h-section">{data.title}</h2>
+    <p class="section-lede">{data.note}</p>
   </div>
 
-  <div class="grid gap-6 sm:grid-cols-2">
-    {items.map(({ item, asset }, idx) => (
-      <article
-        class="group relative overflow-hidden rounded-3xl border border-[rgba(176,128,80,0.18)] bg-white/60 shadow-md transition hover:-translate-y-1 hover:shadow-xl reveal-on-scroll"
-        data-reveal
-        data-reveal-delay={`${idx * 140}ms`}
-        aria-label={`Caso ${item.title}`}
-      >
-        {asset ? (
-          <Image
-            src={asset}
-            alt={item.alt}
-            widths={[400, 560, 760, 1000]}
-            sizes="(min-width: 640px) 46vw, 92vw"
-            loading="lazy"
-            decoding="async"
-            class="h-full w-full bg-white object-contain"
-            style="aspect-ratio: 5 / 4;"
-          />
-        ) : (
-          <img src={item.image} alt={item.alt} loading="lazy" decoding="async" class="h-full w-full bg-white object-contain" style="aspect-ratio: 5 / 4;" />
-        )}
-        <div class="pointer-events-none absolute inset-0 bg-linear-to-b from-transparent via-transparent to-[rgba(32,32,32,0.55)] opacity-80 transition group-hover:opacity-90" />
-        <div class="absolute bottom-4 left-4 right-4 flex items-start text-white">
-          <div>
-            <p class="text-sm uppercase tracking-[0.18em] text-[rgba(255,255,255,0.85)]">{caseLabel}</p>
-            <p class="text-lg font-semibold">{item.title}</p>
+  {categorias.length > 1 && (
+    <div
+      class="filtros hidden gap-2"
+      role="group"
+      aria-label={`Filtrar ${data.title.toLowerCase()} por tratamiento`}
+    >
+      <button type="button" class="filtro is-active tap-target" data-filtro="" aria-pressed="true">
+        {etiquetaTodos}
+      </button>
+      {categorias.map((categoria) => (
+        <button type="button" class="filtro tap-target" data-filtro={categoria} aria-pressed="false">
+          {categoria}
+        </button>
+      ))}
+    </div>
+  )}
+
+  <!-- Sin `items-start`: las tarjetas de una misma fila se estiran igual y el
+       `mt-auto` del CTA los deja alineados aunque un título ocupe dos líneas. -->
+  <div class="grid gap-6 lg:grid-cols-2 lg:gap-8" data-casos>
+    {casos.map(({ item, antes, despues, apaisada }, idx) => {
+      const enlace = ctaHref(item.title);
+      // La primera tarjeta suele entrar en pantalla al hacer scroll desde
+      // servicios: cargarla con prioridad evita el salto de las dos fotos.
+      const prioritaria = idx === 0;
+      const anchos = apaisada ? [420, 640, 900, 1100] : [320, 480, 640, 800];
+      const medidas = apaisada
+        ? '(min-width: 1024px) 45vw, 92vw'
+        : '(min-width: 1024px) 23vw, 46vw';
+
+      const panel = (foto: Foto, asset: typeof antes, etiqueta: string) => (
+        <figure class="relative m-0 overflow-hidden bg-white">
+          {asset ? (
+            <Image
+              src={asset}
+              alt={foto.alt}
+              widths={anchos}
+              sizes={medidas}
+              loading={prioritaria ? 'eager' : 'lazy'}
+              decoding="async"
+              class="h-full w-full object-cover"
+            />
+          ) : (
+            <img
+              src={foto.image}
+              alt={foto.alt}
+              loading={prioritaria ? 'eager' : 'lazy'}
+              decoding="async"
+              class="h-full w-full object-cover"
+            />
+          )}
+          <figcaption class="etiqueta-foto">{etiqueta}</figcaption>
+        </figure>
+      );
+
+      return (
+        <article
+          class="card flex flex-col transition hover:-translate-y-1 hover:shadow-xl reveal-on-scroll"
+          data-reveal
+          data-reveal-delay={`${(idx % 2) * 120}ms`}
+          data-caso
+          data-categoria={item.category ?? ''}
+        >
+          <div class="relative">
+            <div
+              class:list={[
+                'grid gap-px bg-[rgba(176,128,80,0.22)]',
+                apaisada ? 'grid-rows-2' : 'grid-cols-2'
+              ]}
+            >
+              {panel(item.before, antes, etiquetaAntes)}
+              {panel(item.after, despues, etiquetaDespues)}
+            </div>
+
+            <button
+              type="button"
+              class="boton-zoom"
+              data-zoom
+              data-titulo={item.title}
+              aria-label={`${etiquetaZoom}: ${item.title}`}
+            >
+              <Icon name="lucide:maximize-2" class="h-4 w-4" stroke-width="1.8" aria-hidden="true" />
+            </button>
           </div>
-        </div>
-      </article>
-    ))}
+
+          <div class="flex flex-1 flex-col gap-3 px-5 pb-6 pt-5 sm:px-6 sm:pb-7">
+            {(item.category || item.meta) && (
+              <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
+                {item.category && (
+                  <span class="font-semibold uppercase tracking-[0.16em] text-(--goldText)">
+                    {item.category}
+                  </span>
+                )}
+                {item.meta && <span class="text-(--charcoal)/60">{item.meta}</span>}
+              </div>
+            )}
+
+            <h3 class="h-card text-xl sm:text-2xl text-(--charcoal)">{item.title}</h3>
+
+            {enlace && data.cta && (
+              <a
+                class="group/cta mt-auto inline-flex items-center justify-between gap-3 rounded-full border border-[rgba(176,128,80,0.32)] bg-[rgba(248,232,224,0.7)] px-4 py-3 text-sm font-semibold text-(--goldDeep) transition sm:px-5 sm:text-base hover:-translate-y-px hover:shadow-[0_12px_34px_rgba(176,128,80,0.18)]"
+                href={enlace}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span>{data.cta.label}</span>
+                <span
+                  class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[rgba(176,128,80,0.25)] bg-white/95 transition sm:h-9 sm:w-9 group-hover/cta:translate-x-0.5"
+                  aria-hidden="true"
+                >
+                  <Icon name="lucide:arrow-right" class="h-4 w-4" stroke-width="1.6" />
+                </span>
+              </a>
+            )}
+          </div>
+        </article>
+      );
+    })}
   </div>
+
+  <p data-sin-resultados hidden class="text-center text-(--charcoal)/70">
+    No hay casos publicados en esta categoría todavía.
+  </p>
+
+  {data.disclaimer && (
+    <p class="max-w-3xl text-sm leading-relaxed text-(--charcoal)/60">{data.disclaimer}</p>
+  )}
+
+  <dialog id={visorId} class="visor" aria-labelledby={`${visorId}-titulo`}>
+    <div class="visor-caja">
+      <div class="flex items-start justify-between gap-4 px-5 pt-5 sm:px-6">
+        <h3 id={`${visorId}-titulo`} class="h-sub text-(--charcoal)"></h3>
+        <button type="button" class="boton-cerrar" data-cerrar aria-label="Cerrar">
+          <Icon name="lucide:x" class="h-5 w-5" stroke-width="1.8" aria-hidden="true" />
+        </button>
+      </div>
+      <div class="visor-medios px-5 pb-5 pt-4 sm:px-6 sm:pb-6"></div>
+    </div>
+  </dialog>
 </section>
+
+<style>
+  /* La etiqueta va en HTML, no quemada en el JPG: se traduce, la lee un lector
+     de pantalla y no se pixela al escalar. */
+  .etiqueta-foto {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    border-radius: 9999px;
+    padding: 0.2rem 0.7rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 2px 10px rgba(32, 32, 32, 0.12);
+  }
+
+  /* Abajo a la derecha, no arriba: en móvil el panel "Después" mide unos 170px
+     y el botón quedaba pegado a su etiqueta. Ahí abajo no compite con nada. */
+  .boton-zoom {
+    position: absolute;
+    bottom: 0.75rem;
+    right: 0.75rem;
+    display: none;
+    height: 2.25rem;
+    width: 2.25rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    color: var(--goldDeep);
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 2px 10px rgba(32, 32, 32, 0.14);
+    transition: transform 160ms ease, background 160ms ease;
+  }
+
+  /* Sin JS el visor no abre, así que el botón tampoco aparece. */
+  :global(.js-enabled) .boton-zoom {
+    display: inline-flex;
+  }
+
+  .boton-zoom:hover {
+    transform: scale(1.06);
+    background: #fff;
+  }
+
+  :global(.js-enabled) .filtros {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  /* En móvil cinco chips envueltos gastaban tres líneas antes de la primera
+     foto. En una sola fila deslizable ocupan una, y sangran hasta el borde de
+     la pantalla para que se note que hay más a la derecha. */
+  @media (max-width: 639px) {
+    :global(.js-enabled) .filtros {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scroll-snap-type: x proximity;
+      margin-inline: -1rem;
+      padding-inline: 1rem;
+      scrollbar-width: none;
+    }
+
+    .filtros::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filtro {
+      flex: none;
+      scroll-snap-align: start;
+    }
+  }
+
+  .filtro {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    border: 1px solid rgba(176, 128, 80, 0.28);
+    background: rgba(255, 255, 255, 0.7);
+    padding: 0.5rem 1.1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    white-space: nowrap;
+    color: var(--charcoal);
+    transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+  }
+
+  .filtro:hover {
+    border-color: var(--goldText);
+    color: var(--goldDeep);
+  }
+
+  .filtro.is-active {
+    border-color: transparent;
+    color: #fff;
+    background: linear-gradient(120deg, var(--goldBtnFrom), var(--goldBtnTo));
+  }
+
+  .visor {
+    width: min(72rem, 94vw);
+    max-height: 92vh;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    overflow: visible;
+    /* El preflight de Tailwind pone `margin: 0` en todo, y con eso se pierde el
+       `margin: auto` con el que el navegador centra un dialog modal. */
+    margin: auto;
+  }
+
+  .visor::backdrop {
+    background: rgba(32, 32, 32, 0.72);
+    backdrop-filter: blur(3px);
+  }
+
+  .visor-caja {
+    max-height: 92vh;
+    overflow-y: auto;
+    border-radius: var(--radius-lg);
+    background: var(--ivory);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .boton-cerrar {
+    display: inline-flex;
+    height: 2.5rem;
+    width: 2.5rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    border: 1px solid rgba(176, 128, 80, 0.28);
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--goldDeep);
+  }
+
+  .boton-cerrar:hover {
+    background: #fff;
+  }
+
+  /* El visor reutiliza el bloque de fotos de la tarjeta tal cual, así que la
+     rejilla y su hairline se heredan; solo hay que redondearle las esquinas. */
+  .visor-medios :global(> div) {
+    overflow: hidden;
+    border-radius: 18px;
+  }
+</style>
+
+<script>
+  const seccion = document.getElementById('antes-despues');
+  if (seccion) {
+    const visor = seccion.querySelector<HTMLDialogElement>('.visor');
+    const visorTitulo = visor?.querySelector('h3');
+    const visorMedios = visor?.querySelector('.visor-medios');
+    const tarjetas = Array.from(seccion.querySelectorAll<HTMLElement>('[data-caso]'));
+    const vacio = seccion.querySelector<HTMLElement>('[data-sin-resultados]');
+
+    seccion.querySelectorAll<HTMLButtonElement>('[data-zoom]').forEach((boton) => {
+      boton.addEventListener('click', () => {
+        if (!visor || !visorMedios || !visorTitulo) return;
+        const medios = boton.parentElement?.querySelector(':scope > div');
+        if (!medios) return;
+        visorTitulo.textContent = boton.dataset.titulo ?? '';
+        visorMedios.replaceChildren(medios.cloneNode(true));
+        // Las copias vienen de tarjetas que pueden seguir en lazy: forzarlas
+        // evita que el visor se abra con los huecos en blanco.
+        visorMedios.querySelectorAll('img').forEach((img) => {
+          img.loading = 'eager';
+        });
+        visor.showModal();
+      });
+    });
+
+    visor?.querySelector('[data-cerrar]')?.addEventListener('click', () => visor.close());
+
+    // Clic fuera de la caja = cerrar. El dialog ocupa todo el viewport, así que
+    // hay que comparar contra la caja, no contra el propio dialog.
+    visor?.addEventListener('click', (evento) => {
+      const caja = visor.querySelector('.visor-caja');
+      if (caja && !caja.contains(evento.target as Node)) visor.close();
+    });
+
+    visor?.addEventListener('close', () => visorMedios?.replaceChildren());
+
+    const filtros = Array.from(seccion.querySelectorAll<HTMLButtonElement>('[data-filtro]'));
+    filtros.forEach((filtro) => {
+      filtro.addEventListener('click', () => {
+        const categoria = filtro.dataset.filtro ?? '';
+
+        filtros.forEach((otro) => {
+          const activo = otro === filtro;
+          otro.classList.toggle('is-active', activo);
+          otro.setAttribute('aria-pressed', String(activo));
+        });
+
+        let visibles = 0;
+        tarjetas.forEach((tarjeta) => {
+          const coincide = !categoria || tarjeta.dataset.categoria === categoria;
+          tarjeta.hidden = !coincide;
+          if (coincide) {
+            visibles += 1;
+            // Una tarjeta filtrada antes de entrar en pantalla se quedaría en
+            // opacidad 0 al volver: se la da por revelada al mostrarla.
+            tarjeta.classList.add('is-visible');
+          }
+        });
+
+        if (vacio) vacio.hidden = visibles > 0;
+      });
+    });
+  }
+</script>

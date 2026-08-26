@@ -46,16 +46,16 @@ const doctors = (data?.doctors ?? []).map((doctor) => ({
       <p class="section-lede max-w-3xl">{data.description}</p>
     </div>
 
-    <div class="grid gap-8 xl:grid-cols-2">
+    <div class="grid gap-8 xl:grid-cols-2 xl:grid-rows-[auto_1fr] xl:gap-y-4">
       {
         doctors.map(({ doctor, asset }, idx) => (
           <article
-            class="relative overflow-hidden rounded-[28px] border border-white/40 bg-white/40 shadow-[0_20px_60px_-40px_rgba(0,0,0,0.35)] backdrop-blur-[3px] reveal-on-scroll"
+            class="relative overflow-hidden rounded-[28px] xl:row-span-2 xl:grid xl:grid-rows-subgrid border border-white/40 bg-white/40 shadow-[0_20px_60px_-40px_rgba(0,0,0,0.35)] backdrop-blur-[3px] reveal-on-scroll"
             data-reveal
             data-reveal-delay={`${idx * 180}ms`}
           >
-            <div class="grid grid-cols-1 lg:grid-cols-[1.45fr_1fr]">
-              <div class="relative min-h-110 overflow-hidden lg:min-h-130">
+            <div class="grid grid-cols-1 lg:grid-cols-[1.45fr_1fr] xl:row-span-2 xl:grid-rows-subgrid">
+              <div class="relative min-h-110 overflow-hidden lg:min-h-130 xl:row-span-2">
                 {asset ? (
                   <Image
                     src={asset}
@@ -90,7 +90,7 @@ const doctors = (data?.doctors ?? []).map((doctor) => ({
                 </div>
               </div>
 
-              <div class="flex h-full flex-col gap-4 bg-transparent p-4 lg:p-5">
+              <div class="flex h-full flex-col gap-4 bg-transparent p-4 lg:p-5 xl:grid xl:row-span-2 xl:grid-rows-subgrid">
                 <div class="rounded-[22px] bg-[rgba(201,181,151,0.9)] p-6 text-(--charcoal) shadow-[0_14px_30px_-20px_rgba(0,0,0,0.25)]">
                   <p class="text-sm font-semibold text-(--charcoal)/80">
                     {data.experienceLabel}
@@ -110,7 +110,7 @@ const doctors = (data?.doctors ?? []).map((doctor) => ({
                   </div>
                 </div>
 
-                <div class="rounded-[22px] bg-white/90 p-6 text-(--charcoal) shadow-[0_18px_42px_-26px_rgba(0,0,0,0.24)] ring-1 ring-[rgba(32,32,32,0.06)]">
+                <div class="flex-1 rounded-[22px] bg-white/90 p-6 text-(--charcoal) shadow-[0_18px_42px_-26px_rgba(0,0,0,0.24)] ring-1 ring-[rgba(32,32,32,0.06)]">
                   <ul class="space-y-2 text-sm text-(--charcoal)/85">
                     {doctor.bullets.map((item) => (
                       <li class="flex gap-2">

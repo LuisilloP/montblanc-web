@@ -18,32 +18,223 @@ const items = data.items.map((partner) => ({ partner, asset: resolveImage(partne
     <p class="section-lede">{data.text}</p>
   </div>
 
-  <!-- Flex centrado en lugar de rejilla: con 5 convenios, una rejilla de 4
-       columnas deja el ultimo solo, con 3 huecos a su lado. Asi la fila
-       incompleta queda centrada, y aguanta si se anaden o quitan convenios. -->
-  <div class="flex flex-wrap justify-center gap-4 sm:gap-6">
-    {items.map(({ partner, asset }, idx) => (
-      <div
-        class="card flex h-28 basis-[calc(50%-0.5rem)] items-center justify-center px-4 py-4 sm:h-40 sm:basis-[calc(50%-0.75rem)] sm:px-6 sm:py-6 lg:basis-[calc(33.333%-1rem)] bg-white/92 ring-1 ring-[rgba(176,128,80,0.12)] shadow-[0_18px_50px_rgba(32,32,32,0.08)] reveal-on-scroll"
-        data-reveal
-        data-reveal-delay={`${idx * 140}ms`}
-      >
-        <div class="flex h-full w-full items-center justify-center rounded-xl bg-white/96 ring-1 ring-[rgba(176,128,80,0.1)] shadow-[0_12px_32px_rgba(32,32,32,0.06)] px-4 py-3">
-          {asset ? (
-            <Image
-              src={asset}
-              alt={`Logo de ${partner.name}`}
-              widths={[200, 260, 400, 520]}
-              sizes="(min-width: 640px) 240px, 40vw"
-              class="mx-auto max-h-16 w-full max-w-[240px] object-contain sm:max-h-20 md:max-h-24"
-              loading="lazy"
-              decoding="async"
-            />
-          ) : (
-            <img src={partner.logo} alt={`Logo de ${partner.name}`} class="mx-auto max-h-16 w-full max-w-[240px] object-contain sm:max-h-20" loading="lazy" decoding="async" />
-          )}
+  <div class="space-y-4">
+    <!-- Móvil: una sola fila deslizable. Apilados de a dos, los cinco convenios
+         gastaban tres filas de scroll antes del siguiente bloque y dejaban al
+         último solo en la fila incompleta. Aquí sangran hasta el borde de la
+         pantalla y asoma la tarjeta siguiente, que es lo que delata que hay más.
+         Desde sm vuelve el flex centrado: una rejilla de columnas fijas volvería
+         a dejar huérfano al último si se añaden o quitan convenios. -->
+    <div
+      class="pista flex flex-nowrap gap-4 sm:flex-wrap sm:justify-center sm:gap-6"
+      data-pista
+      aria-label={data.title}
+    >
+      {items.map(({ partner, asset }, idx) => (
+        <div
+          class="tarjeta card flex h-28 basis-[calc(50%-0.5rem)] items-center justify-center px-4 py-4 sm:h-40 sm:basis-[calc(50%-0.75rem)] sm:px-6 sm:py-6 lg:basis-[calc(33.333%-1rem)] bg-white/92 ring-1 ring-[rgba(176,128,80,0.12)] shadow-[0_18px_50px_rgba(32,32,32,0.08)] reveal-on-scroll"
+          data-reveal
+          data-reveal-delay={`${idx * 140}ms`}
+          data-tarjeta
+        >
+          <div class="flex h-full w-full items-center justify-center rounded-xl bg-white/96 ring-1 ring-[rgba(176,128,80,0.1)] shadow-[0_12px_32px_rgba(32,32,32,0.06)] px-4 py-3">
+            {asset ? (
+              <Image
+                src={asset}
+                alt={`Logo de ${partner.name}`}
+                widths={[200, 260, 400, 520]}
+                sizes="(min-width: 640px) 240px, 40vw"
+                class="mx-auto max-h-16 w-full max-w-[240px] object-contain sm:max-h-20 md:max-h-24"
+                loading="lazy"
+                decoding="async"
+              />
+            ) : (
+              <img src={partner.logo} alt={`Logo de ${partner.name}`} class="mx-auto max-h-16 w-full max-w-[240px] object-contain sm:max-h-20" loading="lazy" decoding="async" />
+            )}
+          </div>
         </div>
+      ))}
+    </div>
+
+    {items.length > 1 && (
+      <div class="puntos" data-puntos>
+        {items.map(({ partner }, idx) => (
+          <button
+            type="button"
+            class="punto"
+            data-punto={idx}
+            aria-label={`Ver convenio ${idx + 1} de ${items.length}: ${partner.name}`}
+          />
+        ))}
       </div>
-    ))}
+    )}
   </div>
 </section>
+
+<style>
+  @media (max-width: 639px) {
+    .pista {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      overscroll-behavior-x: contain;
+      scroll-behavior: smooth;
+      /* container-wide deja px-4 en móvil: el margen negativo lo devuelve para
+         que la fila sangre hasta el borde, y el padding conserva el aire de la
+         primera tarjeta. El bloque vertical es para que no se corte la sombra. */
+      margin-inline: -1rem;
+      padding-inline: 1rem;
+      padding-block: 0.35rem;
+      scroll-padding-inline: 1rem;
+      scrollbar-width: none;
+    }
+
+    .pista::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* 44% deja dos tarjetas completas y un trozo visible de la tercera. */
+    .tarjeta {
+      flex: 0 0 44%;
+      min-width: 8.5rem;
+      scroll-snap-align: start;
+    }
+
+    /* Con `start` en todas, el final del recorrido no cae en ningún punto de
+       anclaje y el navegador se resiste a mostrar la última entera. */
+    .tarjeta:last-child {
+      scroll-snap-align: end;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pista {
+      scroll-behavior: auto;
+    }
+  }
+
+  /* Sin JS los puntos no se sincronizan con el scroll, así que no se muestran:
+     el asomo de la tarjeta siguiente ya indica que la fila se desliza. */
+  .puntos {
+    display: none;
+    justify-content: center;
+    gap: 2px;
+  }
+
+  @media (max-width: 639px) {
+    :global(.js-enabled) .puntos {
+      display: flex;
+    }
+  }
+
+  .punto {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+  }
+
+  .punto::before {
+    content: '';
+    display: block;
+    width: 7px;
+    height: 7px;
+    border-radius: 9999px;
+    background: rgba(32, 32, 32, 0.18);
+    transition: width 220ms ease, background 220ms ease;
+  }
+
+  .punto.is-active::before {
+    width: 20px;
+    background: var(--goldText);
+  }
+
+  .punto:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: -8px;
+    border-radius: 9999px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .punto::before {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const seccion = document.getElementById('convenios');
+  const pista = seccion?.querySelector<HTMLElement>('[data-pista]');
+  const tarjetas = Array.from(seccion?.querySelectorAll<HTMLElement>('[data-tarjeta]') ?? []);
+  const puntos = Array.from(seccion?.querySelectorAll<HTMLButtonElement>('[data-punto]') ?? []);
+
+  if (pista && tarjetas.length) {
+    const suave = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Desde sm la fila ya no se desliza: un tabindex fijo dejaría una parada de
+    // teclado muerta en escritorio, así que se pone solo cuando hay desborde.
+    const ajustarFoco = () => {
+      const desborda = pista.scrollWidth - pista.clientWidth > 1;
+      if (desborda) {
+        pista.tabIndex = 0;
+        pista.setAttribute('role', 'region');
+      } else {
+        pista.removeAttribute('tabindex');
+        pista.removeAttribute('role');
+      }
+    };
+
+    const sincronizar = () => {
+      ajustarFoco();
+      if (!puntos.length) return;
+
+      // Marca la tarjeta cuyo borde izquierdo queda más cerca del inicio de la
+      // pista; con `scroll-snap-align: end` en la última, al final del recorrido
+      // gana ella igual porque ninguna otra queda tan a la izquierda.
+      const referencia = pista.getBoundingClientRect().left;
+      let activo = 0;
+      let menor = Infinity;
+
+      tarjetas.forEach((tarjeta, idx) => {
+        const distancia = Math.abs(tarjeta.getBoundingClientRect().left - referencia);
+        if (distancia < menor) {
+          menor = distancia;
+          activo = idx;
+        }
+      });
+
+      puntos.forEach((punto, idx) => {
+        const esActivo = idx === activo;
+        punto.classList.toggle('is-active', esActivo);
+        punto.setAttribute('aria-current', String(esActivo));
+      });
+    };
+
+    let pendiente = 0;
+    const programar = () => {
+      if (pendiente) return;
+      pendiente = requestAnimationFrame(() => {
+        pendiente = 0;
+        sincronizar();
+      });
+    };
+
+    pista.addEventListener('scroll', programar, { passive: true });
+    window.addEventListener('resize', programar);
+
+    puntos.forEach((punto, idx) => {
+      punto.addEventListener('click', () => {
+        tarjetas[idx]?.scrollIntoView({
+          behavior: suave ? 'smooth' : 'auto',
+          block: 'nearest',
+          inline: 'start'
+        });
+      });
+    });
+
+    sincronizar();
+  }
+</script>
