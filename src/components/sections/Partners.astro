@@ -192,8 +192,7 @@ const items = data.items.map((partner) => ({ partner, asset: resolveImage(partne
       if (!puntos.length) return;
 
       // Marca la tarjeta cuyo borde izquierdo queda más cerca del inicio de la
-      // pista; con `scroll-snap-align: end` en la última, al final del recorrido
-      // gana ella igual porque ninguna otra queda tan a la izquierda.
+      // pista.
       const referencia = pista.getBoundingClientRect().left;
       let activo = 0;
       let menor = Infinity;
@@ -205,6 +204,13 @@ const items = data.items.map((partner) => ({ partner, asset: resolveImage(partne
           activo = idx;
         }
       });
+
+      // Al final del recorrido la última tarjeta se alinea por su borde derecho,
+      // así que la penúltima sigue siendo la más pegada a la izquierda: sin este
+      // ajuste, tocar el último punto encendía el anterior.
+      if (pista.scrollLeft >= pista.scrollWidth - pista.clientWidth - 2) {
+        activo = tarjetas.length - 1;
+      }
 
       puntos.forEach((punto, idx) => {
         const esActivo = idx === activo;

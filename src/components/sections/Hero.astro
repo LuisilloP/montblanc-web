@@ -278,7 +278,9 @@ const hasVideo = videoSources.length > 0;
   </style>
 
   <script>
-    // El vídeo es decoración: en móvil y con ahorro de datos basta el póster.
+    // El vídeo es decoración: con ahorro de datos o movimiento reducido basta
+    // el póster. En móvil sí se reproduce, pero después del `load` para no
+    // competir con la imagen y el texto de la portada.
     const setupHeroVideo = () => {
       const video = document.querySelector<HTMLVideoElement>("[data-hero-video]");
       if (!video) return;
@@ -290,18 +292,41 @@ const hasVideo = videoSources.length > 0;
       let loaded = false;
 
       const load = () => {
-        if (loaded || !wide.matches || calm.matches || connection?.saveData === true) return;
+        if (loaded || calm.matches || connection?.saveData === true) return;
         loaded = true;
-        video.querySelectorAll<HTMLSourceElement>("source[data-src]").forEach((source) => {
-          const src = source.dataset.src;
-          if (src) source.src = src;
-        });
+
+        const fuentes = Array.from(
+          video.querySelectorAll<HTMLSourceElement>("source[data-src]")
+        );
+        // En móvil sólo el MP4: el WebM pesa casi el doble (2,3 MB contra 1,3) y
+        // Chrome Android se quedaría con él por ir primero en la lista.
+        const descartadas = wide.matches
+          ? []
+          : fuentes.filter((source) => source.type === "video/webm" && fuentes.length > 1);
+
+        descartadas.forEach((source) => source.remove());
+        fuentes
+          .filter((source) => !descartadas.includes(source))
+          .forEach((source) => {
+            const src = source.dataset.src;
+            if (src) source.src = src;
+          });
+
         video.load();
-        void video.play().catch(() => {});
+        void video.play().catch(() => {
+          // iOS en modo de bajo consumo bloquea el autoplay: al primer gesto
+          // ya está permitido, y hasta entonces se ve el póster.
+          const reintentar = () => void video.play().catch(() => {});
+          document.addEventListener("touchstart", reintentar, { once: true, passive: true });
+          document.addEventListener("click", reintentar, { once: true });
+        });
       };
 
-      load();
-      wide.addEventListener("change", load);
+      if (wide.matches || document.readyState === "complete") {
+        load();
+      } else {
+        window.addEventListener("load", load, { once: true });
+      }
     };
 
     setupHeroVideo();
